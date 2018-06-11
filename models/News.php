@@ -17,6 +17,25 @@ class News
        return $tab_name;
    }
 
+    public  static  function getNewsGalleryItemById($id)
+    {
+
+        $id = intval($id);
+
+        if($id) {
+            $newsTab=News::dbTableName('news');
+            $db= Db::getConnection();
+
+            $result = $db->query("SELECT gallery FROM $newsTab WHERE id=" . $id);
+            $result->setFetchMode(PDO::FETCH_ASSOC);
+            $BufGallery = $result->fetch();
+
+            $newsGallery = explode(";",$BufGallery['gallery']);
+
+            return $newsGallery;
+        }
+    }
+
     public  static  function getNewsItemById($id)
     {
 

@@ -29,6 +29,7 @@ class Router
     {
         $url = $this->getURI();
 
+
         foreach ($this->routes as $uriPattern => $path){
 
             if(preg_match("~$uriPattern~", $url)){
@@ -54,13 +55,31 @@ class Router
 
                     include_once($controllerFile);
                 }
-                var_dump($actionName);
+               // var_dump($actionName);
                 $controllerObject = new $controllerName;
                 $result = call_user_func_array(array($controllerObject, $actionName),$parameters); //$controllerObject->$actionName($id);
                 if($result != null){
                     break;
                 }
             }
+        }
+
+
+
+        if($url == '' ){
+            $controllerName='HomeController';
+            $actionName='homeContent';
+            $controllerFile = ROOT.'/controller/'.$controllerName.'.php';
+
+            if(file_exists($controllerFile)){
+
+                include_once($controllerFile);
+            }
+
+            $controllerObject = new $controllerName;
+            $result = $controllerObject->$actionName();
+
+            return $result;
         }
     }
 }

@@ -14,7 +14,7 @@ class NewsController
     {
         $newsList = array();
         $newsList = News::getNewsList();
-        require_once (ROOT.'/views/news/index.php');
+        require_once(ROOT . '/views/news/index.php');
         return true;
     }
 
@@ -22,13 +22,8 @@ class NewsController
     {
        if($id){
            $newsItem = News::getNewsItemById($id);
-
-           echo '<pre>';
-           print_r($id);
-           var_dump($newsItem);
-           echo '</pre>';
-           echo 'actionView = '.$id;
-
+           $newsGallery = News:: getNewsGalleryItemById($id);
+           require_once(ROOT . '/views/news/article_news.php');
        }
         return true;
     }
