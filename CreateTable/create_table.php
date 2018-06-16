@@ -6,18 +6,21 @@
  * Time: 16:13
  */
 
-include_once ROOT.'/config/config_site.php';
+ include_once '../config/config_site.php';
 
 $host = 'localhost';
 $dbname = 'BS_shop';
 $user = 'root';
 $password ='';
 
-$my_news_tb = $tb_prefix."_news";
+$my_news_tb = $setting['prefix']."news";
+$my_cat_tb = $setting['prefix']."category";
 
 $db = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
 
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+// table news
 try {
     $queryStr = "CREATE TABLE $my_news_tb ( id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY , 
                                         title VARCHAR(255),
@@ -29,6 +32,20 @@ try {
                                         tupe VARCHAR(50), 
                                         gallery VARCHAR(255))";
     $db->query($queryStr);
+    echo "Таблица news создана <br><br";
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+
+// table category
+//$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+try {
+    $queryStr = "CREATE TABLE $my_cat_tb ( id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+                                        name VARCHAR(255) NOT NULL , 
+                                        sort_order INT(11) NOT NULL DEFAULT '0' , 
+                                        staus INT(11) NOT NULL DEFAULT '1')";
+    $db->query($queryStr);
+    echo 'Таблица category создана <br><br>';
 } catch (PDOException $e) {
     echo $e->getMessage();
 }

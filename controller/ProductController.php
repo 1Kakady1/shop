@@ -9,11 +9,13 @@ include_once ROOT.'/models/Category.php';
 
 class ProductController
 {
+    public $product;
 
     public function actionIndex()
     {
         $cat = array();
         $cat = Category::getCategoriesList();
+       // $this -> product = "product";
         require_once(ROOT . '/views/product/index.php');
         return true;
     }

@@ -79,6 +79,11 @@
 <?php if($newsItem['gallery'] != NULL): ?>
 
         <div class="row gallery">
+            <div class="title_gallery">
+                <h1 class="featurette-heading">
+                    <span class="text-muted">Gallery</span>
+                </h1>
+            </div>
                 <?php foreach ($newsGallery as $newsGList): ?>
         	        <div class="col-md-2"><img src="../template/images/news/<?php echo $newsGList ?>" class="image" alt=""></div>
         	    <?php endforeach; ?>

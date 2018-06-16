@@ -6,33 +6,10 @@
  * Time: 21:21
  */
 
-
-function print_st_link(){
-
-    if(!empty($_SERVER['REQUEST_URI'])){
-        $link_url=trim($_SERVER['REQUEST_URI'],'/');
-    } else { $link_url= "";}
-
-    $post_id = explode("/", $link_url);
-    $lg = count($post_id );
-    $stringUriID=$post_id[0]."/".(int)$post_id[$lg-1];
-
-    echo $stringUriID;
-
-    switch ($link_url){
-        case "":        echo '<link href="../template/css/carousel.css" rel="stylesheet">';break;
-        case "news":    echo '<link href="../template/css/jumbotron.css" rel="stylesheet">';break;
-        case $stringUriID:    echo '<link href="../template/css/carousel.css" rel="stylesheet">';
-                              echo '<link href="../template/css/my-style.css.css" rel="stylesheet">';
-                              break;
-        case "product": echo '<link href="../template/css/album.css" rel="stylesheet">';
-                        echo '<link href="../template/css/font-awesome.min.css" rel="stylesheet">';
-                        echo '<link href="../template/css/prettyPhoto.css" rel="stylesheet">';
-                        echo '<link href="../template/css/price-range.css" rel="stylesheet">';
-                        echo '<link href="../template/css/animate.css" rel="stylesheet">';
-                        echo '<link href="../template/css/main.css" rel="stylesheet">';
-                        echo '<link href="../template/css/responsive.css" rel="stylesheet">';
-                        break;
+function print_url_link()
+{
+    if (!empty($_SERVER['REQUEST_URI'])) {
+        return $link_url = trim($_SERVER['REQUEST_URI'], '/');
     }
 }
 
@@ -51,11 +28,19 @@ function print_st_link(){
     <!-- Bootstrap core CSS -->
     <link href="../template/css/bootstrap.min.css" rel="stylesheet">
     <!-- подключать на нужной стр -->
+    <link href="../template/css/main.css" rel="stylesheet">
+    <?php if ( "product" == print_url_link()): ?>
+        <link href="../template/css/album.css" rel="stylesheet">
+        <link href="../template/css/prettyPhoto.css" rel="stylesheet">
+        <link href="../template/css/price-range.css" rel="stylesheet">
+        <link href="../template/css/animate.css" rel="stylesheet">
+        <link href="../template/css/responsive.css" rel="stylesheet">
+    <?php endif ?>
 
-    <?php print_st_link(); ?>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
     <link type="text/css" rel="stylesheet" charset="UTF-8" href="../template/css/translateelement.css">
-    <link type="text/css" rel="stylesheet" charset="UTF-8" href="../template/css/my-style.css">
+
 </head>
 
   <body>
@@ -69,18 +54,30 @@ function print_st_link(){
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Shop</a>
+                        <a class="nav-link" href="/product">Товары</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Info</a>
+                        <a class="nav-link" href="/news">Новости</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Контакты</a>
                     </li>
                 </ul>
+
+                <div class="shop-menu  pull-right">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a href="#"><i class="fa fa-shopping-cart"></i> Корзина</a></li>
+                        <li class="nav-item"><a href="#"><i class="fa fa-user"></i> Аккаунт</a></li>
+                        <li class="nav-item"><a href="#"><i class="fa fa-lock"></i> Вход</a></li>
+                    </ul>
+                </div>
+
                 <form class="form-inline mt-2 mt-md-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <input class="form-control mr-sm-2" type="text" placeholder="Введите что нужно найти" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
                 </form>
             </div>
         </nav>

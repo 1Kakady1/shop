@@ -6,6 +6,6 @@
  * Time: 16:57
  */
 
-return array(
+return $setting = array(
 'prefix'=>'tr_',
 );
