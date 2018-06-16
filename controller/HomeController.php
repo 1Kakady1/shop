@@ -9,11 +9,11 @@ include_once ROOT.'/models/News.php';
 include_once ROOT.'/models/Functions.php';
 class HomeController
 {
-    public function homeContent()
+    public function actionIndex()
     {
         $newsList = array();
         $newsList = News::getNewsList();
-        require_once (ROOT.'/views/index.php');
+        require_once(ROOT . '/views/home/index.php');
         return true;
     }
 

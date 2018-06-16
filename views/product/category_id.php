@@ -9,12 +9,12 @@
                     <h2>Каталог</h2>
                     <div class="panel-group category-products" id="accordian"><!--category-productsr-->
                         <?php foreach ($cat as $catItem): ?>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title"><a href="product/cat/<?php echo $catItem['id'] ?>"><?php echo $catItem['name'] ?></a></h4>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><a href="product/cat/<?php echo $catItem['id'] ?>"><?php echo $catItem['name'] ?></a></h4>
+                                </div>
                             </div>
-                        </div>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
                     </div><!--/category-products-->
 
 

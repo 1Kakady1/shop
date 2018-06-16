@@ -17,4 +17,12 @@ class Db
 
         return $db;
     }
+
+    public static function dbTableName($name)
+    {
+        $optionsPath = ROOT.'/config/config_site.php';
+        $options = include ($optionsPath);
+        $tab_name= $options['prefix'].$name;
+        return $tab_name;
+    }
 }

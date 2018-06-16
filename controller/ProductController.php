@@ -5,12 +5,22 @@
  * Date: 07.06.2018
  * Time: 18:59
  */
+include_once ROOT.'/models/Category.php';
 
 class ProductController
 {
-    public function actionList()
+
+    public function actionIndex()
     {
-        echo 'ProductController actionList()';
+        $cat = array();
+        $cat = Category::getCategoriesList();
+        require_once(ROOT . '/views/product/index.php');
+        return true;
+    }
+
+    public function actionView($id)
+    {
+        require_once(ROOT . '/views/product/article_product.php');
         return true;
     }
 }

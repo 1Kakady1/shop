@@ -13,15 +13,26 @@ function print_st_link(){
         $link_url=trim($_SERVER['REQUEST_URI'],'/');
     } else { $link_url= "";}
 
-    $news_id = explode("/", $link_url);
-    $lg = count($news_id );
-    $stringUriID="news/".(int)$news_id[$lg-1];
+    $post_id = explode("/", $link_url);
+    $lg = count($post_id );
+    $stringUriID=$post_id[0]."/".(int)$post_id[$lg-1];
+
+    echo $stringUriID;
 
     switch ($link_url){
-        case "product": echo '<link href="../template/css/album.css" rel="stylesheet">';break;
         case "":        echo '<link href="../template/css/carousel.css" rel="stylesheet">';break;
         case "news":    echo '<link href="../template/css/jumbotron.css" rel="stylesheet">';break;
-        case $stringUriID:    echo '<link href="../template/css/carousel.css" rel="stylesheet">';break;
+        case $stringUriID:    echo '<link href="../template/css/carousel.css" rel="stylesheet">';
+                              echo '<link href="../template/css/my-style.css.css" rel="stylesheet">';
+                              break;
+        case "product": echo '<link href="../template/css/album.css" rel="stylesheet">';
+                        echo '<link href="../template/css/font-awesome.min.css" rel="stylesheet">';
+                        echo '<link href="../template/css/prettyPhoto.css" rel="stylesheet">';
+                        echo '<link href="../template/css/price-range.css" rel="stylesheet">';
+                        echo '<link href="../template/css/animate.css" rel="stylesheet">';
+                        echo '<link href="../template/css/main.css" rel="stylesheet">';
+                        echo '<link href="../template/css/responsive.css" rel="stylesheet">';
+                        break;
     }
 }
 

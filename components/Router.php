@@ -65,7 +65,7 @@ class Router
         }
 
 
-
+/*
         if($url == '' ){
             $controllerName='HomeController';
             $actionName='homeContent';
@@ -80,6 +80,6 @@ class Router
             $result = $controllerObject->$actionName();
 
             return $result;
-        }
+        }*/
     }
 }

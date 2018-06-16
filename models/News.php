@@ -9,21 +9,13 @@
 class News
 {
 
-   private static function dbTableName($name)
-   {
-       $optionsPath = ROOT.'/config/config_site.php';
-       $options = include ($optionsPath);
-       $tab_name= $options['prefix'].$name;
-       return $tab_name;
-   }
-
     public  static  function getNewsGalleryItemById($id)
     {
 
         $id = intval($id);
 
         if($id) {
-            $newsTab=News::dbTableName('news');
+            $newsTab=Db::dbTableName('news');
             $db= Db::getConnection();
 
             $result = $db->query("SELECT gallery FROM $newsTab WHERE id=" . $id);
@@ -42,7 +34,7 @@ class News
         $id = intval($id);
 
         if($id) {
-            $newsTab=News::dbTableName('news');
+            $newsTab=Db::dbTableName('news');
             $db= Db::getConnection();
 
             $result = $db->query("SELECT * FROM $newsTab WHERE id=" . $id);
@@ -56,7 +48,7 @@ class News
     public  static  function getNewsList()
     {
 
-        $newsTab=News::dbTableName('news');
+        $newsTab=Db::dbTableName('news');
         $db= Db::getConnection();
 
         $newsList = array();
