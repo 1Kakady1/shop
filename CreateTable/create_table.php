@@ -15,6 +15,7 @@ $password ='';
 
 $my_news_tb = $setting['prefix']."news";
 $my_cat_tb = $setting['prefix']."category";
+$my_prod_tb = $setting['prefix']."product";
 
 $db = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
 
@@ -46,6 +47,27 @@ try {
                                         staus INT(11) NOT NULL DEFAULT '1')";
     $db->query($queryStr);
     echo 'Таблица category создана <br><br>';
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+
+// table product
+try {
+    $queryStr = "CREATE TABLE $my_prod_tb ( id INT(11) NOT NULL AUTO_INCREMENT  PRIMARY KEY, 
+                                            name VARCHAR(255) NOT NULL , 
+                                            category_id INT(11) NOT NULL , 
+                                            code INT(11) NOT NULL , 
+                                            price FLOAT NOT NULL , 
+                                            availability INT(11) NOT NULL , 
+                                            brand VARCHAR(255) NOT NULL , 
+                                            image VARCHAR(255) NOT NULL , 
+                                            description TEXT NOT NULL , 
+                                            is_new INT(11) NOT NULL DEFAULT '0' , 
+                                            is_recommended INT(11) NOT NULL DEFAULT '0' , 
+                                            status INT(11) NOT NULL DEFAULT '1' , 
+                                            gallery VARCHAR(255) NULL DEFAULT NULL )";
+    $db->query($queryStr);
+    echo 'Таблица product создана <br><br>';
 } catch (PDOException $e) {
     echo $e->getMessage();
 }

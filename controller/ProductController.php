@@ -5,8 +5,9 @@
  * Date: 07.06.2018
  * Time: 18:59
  */
-include_once ROOT.'/models/Category.php';
 
+include_once ROOT.'/models/Category.php';
+include_once ROOT.'/models/Product.php';
 class ProductController
 {
     public $product;
@@ -15,7 +16,10 @@ class ProductController
     {
         $cat = array();
         $cat = Category::getCategoriesList();
-       // $this -> product = "product";
+
+        $latestProducts = array();
+        $latestProducts = Product::getLatestProducts(6);
+
         require_once(ROOT . '/views/product/index.php');
         return true;
     }
