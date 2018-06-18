@@ -73,7 +73,7 @@
               </div>
           </div>
           <div class="col-md-5 order-md-1">
-            <img class="featurette-image img-fluid mx-auto" src="../template/images<?php echo $newsItem['preview'] ?>" alt="500x500" style="width: 500px; height: 500px;"  data-holder-rendered="true">
+            <img class="featurette-image img-fluid mx-auto" src="../template/images/news/<?php echo $newsItem['preview'] ?>" alt="500x500" style="width: 500px; height: 500px;"  data-holder-rendered="true">
           </div>
         </div>
 <?php if($newsItem['gallery'] != NULL): ?>

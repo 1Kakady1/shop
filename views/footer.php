@@ -12,10 +12,10 @@
         <div class="col-md-6"><p>© 2017-2018 Company</p></div>
         <div class="col-md-6">
             <div class="flr">
-                <a href=""><img src="" alt="с"></a>
-                <a href=""><img src="" alt="ч"></a>
-                <a href=""><img src="" alt="в "></a>
-                <a href=""><img src="" alt="м"></a></div>
+                <a href="#"><img src="/template/images/vk.png" alt="vk"></a>
+                <a href="#"><img src="/template/images/telegram.png" alt="telegram"></a>
+                <a href="#"><img src="/template/images/youtube.png" alt="youtube"></a>
+             </div>
 
         </div>
     </div>

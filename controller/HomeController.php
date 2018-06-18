@@ -7,7 +7,7 @@
  */
 include_once ROOT.'/models/News.php';
 include_once ROOT.'/models/Functions.php';
-include_once ROOT.'/models/Product.php';
+include_once ROOT.'/models/Home.php';
 
 class HomeController
 {
@@ -17,7 +17,10 @@ class HomeController
         $newsList = News::getNewsList();
 
         $latestProducts = array();
-        $latestProducts = Product::getLatestProducts(3);
+        $latestProducts = Home::getLatestProducts(/*10*/);
+
+        $randId = array();
+        $randId = Home::prodRandId();
 
         require_once(ROOT . '/views/home/index.php');
         return true;

@@ -1,5 +1,11 @@
-<?php include_once ROOT . '/views/header.php'; ?>
+<?php include_once ROOT . '/views/header.php';
+    $paramsPath = ROOT.'/config/config_site.php';
+    $setting = include ($paramsPath);
+?>
 
+<?php //print_r($randId); ?>
+
+<?php //var_dump($setting); ?>
     <main role="main">
 
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -11,34 +17,34 @@
         <div class="carousel-inner">
 
           <div class="carousel-item active">
-            <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+            <img class="first-slide" src="/template/images/news/<?php echo $newsList[$setting['news1']]['preview']?>" alt="First slide">
             <div class="container">
               <div class="carousel-caption text-left">
-                <h1><?php echo $newsList[0]['title']?></h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p><a class="btn btn-lg btn-primary" href="https://getbootstrap.com/docs/4.1/examples/carousel/#" role="button">Sign up today</a></p>
+                <h1><?php echo $newsList[$setting['news1']]['short_content']?></h1>
+                  <p></p>
+                <p><a class="btn btn-lg btn-primary" href="/news/<?php echo $newsList[$setting['news1']]['id']?>" role="button">Посмотреть</a></p>
               </div>
             </div>
           </div>
 
           <div class="carousel-item">
-            <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+            <img class="second-slide" src="/template/images/news/<?php echo $newsList[$setting['news2']]['preview']?>" alt="Second slide">
             <div class="container">
               <div class="carousel-caption">
-                <h1><?php echo $newsList[1]['title']?></h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p><a class="btn btn-lg btn-primary" href="https://getbootstrap.com/docs/4.1/examples/carousel/#" role="button">Learn more</a></p>
+                <h1><?php echo $newsList[$setting['news2']]['short_content']?></h1>
+                <p></p>
+                <p><a class="btn btn-lg btn-primary" href="/news/<?php echo $newsList[$setting['news2']]['id']?>" role="button">Посмотреть</a></p>
               </div>
             </div>
           </div>
 
           <div class="carousel-item">
-            <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+            <img class="third-slide" src="/template/images/news/<?php echo $newsList[$setting['news3']]['preview']?>" alt="Third slide">
             <div class="container">
               <div class="carousel-caption text-right">
-                <h1><?php echo $newsList[2]['title']?></h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p><a class="btn btn-lg btn-primary" href="https://getbootstrap.com/docs/4.1/examples/carousel/#" role="button">Browse gallery</a></p>
+                <h1><?php echo $newsList[$setting['news3']]['short_content']?></h1>
+                <p></p>
+                <p><a class="btn btn-lg btn-primary" href="/news/<?php echo $newsList[$setting['news3']]['id']?>" role="button">Посмотреть</a></p>
               </div>
             </div>
           </div>
@@ -64,61 +70,42 @@
         <!-- START THE FEATURETTES -->
 
         <hr class="featurette-divider">
+          <div class="row featurette">
+              <div class="col-md-7">
+                  <a href="/product/<?php echo $latestProducts[$randId[0]]['id']?>"><h2 class="featurette-heading"><?php echo $latestProducts[$randId[0]]['name']?></h2></a>
+                  <p class="lead"><?php $string = substr($latestProducts[$randId[0]]['description'], 0, 800); echo $string."..." ?></p>
+              </div>
+              <div class="col-md-5">
+                  <img class="featurette-image img-fluid mx-auto" src="/template/images/shop/<?php echo $latestProducts[$randId[0]]['image']?>" alt="Generic placeholder image">
+              </div>
+          </div>
 
-         <?php $i=0; foreach ($latestProducts as $product): ?>
-            <?php if( $i < 3) { $product_sub = substr($product['description'], 0, 802);?>
-                <div class="row featurette">
+          <hr class="featurette-divider">
 
-                  <?php if($i == 1) { ?>
-                      <div class="col-md-5">
-                          <img class="featurette-image img-fluid mx-auto" src="/template/images/shop/<?php echo $product['image']?>" alt="500x500" style="width: 500px; height: 500px;"  data-holder-rendered="true">
-                      </div>
-                    <div class="col-md-7">
-                      <a href="/product/<?php echo $product['id']?>"><h2 class="featurette-heading"><?php echo $product['name']?></a></h2>
-                    <p class="lead"><?php echo $product_sub.'.....';?></p>
-                  </div>
+          <div class="row featurette">
+              <div class="col-md-7 order-md-2">
+                  <a href="/product/<?php echo $latestProducts[$randId[1]]['id']?>"><h2 class="featurette-heading"><?php echo $latestProducts[$randId[1]]['name']?></h2></a>
+                  <p class="lead"><?php $string = substr($latestProducts[$randId[1]]['description'], 0, 800); echo $string."..." ?></p>
+              </div>
+              <div class="col-md-5 order-md-1">
+                  <img class="featurette-image img-fluid mx-auto" src="/template/images/shop/<?php echo $latestProducts[$randId[1]]['image']?>" alt="Generic placeholder image">
+              </div>
+          </div>
 
+          <hr class="featurette-divider">
 
-                  <?php } else {?>
-
-                  <div class="col-md-7">
-                      <a href="/product/<?php echo $product['id']?>"><h2 class="featurette-heading"><?php echo $product['name']?></a></h2>
-                    <p class="lead"><?php echo $product_sub.'.....';?></p>
-                  </div>
-                  <div class="col-md-5">
-                    <img class="featurette-image img-fluid mx-auto" src="/template/images/shop/<?php echo $product['image']?>" alt="500x500" style="width: 500px; height: 500px;"  data-holder-rendered="true">
-                  </div>
-
-                  <?php }?>
-
-                </div>
-                <hr class="featurette-divider">
-            <?php } else {break;}?>
-        <?php $i++;endforeach; ?>
+          <div class="row featurette">
+              <div class="col-md-7">
+                  <a href="/product/<?php echo $latestProducts[$randId[2]]['id']?>"><h2 class="featurette-heading"><?php echo $latestProducts[$randId[2]]['name']?></h2></a>
+                  <p class="lead"><?php $string = substr($latestProducts[$randId[2]]['description'], 0, 800); echo $string."..." ?> </p>
+              </div>
+              <div class="col-md-5">
+                  <img class="featurette-image img-fluid mx-auto" src="/template/images/shop/<?php echo $latestProducts[$randId[2]]['image']?>" alt="Generic placeholder image">
+              </div>
+          </div>
+        <hr class="featurette-divider">
 
         <!-- /END THE FEATURETTES -->
-
-          <!-- Three columns of text below the carousel -->
-          <div class="row">
-              <div class="col-lg-4">
-                  <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-                  <h2>Heading</h2>
-                  <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-                  <p><a class="btn btn-secondary" href="https://getbootstrap.com/docs/4.1/examples/carousel/#" role="button">View details »</a></p>
-              </div><!-- /.col-lg-4 -->
-              <div class="col-lg-4">
-                  <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-                  <h2>Heading</h2>
-                  <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-                  <p><a class="btn btn-secondary" href="https://getbootstrap.com/docs/4.1/examples/carousel/#" role="button">View details »</a></p>
-              </div><!-- /.col-lg-4 -->
-              <div class="col-lg-4">
-                  <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-                  <h2>Heading</h2>
-                  <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                  <p><a class="btn btn-secondary" href="https://getbootstrap.com/docs/4.1/examples/carousel/#" role="button">View details »</a></p>
-              </div><!-- /.col-lg-4 -->
-          </div><!-- /.row -->
 
       </div><!-- /.container -->
 <?php include_once ROOT . '/views/footer.php' ?>
