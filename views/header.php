@@ -9,7 +9,10 @@
 function print_url_link()
 {
     if (!empty($_SERVER['REQUEST_URI'])) {
-        return $link_url = trim($_SERVER['REQUEST_URI'], '/');
+
+         $link_url = trim($_SERVER['REQUEST_URI'], '/');
+         $buf = explode("/",$link_url);
+         return $buf[0];
     }
 }
 
@@ -26,15 +29,15 @@ function print_url_link()
     <title>Album example for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../template/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/template/css/bootstrap.min.css" rel="stylesheet">
     <!-- подключать на нужной стр -->
-    <link href="../template/css/main.css" rel="stylesheet">
-    <?php if ( "product" == print_url_link()): ?>
-        <link href="../template/css/album.css" rel="stylesheet">
-        <link href="../template/css/prettyPhoto.css" rel="stylesheet">
-        <link href="../template/css/price-range.css" rel="stylesheet">
-        <link href="../template/css/animate.css" rel="stylesheet">
-        <link href="../template/css/responsive.css" rel="stylesheet">
+    <link href="/template/css/main.css" rel="stylesheet">
+    <?php  if ( "product" == print_url_link()) : ?>
+        <link href="/template/css/album.css" rel="stylesheet">
+        <link href="/template/css/prettyPhoto.css" rel="stylesheet">
+        <link href="/template/css/price-range.css" rel="stylesheet">
+        <link href="/template/css/animate.css" rel="stylesheet">
+        <link href="/template/css/responsive.css" rel="stylesheet">
     <?php endif ?>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">

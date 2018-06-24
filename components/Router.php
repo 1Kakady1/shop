@@ -44,7 +44,6 @@ class Router
                 $controllerName = ucfirst($controllerName);
 
                 $actionName = 'action'.ucfirst(array_shift($segments));
-
                 $parameters =$segments; //??????????????????
 
                // подключение класса нужного контроллера

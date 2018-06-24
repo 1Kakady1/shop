@@ -65,7 +65,9 @@ try {
                                             is_new INT(11) NOT NULL DEFAULT '0' , 
                                             is_recommended INT(11) NOT NULL DEFAULT '0' , 
                                             status INT(11) NOT NULL DEFAULT '1' , 
-                                            gallery VARCHAR(255) NULL DEFAULT NULL )";
+                                            gallery VARCHAR(255) NULL DEFAULT NULL,
+                                            comments VARCHAR(255) NULL DEFAULT NULL,
+                                            info TEXT NULL DEFAULT NULL)";
     $db->query($queryStr);
     echo 'Таблица product создана <br><br>';
 } catch (PDOException $e) {

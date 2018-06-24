@@ -1,5 +1,24 @@
 
-      $(function(){
+
+$(function(){
+
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}
+        slides[slideIndex-1].style.display = "block";
+        setTimeout(showSlides, 4000); // Change image every 7 seconds
+    }
+});
+
+$(function(){
             "use strict";
 		document.getElementById('hideInfo2').onclick = function() {
       		document.getElementById('info1').style.display = 'none';
@@ -13,24 +32,26 @@
 
         });
 
-      $(document).ready(function() { // Ждём загрузки страницы
-	
+
+
+$(document).ready(function() { // Ждём загрузки страницы
+
 	$(".image").click(function(){	// Событие клика на маленькое изображение
 	  	var img = $(this);	// Получаем изображение, на которое кликнули
 		var src = img.attr('src'); // Достаем из этого изображения путь до картинки
 		$("body").append("<div class='popup'>"+ //Добавляем в тело документа разметку всплывающего окна
 						 "<div class='popup_bg'></div>"+ // Блок, который будет служить фоном затемненным
 						 "<img src='"+src+"' class='popup_img' />"+ // Само увеличенное фото
-						 "</div>"); 
+						 "</div>");
 		$(".popup").fadeIn(800); // Медленно выводим изображение
-		$(".popup_bg").click(function(){	// Событие клика на затемненный фон	   
+		$(".popup_bg").click(function(){	// Событие клика на затемненный фон
 			$(".popup").fadeOut(800);	// Медленно убираем всплывающее окно
 			setTimeout(function() {	// Выставляем таймер
 			  $(".popup").remove(); // Удаляем разметку всплывающего окна
 			}, 800);
 		});
 	});
-	
+
 });
 
       /*price range*/
@@ -63,3 +84,5 @@
               });
           });
       });
+
+

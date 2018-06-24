@@ -9,4 +9,5 @@
 return $setting = array(
 'prefix'=>'tr_', //
 'news1'=> 0,'news2'=> 1,'news3'=> 2,
+'price' =>"$",
 );
