@@ -20,7 +20,7 @@ class HomeController
         $latestProducts = Home::getLatestProducts(/*10*/);
 
         $randId = array();
-        $randId = Home::prodRandId();
+        $randId = Home::prodRandId('product');
 
         require_once(ROOT . '/views/home/index.php');
         return true;

@@ -8,19 +8,24 @@
 
 include_once ROOT.'/models/Category.php';
 include_once ROOT.'/models/Product.php';
+include_once ROOT.'/components/Pagination.php';
 class ProductController
 {
     public $product;
 
-    public function actionIndex()
+    public function actionIndex($page=1)
     {
+
         $cat = array();
         $cat = Category::getCategoriesList();
 
         $catId = 0;
 
         $latestProducts = array();
-        $latestProducts = Product::getLatestProducts(6);
+        $latestProducts = Product::getLatestProducts($page);
+
+        $total= Product::getTotalProducts($page);
+        $pagination = new Pagination($total,$page,Product::SHOW_BY_DEFAULT,'page-');
 
         require_once(ROOT . '/views/product/index.php');
         return true;
@@ -38,8 +43,9 @@ class ProductController
         return true;
     }
 
-    public function actionCat($id)
+    public function actionCat($id,$page=1)
     {
+
         $cat = array();
         $cat = Category::getCategoriesList();
 
@@ -54,7 +60,10 @@ class ProductController
 
 
         $listProdCat = array();
-        $listProdCat = Product::getProductsCategoriesId($id,6);
+        $listProdCat = Product::getProductsCategoriesId($id,$page);
+
+        $total= Product::getTotalProductsInCategory($id,$page);
+        $pagination = new Pagination($total,$page,Product::SHOW_BY_DEFAULT,'page-');
 
         require_once(ROOT . '/views/product/category_id.php');
         return true;

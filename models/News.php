@@ -53,7 +53,7 @@ class News
 
         $newsList = array();
 
-        $result = $db->query("SELECT id, title, date, short_content, preview FROM $newsTab ORDER BY date DESC LIMIT 10");
+        $result = $db->query("SELECT id, title, date, short_content, content, preview FROM $newsTab ORDER BY date DESC LIMIT 10");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $i = 0;
 
@@ -63,6 +63,7 @@ class News
             $newsList[$i]['title'] = $row['title'];
             $newsList[$i]['date'] = $row['date'];
             $newsList[$i]['short_content'] = $row['short_content'];
+            $newsList[$i]['content'] = $row['content'];
             $newsList[$i]['preview'] = $row['preview'];
 
             $i++;

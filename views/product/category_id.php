@@ -20,7 +20,7 @@ $price = include ($paramsPath);?>
                                 <div class="single-products">
                                     <div class="productinfo text-center">
                                         <img src="/template/images/shop/<?php echo $product['image'] ?>" alt="<?php echo $product['image'] ?>" />
-                                        <h2><?php echo $product['price']." ".$price["price"] ?></h2>
+                                        <h2><?php echo $product['id']." ".$product['price']." ".$price["price"] ?></h2>
                                         <p><?php echo $product['name'] ?></p>
                                         <a href="/product/<?php echo $product['id'] ?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
                                     </div>
@@ -31,14 +31,9 @@ $price = include ($paramsPath);?>
                             </div>
                         </div>
                     <?php endforeach; ?>
-                    <ul class="pagination" style="    display: flex;">
-                        <li class="active"><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">&raquo;</a></li>
-                    </ul>
-                </div><!--features_items-->
 
+                </div><!--features_items-->
+                <?php echo $pagination->get(); ?>
             </div>
         </div>
     </div>

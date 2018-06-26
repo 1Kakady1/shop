@@ -1320,7 +1320,13 @@ h2.title {
 /*************************
 *******Shop CSS******
 **************************/
+#cont-w .container {
+  max-width: 71rem!important;
+}
 
+#cont-w{
+  margin-bottom: 2vw;
+}
 
 #advertisement {
   padding-bottom: 45px;
@@ -1331,7 +1337,7 @@ h2.title {
 }
 
 .pagination {
-  display: inline-block;
+  display: flex;
   margin-bottom: 25px;
   margin-top: 0;
   padding-left: 15px;

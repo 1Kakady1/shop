@@ -44,9 +44,13 @@ class Router
                 $controllerName = ucfirst($controllerName);
 
                 $actionName = 'action'.ucfirst(array_shift($segments));
-                $parameters =$segments; //??????????????????
+                $parameters =$segments;
 
-               // подключение класса нужного контроллера
+                if(count($parameters)>1){
+                    $parameters[0]=$parameters[1];
+                }
+
+                      // подключение класса нужного контроллера
 
                 $controllerFile = ROOT.'/controller/'.$controllerName.'.php';
 

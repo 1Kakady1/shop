@@ -36,10 +36,10 @@ class Home
         return $productsList;
     }
 
-    public static function prodRandId()
+    public static function prodRandId($tableName)
     {
 
-        $productTab=Db::dbTableName('product');
+        $productTab=Db::dbTableName($tableName);
         $db = Db::getConnection();
 
         $query=$db->query("SELECT COUNT(*) as count FROM $productTab");

@@ -1,13 +1,13 @@
-<?php include_once ROOT . '/views/header.php' ?>
+<?php include_once ROOT . '/views/header.php'; ?>
 
     <main role="main">
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="jumbotron">
+      <div class="jumbotron" id="cont-w" style="background: url(/template/images/background-news.jpg);background-size: 100% 100%;">
         <div class="container">
-          <h1 class="display-3">Hello, world!</h1>
-          <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-          <p><a class="btn btn-primary btn-lg" href="https://getbootstrap.com/docs/4.1/examples/jumbotron/#" role="button">Learn more »</a></p>
+          <h1 class="display-3"><?php echo $newsList[$randNewsId[0]]['title']?></h1>
+          <p><?php echo $newsList[$randNewsId[0]]['content']?></p>
+          <p><a class="btn btn-primary btn-lg" href="/news/<?php echo $newsList[$randNewsId[0]]['id']?>" role="button">Learn more »</a></p>
         </div>
       </div>
 

@@ -3,9 +3,6 @@
     $setting = include ($paramsPath);
 ?>
 
-<?php //print_r($randId); ?>
-
-<?php //var_dump($setting); ?>
     <main role="main">
 
       <div id="myCarousel" class="carousel slide" data-ride="carousel">

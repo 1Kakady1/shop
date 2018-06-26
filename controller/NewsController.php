@@ -7,6 +7,7 @@
  */
 
 include_once ROOT.'/models/News.php';
+include_once ROOT.'/models/Home.php';
 
 class NewsController
 {
@@ -14,6 +15,10 @@ class NewsController
     {
         $newsList = array();
         $newsList = News::getNewsList();
+
+        $randNewsId = array();
+        $randNewsId = Home::prodRandId("news");
+
         require_once(ROOT . '/views/news/index.php');
         return true;
     }

@@ -4,7 +4,7 @@
 
         <!-- Full-width images with number and caption text -->
         <div class="mySlides fade">
-            <img src="./template/images/banner/bn1.jpg" style="width:100%;">
+            <img src="/template/images/banner/bn1.jpg" style="width:100%;">
         </div>
 
         <div class="mySlides fade">
