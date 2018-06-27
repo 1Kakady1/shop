@@ -39,5 +39,8 @@ $price = include ($paramsPath);?>
     </div>
 </section>
 
+
+
+
 <?php include_once ROOT . '/views/footer.php' ?>
 

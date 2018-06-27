@@ -16,6 +16,7 @@ $password ='';
 $my_news_tb = $setting['prefix']."news";
 $my_cat_tb = $setting['prefix']."category";
 $my_prod_tb = $setting['prefix']."product";
+$my_users_tb = $setting['prefix']."users";
 
 $db = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
 
@@ -70,6 +71,19 @@ try {
                                             info TEXT NULL DEFAULT NULL)";
     $db->query($queryStr);
     echo 'Таблица product создана <br><br>';
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+
+// table users
+try {
+    $queryStr = "CREATE TABLE $my_users_tb ( id INT(11) NOT NULL AUTO_INCREMENT  PRIMARY KEY , 
+                                             name VARCHAR(100) NOT NULL , 
+                                             usname VARCHAR(100) NOT NULL , 
+                                             password VARCHAR(255) NOT NULL , 
+                                             email VARCHAR(100) NOT NULL)";
+    $db->query($queryStr);
+    echo 'Таблица users создана <br><br>';
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
