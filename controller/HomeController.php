@@ -16,6 +16,10 @@ class HomeController
         $newsList = array();
         $newsList = News::getNewsList();
 
+        $cat = array();
+        $cat = Category::getCategoriesList();
+        $catId = 0;
+
         $latestProducts = array();
         $latestProducts = Home::getLatestProducts(/*10*/);
 

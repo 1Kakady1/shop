@@ -53,7 +53,8 @@ class UserController
 
             if ($errors == false) {
                 $result = User::register($name, $usname, $email, $password);
-                echo "<br><br>good ";
+                var_dump($result);
+
             }
         }
 

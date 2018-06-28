@@ -1,7 +1,20 @@
-﻿
+﻿.navbar-expand-md .navbar-nav .dropdown-menu {
+  left: 14vw;
+  background: #343a40;
+  text-align: center;
+}
+.dropdown-menu li a {color:#FE980F;}
+.dropdown-menu li a:hover, .dropdown-menu li a:focus {
+  background: #28a745!important;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  font-size: 1vw;
+  border-radius: 2vw;
+}
+
+
 /* banner */
 * {box-sizing:border-box}
-
 /* Slideshow container */
 .slideshow-container {
   height: 16.75vmax;
@@ -70,7 +83,10 @@
 .featurette-image { width: 500px; height: 500px;}
 
 #logo {    color: #92f904b8;
-  padding-right: 1vw;}
+  padding-right: 1vw;
+  width: 10vw;
+  height: 3vw;
+}
 
 
 footer {background-color: #343a40;height: 3vw}

@@ -5,17 +5,13 @@
  * Date: 09.06.2018
  * Time: 21:21
  */
+include_once ROOT.'/models/Functions.php';
 
-function print_url_link()
-{
-    if (!empty($_SERVER['REQUEST_URI'])) {
+$link_url = new Functions();
+$linkUrl = $link_url->print_url_link();
 
-         $link_url = trim($_SERVER['REQUEST_URI'], '/');
-         $buf = explode("/",$link_url);
-         return $buf[0];
-    }
-}
-
+$title = new Functions();
+$titleSite = $title->print_title();
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0049)https://getbootstrap.com/docs/4.1/examples/album/ -->
@@ -24,15 +20,15 @@ function print_url_link()
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="https://getbootstrap.com/favicon.ico">
+    <link rel="icon" href="/template/images/icons.png">
 
-    <title>Album example for Bootstrap</title>
+    <title><?php echo $titleSite  ?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="/template/css/bootstrap.min.css" rel="stylesheet">
     <!-- подключать на нужной стр -->
     <link href="/template/css/main.css" rel="stylesheet">
-    <?php  if ( "product" == print_url_link()) : ?>
+    <?php  if ( "product" == $linkUrl ) : ?>
         <link href="/template/css/album.css" rel="stylesheet">
         <link href="/template/css/prettyPhoto.css" rel="stylesheet">
         <link href="/template/css/price-range.css" rel="stylesheet">
@@ -50,7 +46,7 @@ function print_url_link()
 
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <h1 id = "logo">TopShop</h1>
+            <img src="/template/images/logo.png" alt="logo" id="logo">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -60,7 +56,14 @@ function print_url_link()
                         <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/product">Товары</a>
+                        <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="#">Категория товаров</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/product">Все товары</a></li>
+                            <?php  foreach ($cat as $catItem): ?>
+                            <li> <a href="/product/cat/<?php echo $catItem['id'] ?>"><?php echo $catItem['name']; ?></a></li>
+                            <?php endforeach;  ?>
+
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/news">Новости</a>

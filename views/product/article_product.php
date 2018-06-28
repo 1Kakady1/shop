@@ -4,6 +4,8 @@ $paramsPath = ROOT.'/config/config_site.php';
 $price = include ($paramsPath);
 ?>
 
+<?php include_once ROOT . '/views/include/banner.php' ?>
+
 <main role="main">
 
 
@@ -14,6 +16,10 @@ $price = include ($paramsPath);
         <hr class="featurette-divider">
 
         <div class="row featurette">
+
+            <?php require_once ROOT . '/views/include/sidebar.php' ?>
+
+
             <div class="col-md-7 order-md-2">
                 <div><button id="hideInfo1">Описание</button><button id="hideInfo2">Характиристики</button></div>
                 <p class="lead " id="info1"><?php echo $productItem['description'] ?></p>
@@ -61,80 +67,74 @@ $price = include ($paramsPath);
         <!-- /END THE FEATURETTES -->
 
     </div><!-- /.container -->
-    <div class="container-fluid">
-        <h2 class=" title_comments featurette-heading">Leave a Comment</h2>
+    <div class="container-fluid" style="margin-bottom: 2vw;">
+        <a href="#comments"></a>
+        <h2 class=" title_comments featurette-heading">Комментарии</h2>
         <div class="row">
             <div class="col-md-6">
                 <div id="list-comments">
                     <ul>
+                        <?php if($listComments): ?>
+                    <?php foreach ($listComments as $comments): ?>
                         <li><!--comments 1 -->
                             <div class="comments main_flex__nowrap">
                                 <div class="img-com">
-                                    <img src="img/7.jpg" alt="c1">
+                                    <img src="https://ru.gravatar.com/avatar/<?php echo md5($comments['email'])?>?s=125" alt="c1">
                                 </div>
                                 <div class="msg-com">
-                                    <h4>ShaneFreer <span>/ 58 minutes ago</span></h4>
-                                    <p>great post brainartworks</p>
+                                    <h4> <?php echo $comments['author'].": ".$comments['nickname']?><span>/ <?php echo $comments['pupdate']?></span></h4>
+                                    <p><?php echo $comments['text']?></p>
                                 </div>
 
                             </div>
-
                         </li> <!--comments 1 end-->
 
-                        <li><!--comments 1 -->
-                            <div class="comments main_flex__nowrap">
-                                <div class="img-com">
-                                    <img src="img/7.jpg" alt="c1">
-                                </div>
-                                <div class="msg-com">
-                                    <h4>ShaneFreer <span>/ 58 minutes ago</span></h4>
-                                    <p>great post brainartworks</p>
-                                </div>
+                    <?php endforeach; else:?>
+                    <li><h4><span>Будь первым, кто оставмит комментарий!!!</span></h4></li>
+                   <?php endif; ?>
 
-                            </div>
 
-                        </li> <!--comments 1 end-->
-
-                        <li><!--comments 1 -->
-                            <div class="comments main_flex__nowrap">
-                                <div class="img-com">
-                                    <img src="img/7.jpg" alt="c1">
-                                </div>
-                                <div class="msg-com">
-                                    <h4>ShaneFreer <span>/ 58 minutes ago</span></h4>
-                                    <p>great post brainartworks</p>
-                                </div>
-
-                            </div>
-
-                        </li> <!--comments 1 end-->
 
 
                     </ul>
-
-
                 </div>
 
             </div>
+
             <div class="col-md-6">
+
+                <?php   if ($result): ?>
+                    <p>Вы зарегистрированы!</p>
+                <?php else: ?>
+
+                    <?php if (isset($errors) && is_array($errors)): ?>
+                        <ul>
+                            <?php foreach ($errors as $error): ?>
+                                <li> - <?php echo $error; ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
+                <?php endif; ?>
+
+
                 <div id="form-content">
 
                     <div class="name-f-msg">
 
-                        <form action="" class="main_flex__nowrap">
+                        <form action="#" method="post" class="main_flex__nowrap">
                             <div id="left_form">
                                 <div class="input main_flex__nowrap flex__align-items_center">
                                     <div class="form_icon">
-                                        <img src="img/p.png" alt="">
+                                        <img src="/template/images/p.png" alt="">
                                     </div>
-                                    <input type="text" placeholder="Name">
+                                    <input type="text" name="name" placeholder="Ваше имя" value="<?php echo $name?>">
                                 </div>
 
                                 <div class="input main_flex__nowrap flex__align-items_center">
                                     <div class="form_icon">
-                                        <img src="img/msg.png" alt="">
+                                        <img src="/template/images/msg.png" alt="">
                                     </div>
-                                    <input type="text" placeholder="Email">
+                                    <input type="email" name="email" placeholder="Email" value="<?php echo $email?>">
                                 </div>
 
                             </div>
@@ -142,15 +142,16 @@ $price = include ($paramsPath);
                             <div id="right_form">
 
                                 <div class="input main_flex__nowrap flex__align-items_center">
-                                    <textarea name="" id="" placeholder="Message"></textarea>
+                                    <textarea type="text" name="msg" id="" placeholder="Сообщение" value="<?php echo $msg?>"></textarea>
                                 </div>
-                                <button>Post a Comment</button>
+                                <button type="submit" name="submit">отправить</button>
                             </div>
                         </form>
                     </div>
                 </div>
 
             </div>
+
         </div>
     </div>
 

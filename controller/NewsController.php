@@ -16,6 +16,10 @@ class NewsController
         $newsList = array();
         $newsList = News::getNewsList();
 
+        $cat = array();
+        $cat = Category::getCategoriesList();
+        $catId = 0;
+
         $randNewsId = array();
         $randNewsId = Home::prodRandId("news");
 

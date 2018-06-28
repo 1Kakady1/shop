@@ -17,6 +17,7 @@ $my_news_tb = $setting['prefix']."news";
 $my_cat_tb = $setting['prefix']."category";
 $my_prod_tb = $setting['prefix']."product";
 $my_users_tb = $setting['prefix']."users";
+$my_comments_tb = $setting['prefix']."comments";
 
 $db = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
 
@@ -67,7 +68,6 @@ try {
                                             is_recommended INT(11) NOT NULL DEFAULT '0' , 
                                             status INT(11) NOT NULL DEFAULT '1' , 
                                             gallery VARCHAR(255) NULL DEFAULT NULL,
-                                            comments VARCHAR(255) NULL DEFAULT NULL,
                                             info TEXT NULL DEFAULT NULL)";
     $db->query($queryStr);
     echo 'Таблица product создана <br><br>';
@@ -87,3 +87,18 @@ try {
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
+// table comments
+try {
+    $queryStr = "CREATE TABLE $my_comments_tb (id INT(15) NOT NULL AUTO_INCREMENT  PRIMARY KEY , 
+                                            author VARCHAR(100) NULL DEFAULT 'Аноним' , 
+                                            nickname VARCHAR(100) NOT NULL , 
+                                            email VARCHAR(100) NOT NULL , 
+                                            text TEXT NOT NULL , 
+                                            pupdate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+                                            articles_id INT NOT NULL )";
+    $db->query($queryStr);
+    echo 'Таблица comments создана <br><br>';
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+

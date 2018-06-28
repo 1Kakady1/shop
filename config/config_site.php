@@ -6,6 +6,10 @@
  * Time: 16:57
  */
 
+// = array();
+//$cat = Category::getCategoriesList();
+//$catId = 0;
+
 return $setting = array(
 'prefix'=>'tr_', //
 'news1'=> 0,'news2'=> 1,'news3'=> 2,
