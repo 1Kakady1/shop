@@ -6,10 +6,15 @@
  * Time: 14:33
  */
 include_once ROOT.'/models/User.php';
+
 class UserController
 {
     public function actionRegister()
     {
+
+        $cat = array();
+        $cat = Category::getCategoriesList();
+        $catId = 0;
 
         $name = '';
         $usname = '';
@@ -53,13 +58,70 @@ class UserController
 
             if ($errors == false) {
                 $result = User::register($name, $usname, $email, $password);
-                var_dump($result);
 
             }
         }
 
         require_once (ROOT.'/views/forms/register.php');
         return true;
+    }
+
+
+    public function actionLogin()
+    {
+
+        $cat = array();
+        $cat = Category::getCategoriesList();
+        $catId = 0;
+
+        $email = '';
+        $password = '';
+
+        if (isset($_POST['submit'])) {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+            $errors = false;
+            ob_start();
+
+            if (!User::checkEmail($email)) {
+                $errors[] = 'Неправильный email';
+            }
+            if (!User::checkPassword($password)) {
+                $errors[] = 'Пароль не должен быть короче 6-ти символов';
+            }
+
+            // Проверяем существует ли пользователь
+            $id = User::checkUserData($email, $password);
+
+            if ($id == false) {
+
+                $errors[] = 'Неправильные данные для входа на сайт';
+            } else {
+                // Если данные правильные, запоминаем пользователя (сессия)
+                User::auth($id);
+
+                // Перенаправляем пользователя в закрытую часть - кабинет
+                header("Location:/cabinet/");
+                ob_end_flush();
+            }
+
+        }
+
+        require_once(ROOT . '/views/forms/login.php');
+
+        return true;
+    }
+
+    public function actionLogout()
+    {
+
+        ob_start();
+        unset($_SESSION["user"]);
+        session_destroy();
+        header("Location: /");
+        ob_end_flush();
+        exit();
     }
 
 }

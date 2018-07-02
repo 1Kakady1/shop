@@ -30,6 +30,78 @@ class User
         return $result->execute();
     }
 
+    public static function edit($id, $name, $password)
+    {
+        $userTab=Db::dbTableName('users');
+        $db = Db::getConnection();
+
+        $sql = "UPDATE $userTab
+            SET name = :name, password = :password 
+            WHERE id = :id";
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->bindParam(':name', $name, PDO::PARAM_STR);
+        $result->bindParam(':password', $password, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
+
+    public static function checkUserData($email, $password)
+    {
+        $db = Db::getConnection();
+        $userTab=Db::dbTableName('users');
+
+        $paramsPath = ROOT.'/config/config_site.php';
+        $setting = include ($paramsPath);
+
+        $sql = "SELECT usname FROM $userTab WHERE email = :email";
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':email', $email, PDO::PARAM_INT);
+        $result->execute();
+
+        $usname = $result->fetch();
+        $password_code = md5($setting['key1'].md5($setting['key2'].$password.$setting['key3']).md5($setting['key4'].$usname['usname'].$setting['key5']));
+        $sql = "SELECT * FROM $userTab WHERE email = :email AND password = :password";
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':email', $email, PDO::PARAM_INT);
+        $result->bindParam(':password', $password_code, PDO::PARAM_INT);
+        $result->execute();
+
+        $user = $result->fetch();
+        if ($user) {
+            return $user['id'];
+        }
+
+        return false;
+    }
+
+    public static function auth($userId)
+    {   //session_start();
+        $_SESSION['user'] = $userId;
+    }
+
+    public static function checkLogged()
+    {
+        //session_start();
+        // Если сессия есть, вернем идентификатор пользователя
+        if (isset($_SESSION['user'])) {
+            return $_SESSION['user'];
+        }
+
+        header("Location: /user/login");
+    }
+
+    public static function isGuest()
+    {
+        if (isset($_SESSION['user'])) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Проверяет имя: не меньше, чем 2 символа
      */
@@ -91,4 +163,32 @@ class User
             return true;
         return false;
     }
+
+    public static function getUserById($id)
+    {
+        if ($id) {
+
+            $userTab=Db::dbTableName('users');
+            $db = Db::getConnection();
+
+            $sql = "SELECT * FROM $userTab WHERE id = :id";
+
+            $result = $db->prepare($sql);
+            $result->bindParam(':id', $id, PDO::PARAM_INT);
+
+            // Указываем, что хотим получить данные в виде массива
+            $result->setFetchMode(PDO::FETCH_ASSOC);
+            $result->execute();
+
+
+            return $result->fetch();
+        }
+    }
+
+
+
+
+
+
+
 }

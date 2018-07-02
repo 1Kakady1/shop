@@ -30,10 +30,6 @@ class HomeController
         return true;
     }
 
-    public function stDomain()
-    {
-
-    }
 
 
 }

@@ -36,6 +36,7 @@ class Functions
             case "product":return 'Товары';
             case "news":return 'Новости';
             case "user":return 'Работа с данными';
+            case "cabinet":return 'Ваш личный кабинет';
         }
 
     }

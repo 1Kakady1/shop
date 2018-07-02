@@ -9,7 +9,7 @@ $price = include ($paramsPath);?>
     <div class="container" style="    margin-top: 4vw;">
         <div class="row">
 
-
+            <?php require_once ROOT . '/views/include/sidebar.php' ?>
 
             <div class="col-sm-9 padding-right">
                 <h2 class="title text-center"><?php echo $catName ?></h2>

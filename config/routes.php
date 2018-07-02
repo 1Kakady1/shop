@@ -18,6 +18,11 @@ return array(
     'product' => 'product/index',
 
     'user/register' => 'user/register',
+    'user/login' => 'user/login',
+    'user/logout' => 'user/logout',
+
+    'cabinet/edit' => 'cabinet/edit',
+    'cabinet' => 'cabinet/index',
 
     '' => 'home/index',
 );

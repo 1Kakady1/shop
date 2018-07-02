@@ -7,11 +7,11 @@
  */
 include_once ROOT.'/models/Functions.php';
 
-$link_url = new Functions();
-$linkUrl = $link_url->print_url_link();
-
 $title = new Functions();
 $titleSite = $title->print_title();
+
+
+
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0049)https://getbootstrap.com/docs/4.1/examples/album/ -->
@@ -28,17 +28,13 @@ $titleSite = $title->print_title();
     <link href="/template/css/bootstrap.min.css" rel="stylesheet">
     <!-- подключать на нужной стр -->
     <link href="/template/css/main.css" rel="stylesheet">
-    <?php  if ( "product" == $linkUrl ) : ?>
-        <link href="/template/css/album.css" rel="stylesheet">
-        <link href="/template/css/prettyPhoto.css" rel="stylesheet">
-        <link href="/template/css/price-range.css" rel="stylesheet">
-        <link href="/template/css/animate.css" rel="stylesheet">
-        <link href="/template/css/responsive.css" rel="stylesheet">
-    <?php endif ?>
+    <link href="/template/css/prettyPhoto.css" rel="stylesheet">
+    <link href="/template/css/price-range.css" rel="stylesheet">
+    <link href="/template/css/animate.css" rel="stylesheet">
+    <link href="/template/css/responsive.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
-    <link type="text/css" rel="stylesheet" charset="UTF-8" href="../template/css/translateelement.css">
 
 </head>
 
@@ -76,8 +72,12 @@ $titleSite = $title->print_title();
                 <div class="shop-menu  pull-right">
                     <ul class="navbar-nav">
                         <li class="nav-item"><a href="#"><i class="fa fa-shopping-cart"></i> Корзина</a></li>
-                        <li class="nav-item"><a href="#"><i class="fa fa-user"></i> Аккаунт</a></li>
-                        <li class="nav-item"><a href="#"><i class="fa fa-lock"></i> Вход</a></li>
+                        <?php if(User::isGuest()): ?>
+                            <li class="nav-item"><a href="/user/login/"><i class="fa fa-lock"></i> Вход</a></li>
+                        <?php else: ?>
+                            <li class="nav-item"><a href="/cabinet/"><i class="fa fa-user"></i> Аккаунт</a></li>
+                            <li><a href="/user/logout/"><i class="fa fa-unlock"></i> Выход</a></li>
+                        <?php endif; ?>
                     </ul>
                 </div>
 
