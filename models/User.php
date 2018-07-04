@@ -30,20 +30,42 @@ class User
         return $result->execute();
     }
 
-    public static function edit($id, $name, $password)
+    public static function edit($flag,$id, $name, $password,$usname, $email, $img)
     {
         $userTab=Db::dbTableName('users');
         $db = Db::getConnection();
 
-        $sql = "UPDATE $userTab
-            SET name = :name, password = :password 
-            WHERE id = :id";
+switch ($flag){
 
+case 0: $sql = "UPDATE $userTab SET name = :name WHERE id = :id";
         $result = $db->prepare($sql);
         $result->bindParam(':id', $id, PDO::PARAM_INT);
         $result->bindParam(':name', $name, PDO::PARAM_STR);
-        $result->bindParam(':password', $password, PDO::PARAM_STR);
-        return $result->execute();
+        return $result->execute();break;
+
+case 1: $paramsPath = ROOT.'/config/config_site.php';
+        $setting = include ($paramsPath);
+        $new_password = md5($setting['key1'].md5($setting['key2'].$password.$setting['key3']).md5($setting['key4'].$usname.$setting['key5']));
+        $sql = "UPDATE $userTab SET password = :password WHERE id = :id";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->bindParam(':password', $new_password , PDO::PARAM_STR);
+        return $result->execute();break;
+
+case 2: $sql = "UPDATE $userTab SET email = :email WHERE id = :id";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->bindParam(':email', $email, PDO::PARAM_STR);
+        return $result->execute();break;
+
+case 3: $sql = "UPDATE $userTab SET usimg = :usimg WHERE id = :id";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->bindParam(':usimg', $img, PDO::PARAM_STR);
+        return $result->execute();break;
+
+}
+
     }
 
 
@@ -78,9 +100,10 @@ class User
         return false;
     }
 
-    public static function auth($userId)
+    public static function auth($userId,$userEmail)
     {   //session_start();
         $_SESSION['user'] = $userId;
+        $_SESSION['email'] = $userEmail;
     }
 
     public static function checkLogged()
@@ -100,6 +123,22 @@ class User
             return false;
         }
         return true;
+    }
+
+    public static function oldPassword($oldPasswordDB,$oldPassword,$usname) {
+
+        $paramsPath = ROOT.'/config/config_site.php';
+        $setting = include ($paramsPath);
+
+        $password_code = md5($setting['key1'].md5($setting['key2'].$oldPassword.$setting['key3']).md5($setting['key4'].$usname.$setting['key5']));
+
+        if($password_code == $oldPasswordDB)
+        {
+            return true;
+        }
+
+        return false;
+
     }
 
     /**
@@ -185,10 +224,40 @@ class User
         }
     }
 
+    public static function loadImage($email,$path)
+    {
 
+        //function LoadImg($path,$connection2,$users_tab_my)
+            $types = array('image/gif', 'image/png', 'image/jpeg','image/jpg');
+            $exp_tupe_array = array('gif','png','jpeg','jpg' );
+            if ($_SERVER['REQUEST_METHOD'] == 'POST')
+            {
+                if (!in_array($_FILES['picture']['type'], $types))
+                {return 5;} //msg error
+                $typeImg= explode(".",$_FILES['picture']['name']);
+               // var_dump($typeImg);
+                for($i=0;$i<count($exp_tupe_array);$i++)
+                {
+                    if($typeImg[count($typeImg)-1] == $exp_tupe_array[$i])
+                    {
+                        $byfType=$exp_tupe_array[$i];
+                        break;
+                    }
+                    $byfType = null;
+                }
 
+                if($byfType == null )
+                {
+                    return 6;
+                }
 
+                $name_file = md5($typeImg[0].$email).'.'.$byfType;
+                $_FILES['picture']['name'] =$name_file;
+                if (!@copy($_FILES['picture']['tmp_name'], $path . $_FILES['picture']['name']))
+                    return 3;//msg bad type
+                else
+                    return $name_file;//msg ok!
+            }
 
-
-
+        }
 }

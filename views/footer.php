@@ -36,10 +36,38 @@
 <script src="/template/js/holder.min.js"></script>
 <script src="/template/js/main.js"></script>
 
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    });
 
+    document.getElementById('imgInp').onclick = function() {
 
+        document.getElementById('img-avatar').style.display = '-webkit-box';
+        $('#blah').addClass('bounceInUp');
+        $('#blah').removeClass('vhImg');
 
+        function func() {
+            $('#blah').removeClass('bounceInUp');
+        }
+        setTimeout(func, 1000);
+    }
 
+    function readURL(input) {
+        if (input.files && input.files[0])
+        {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#blah').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imgInp").change(function() {
+        readURL(this);
+    });
+</script>
 
 </body>
 </html>

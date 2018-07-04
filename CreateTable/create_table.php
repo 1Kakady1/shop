@@ -81,7 +81,8 @@ try {
                                              name VARCHAR(100) NOT NULL , 
                                              usname VARCHAR(100) NOT NULL , 
                                              password VARCHAR(255) NOT NULL , 
-                                             email VARCHAR(100) NOT NULL)";
+                                             email VARCHAR(100) NOT NULL,
+                                             usimg VARCHAR(100) NOT NULL)";
     $db->query($queryStr);
     echo 'Таблица users создана <br><br>';
 } catch (PDOException $e) {

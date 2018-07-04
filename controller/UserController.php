@@ -99,7 +99,7 @@ class UserController
                 $errors[] = 'Неправильные данные для входа на сайт';
             } else {
                 // Если данные правильные, запоминаем пользователя (сессия)
-                User::auth($id);
+                User::auth($id,$email);
 
                 // Перенаправляем пользователя в закрытую часть - кабинет
                 header("Location:/cabinet/");
@@ -117,7 +117,7 @@ class UserController
     {
 
         ob_start();
-        unset($_SESSION["user"]);
+        unset($_SESSION["user"],$_SESSION["email"]);
         session_destroy();
         header("Location: /");
         ob_end_flush();
