@@ -82,7 +82,9 @@ try {
                                              usname VARCHAR(100) NOT NULL , 
                                              password VARCHAR(255) NOT NULL , 
                                              email VARCHAR(100) NOT NULL,
-                                             usimg VARCHAR(100) NOT NULL)";
+                                             usimg VARCHAR(100) NOT NULL,
+                                             active INT(2) NOT NULL DEFAULT '0',
+                                             code VARCHAR(50) NULL DEFAULT NULL,)";
     $db->query($queryStr);
     echo 'Таблица users создана <br><br>';
 } catch (PDOException $e) {
@@ -96,6 +98,7 @@ try {
                                             email VARCHAR(100) NOT NULL , 
                                             text TEXT NOT NULL , 
                                             pupdate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+                                            usimg VARCHAR(100) NOT NULL,
                                             articles_id INT NOT NULL )";
     $db->query($queryStr);
     echo 'Таблица comments создана <br><br>';

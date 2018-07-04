@@ -103,7 +103,7 @@ case 3: $sql = "UPDATE $userTab SET usimg = :usimg WHERE id = :id";
     public static function auth($userId,$userEmail)
     {   //session_start();
         $_SESSION['user'] = $userId;
-        $_SESSION['email'] = $userEmail;
+        //$_SESSION['email'] = $userEmail;
     }
 
     public static function checkLogged()
@@ -258,6 +258,90 @@ case 3: $sql = "UPDATE $userTab SET usimg = :usimg WHERE id = :id";
                 else
                     return $name_file;//msg ok!
             }
+
+        }
+        public static function sendActiveUsMail($id,$email)
+        {
+            $paramsPath = ROOT.'/config/config_site.php';
+            $setting = include ($paramsPath);
+            $String= null;
+            $Char = '0123456789abcdefghijklmnopqrstuvwxyz';
+            for ($i = 0; $i < 11; $i ++) {$String .= $Char[rand(0, strlen($Char) - 1)];}
+
+            $userTab=Db::dbTableName('users');
+            $db = Db::getConnection();
+
+            $sql = "UPDATE $userTab SET code = :code WHERE email = :email";
+            $result = $db->prepare($sql);
+            $result->bindParam(':email', $email, PDO::PARAM_INT);
+            $result->bindParam(':code', $String, PDO::PARAM_STR);
+            $result->execute();
+
+            $Code= md5($setting['key1'].$String.md5($setting['key2'].$email.$setting['key3']))."j".$id;
+            $Code=base64_encode($Code);
+            mail($email, 'Регистрация на cайте', 'Ссылка для активации: '.ROOT.'/user/active/'.$Code, 'From: '.$setting['MyEmail'].'');
+            return true;
+        }
+
+        public static function activeAcc()
+        {
+
+            if (!empty($_SERVER['REQUEST_URI'])) {
+
+                $link_url = trim($_SERVER['REQUEST_URI'], '/');
+                $buf = explode("/", $link_url);
+            }
+            $code =  base64_decode(htmlspecialchars($buf[count($buf)-1]));
+
+            $buf_c = explode("j",$code );
+
+            $xex = $buf_c[0];
+
+            $id=intval($buf_c[1]);
+
+            if(strlen($xex) == 32)
+            {
+                echo "<br><br>".$xex;
+                $paramsPath = ROOT.'/config/config_site.php';
+                $setting = include ($paramsPath);
+
+                $userTab=Db::dbTableName('users');
+                $db = Db::getConnection();
+
+                $sql = "SELECT * FROM $userTab WHERE id = :id";
+
+                $result = $db->prepare($sql);
+                $result->bindParam(':id', $id, PDO::PARAM_INT);
+
+                // Указываем, что хотим получить данные в виде массива
+                $result->setFetchMode(PDO::FETCH_ASSOC);
+                $result->execute();
+
+                $String = array();
+                $String = $result->fetch();
+
+                $code_bd= md5($setting['key1'].$String['code'].md5($setting['key2'].$String['email'].$setting['key3']))."j".$id;
+                $code = explode("j",$code_bd);
+
+                if($xex == $code[0]) {
+
+
+                    echo "<br><br>".$id;
+                    $sql = "UPDATE $userTab SET active = 1 WHERE id = :id";
+                    $result = $db->prepare($sql);
+                    $result->bindParam(':id', $id, PDO::PARAM_INT);
+                    // $result->bindParam(':active', 1, PDO::PARAM_STR);
+                    $result->execute();
+                    return true;
+
+                }
+
+
+            }
+
+            return false;
+
+
 
         }
 }

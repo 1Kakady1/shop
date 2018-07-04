@@ -231,7 +231,9 @@ a, a:hover,img:hover, button, button:hover, .anime {
   height: 4.16vw;
   margin-right: 1.25vw; }
 #list-comments .comments .img-com img {
-  width: 100%; }
+  width: 5vw;
+  height: 5vw;
+  border-radius: 3vw; }
 #list-comments .comments .msg-com h4 {
   font-size: 0.72vw;
   color: #3c3c3c;

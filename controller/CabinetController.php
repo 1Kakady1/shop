@@ -106,6 +106,10 @@ class CabinetController
            }
 
         }
+/////////////////////////////////////////////////////////////////////
+        if (isset($_POST['submit-active'])) {
+            $result=User::sendActiveUsMail($userId,$user['email']);
+        }
 
         if($upp==1){$upp=0;header("Refresh:0");}
         require_once(ROOT . '/views/cabinet/edit.php');

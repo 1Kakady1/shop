@@ -58,7 +58,17 @@
 
                                     </div>
                                     <input type="submit" class="btn btn-default" name="submit-avatar" value="загрузить">
+                                    <?php if($user['active'] == 0): ?>
+                                    <div >
+                                        <h3>Вы не активировали Email, сделайте это!!!!</h3>
+                                        <input type="submit" class="btn btn-default" name="submit-active" value="Отправить письмо">
+                                    </div>
+                                    <?php endif; ?>
+
                                 </form>
+
+
+
                             </div>
         </div>
     </div>

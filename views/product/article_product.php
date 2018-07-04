@@ -17,7 +17,7 @@ $price = include ($paramsPath);
 
         <div class="row featurette">
 
-            <?php require_once ROOT . '/views/include/sidebar.php' ?>
+
 
 
             <div class="col-md-7 order-md-2">
@@ -79,7 +79,11 @@ $price = include ($paramsPath);
                         <li><!--comments 1 -->
                             <div class="comments main_flex__nowrap">
                                 <div class="img-com">
-                                    <img src="https://ru.gravatar.com/avatar/<?php echo md5($comments['email'])?>?s=125" alt="c1">
+                                    <?php if($comments['usimg'] == NULL): ?>
+                                        <img src="https://ru.gravatar.com/avatar/<?php echo md5($comments['email'])?>?s=125" alt="c1">
+                                    <?php else: ?>
+                                        <img src="/template/images/avatar/<?php echo $comments['usimg'];?>" alt="c1">
+                                    <?php endif;  ?>
                                 </div>
                                 <div class="msg-com">
                                     <h4> <?php echo $comments['author'].": ".$comments['nickname']?><span>/ <?php echo $comments['pupdate']?></span></h4>
@@ -122,7 +126,7 @@ $price = include ($paramsPath);
                     <div class="name-f-msg">
 
                         <form action="#" method="post" class="main_flex__nowrap">
-                            <div id="left_form">
+                            <div id="left_form" <?php if(isset($_SESSION['user'])){echo 'style="display: none"';} ?> >
                                 <div class="input main_flex__nowrap flex__align-items_center">
                                     <div class="form_icon">
                                         <img src="/template/images/p.png" alt="">
@@ -147,6 +151,7 @@ $price = include ($paramsPath);
                                 <button type="submit" name="submit">отправить</button>
                             </div>
                         </form>
+
                     </div>
                 </div>
 

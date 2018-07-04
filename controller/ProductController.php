@@ -39,30 +39,51 @@ class ProductController
         $msg= '';
         $result = false;
         $author=NULL;
+        $infoPr = 0;
+
 
         if (isset($_POST['submit'])) {
-            $name = $_POST['name'];
-            $email = $_POST['email'];
-            $msg= $_POST['msg'];
-           // $result = false;
-           // $author=NULL;
-            $errors = false;
 
-            if (!Comments::checkName($name)) {
-                $errors[] = 'Имя не должно быть короче 2-х символов';
+
+            if(isset($_SESSION['user']))
+            {
+                $userId = $_SESSION['user'];
+                $user= User::getUserById($userId);
+
+                $name=$user['name'];
+                $email=$user['email'];
+
+                $author=1;
+
+            } else {
+
+                $name = $_POST['name'];
+                $email = $_POST['email'];
+                $infoPr = 1;
             }
 
-            if (Comments::delErrorNameMSG($name) ==  true) {
-                $errors[] = 'Имя содержит недопустимые символы';
+            $msg= $_POST['msg'];
+            $errors = false;
+
+            if($infoPr == 1){
+
+                if (!Comments::checkName($name)) {
+                    $errors[] = 'Имя не должно быть короче 2-х символов';
+                }
+
+                if (Comments::delErrorNameMSG($name) ==  true) {
+                    $errors[] = 'Имя содержит недопустимые символы';
+                }
+
+                if (!Comments::checkEmail($email)) {
+                    $errors[] = 'Неправильный email';
+                }
             }
 
             if (!Comments::checkMSG($msg)) {
                 $errors[] = 'Возможно сообщение короче 10-ти символов или содержит оскорбления и т.п.';
             }
 
-            if (!Comments::checkEmail($email)) {
-                $errors[] = 'Неправильный email';
-            }
 
             if ($errors == false) {
                 $result = Comments::registerComments($id,$author,$name,$email,$msg);

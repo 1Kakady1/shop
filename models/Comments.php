@@ -14,7 +14,7 @@ class Comments
         $userTab=Db::dbTableName('comments');
         $db = Db::getConnection();
 
-        if($author == NULL){$author = "Аноним";}
+        if($author == NULL){$author = "Аноним";} else {$author ="Клиент";}
 
         $sql = "INSERT INTO $userTab (`author`, `nickname`, `email`, `text`,`articles_id`) VALUES (:author,:nickname ,:email , :text ,:articles_id)";
 
@@ -40,7 +40,7 @@ class Comments
 
             $comList = array();
 
-            $result = $db->query("SELECT * FROM  $listComTab WHERE articles_id=" . $id);
+            $result = $db->query("SELECT * FROM  $listComTab  WHERE articles_id=$id ORDER BY pupdate DESC");
             $result->setFetchMode(PDO::FETCH_ASSOC);
             $i = 0;
 
@@ -51,6 +51,7 @@ class Comments
                 $comList[$i]['email'] = $row['email'];
                 $comList[$i]['text'] = $row['text'];
                 $comList[$i]['pupdate'] = $row['pupdate'];
+                $comList[$i]['usimg'] = $row['usimg'];
 
                 $i++;
             }

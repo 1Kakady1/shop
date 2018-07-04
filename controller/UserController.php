@@ -124,4 +124,15 @@ class UserController
         exit();
     }
 
+    public function actionActive()
+    {
+
+
+        $send =User::activeAcc();
+
+        require_once(ROOT . '/views/forms/login.php');
+
+        return true;
+    }
+
 }
