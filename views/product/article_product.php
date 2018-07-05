@@ -33,8 +33,7 @@ $price = include ($paramsPath);
 
 
 
-
-            <div class="col-md-7 order-md-2">
+            <div class="col-md-7 order-md-2 wow slideInRight">
                 <div><button id="hideInfo1">Описание</button><button id="hideInfo2">Характиристики</button></div>
                 <p class="lead " id="info1"><?php echo $productItem['description'] ?></p>
                 <div class="lead hidden" id="info2">
@@ -45,7 +44,7 @@ $price = include ($paramsPath);
                 </div>
             </div>
 
-            <div class="col-md-5 order-md-1">
+            <div class="col-md-5 order-md-1 wow slideInLeft">
                 <img class="featurette-image img-fluid mx-auto" src="/template/images/shop/<?php echo $productItem['image'] ?>" alt="500x500" style="width: 500px; height: 500px;"  data-holder-rendered="true">
 
                 <div class="col-md-12 " style="margin-top: 1vw;">
@@ -90,7 +89,7 @@ $price = include ($paramsPath);
                     <ul>
                         <?php if($listComments): ?>
                     <?php foreach ($listComments as $comments): ?>
-                        <li><!--comments 1 -->
+                        <li class="wow slideInUp"><!--comments 1 -->
                             <div class="comments main_flex__nowrap">
                                 <div class="img-com">
                                     <?php if($comments['usimg'] == NULL): ?>

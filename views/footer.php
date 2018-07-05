@@ -30,13 +30,27 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="/template/js/bootstrap.min.js"></script>
 <script src="/template/js/jquery.scrollUp.min.js"></script>
-<script src="/template/js/price-range.js"></script>
-<script src="/template/js/jquery.prettyPhoto.js"></script>
+<!--<script src="/template/js/price-range.js"></script> -->
+<!--<script src="/template/js/jquery.prettyPhoto.js"></script> -->
+<script src="/template/js/wow.min.js"></script>
 <script src="/template/js/popper.min.js"></script>
 <script src="/template/js/holder.min.js"></script>
 <script src="/template/js/main.js"></script>
 
 <script type="text/javascript">
+
+    // Wow Animations
+    wow = new WOW(
+        {
+            boxClass:     'wow',      // default
+            animateClass: 'animated', // default
+            offset:       0,          // default
+            mobile:       true,       // default
+            live:         true        // default
+        }
+    )
+    wow.init();
+
     $(function () {
         $('[data-toggle="popover"]').popover()
     });

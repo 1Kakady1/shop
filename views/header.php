@@ -9,8 +9,7 @@ include_once ROOT.'/models/Functions.php';
 
 $title = new Functions();
 $titleSite = $title->print_title();
-
-
+$active = $title->print_url_link();
 
 ?>
 <!DOCTYPE html>
@@ -22,7 +21,7 @@ $titleSite = $title->print_title();
     <meta name="author" content="">
     <link rel="icon" href="/template/images/icons.png">
 
-    <title><?php echo $titleSite  ?></title>
+    <title><?php echo $titleSite."- TopShop"  ?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="/template/css/bootstrap.min.css" rel="stylesheet">
@@ -42,16 +41,16 @@ $titleSite = $title->print_title();
 
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <img src="/template/images/logo.png" alt="logo" id="logo">
+            <img src="/template/images/logo.png" class="animated slideInLeft" alt="logo" id="logo">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item <?php if($active == null) echo "active "?>">
                         <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item <?php if($active == 'product') echo "active "?>">
                         <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="#">Категория товаров</a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="/product">Все товары</a></li>
@@ -61,10 +60,10 @@ $titleSite = $title->print_title();
 
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item <?php if($active == 'news') echo "active "?>">
                         <a class="nav-link" href="/news">Новости</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item <?php if($active == 'contact') echo "active "?>">
                         <a class="nav-link" href="/contact">Контакты</a>
                     </li>
                 </ul>

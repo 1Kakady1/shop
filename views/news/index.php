@@ -1,6 +1,6 @@
 <?php include_once ROOT . '/views/header.php'; ?>
 
-    <main role="main">
+    <main role="main" style="margin-top: -0.6vw;">
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron" id="cont-w" style="background: url(/template/images/background-news.jpg);background-size: 100% 100%;">

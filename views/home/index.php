@@ -1,6 +1,6 @@
 <?php include_once ROOT . '/views/header.php'; ?>
 
-    <main role="main">
+    <main role="main" style="margin-top: -0.6vw;">
 
       <?php include_once ROOT.'/views/include/sliderNews.php'?>
 
@@ -14,7 +14,7 @@
         <!-- START THE FEATURETTES -->
 
         <hr class="featurette-divider">
-          <div class="row featurette">
+          <div class="row featurette wow slideInRight">
               <div class="col-md-7">
                   <a href="/product/<?php echo $latestProducts[$randId[0]]['id']?>"><h2 class="featurette-heading"><?php echo $latestProducts[$randId[0]]['name']?></h2></a>
                   <p class="lead"><?php $string = substr($latestProducts[$randId[0]]['description'], 0, 800); echo $string."..." ?></p>
@@ -26,7 +26,7 @@
 
           <hr class="featurette-divider">
 
-          <div class="row featurette">
+          <div class="row featurette wow slideInLeft">
               <div class="col-md-7 order-md-2">
                   <a href="/product/<?php echo $latestProducts[$randId[1]]['id']?>"><h2 class="featurette-heading"><?php echo $latestProducts[$randId[1]]['name']?></h2></a>
                   <p class="lead"><?php $string = substr($latestProducts[$randId[1]]['description'], 0, 800); echo $string."..." ?></p>
@@ -38,7 +38,7 @@
 
           <hr class="featurette-divider">
 
-          <div class="row featurette">
+          <div class="row featurette wow slideInRight">
               <div class="col-md-7">
                   <a href="/product/<?php echo $latestProducts[$randId[2]]['id']?>"><h2 class="featurette-heading"><?php echo $latestProducts[$randId[2]]['name']?></h2></a>
                   <p class="lead"><?php $string = substr($latestProducts[$randId[2]]['description'], 0, 800); echo $string."..." ?> </p>
@@ -53,7 +53,7 @@
 
       </div><!-- /.container -->
 
-    <div id="map">
+    <div id="map" class="wow slideInUp hidden-xs hidden-sm">
         <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d54428490.92487263!2d-100.15803435551553!3d33.629907993961865!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1530209630070"  frameborder="0" style="border:0" allowfullscreen></iframe>
     </div>
 
