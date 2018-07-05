@@ -30,7 +30,7 @@ $titleSite = $title->print_title();
     <link href="/template/css/main.css" rel="stylesheet">
     <link href="/template/css/prettyPhoto.css" rel="stylesheet">
     <link href="/template/css/price-range.css" rel="stylesheet">
-    <link href="/template/css/animate.css" rel="stylesheet">
+    <link href="/template/css/animate.min.css" rel="stylesheet">
     <link href="/template/css/responsive.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -65,7 +65,7 @@ $titleSite = $title->print_title();
                         <a class="nav-link" href="/news">Новости</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Контакты</a>
+                        <a class="nav-link" href="/contact">Контакты</a>
                     </li>
                 </ul>
 

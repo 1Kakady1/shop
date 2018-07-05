@@ -3,7 +3,7 @@
 ?>
 <main role="main">
 
-
+<!--
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -51,10 +51,12 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
-
+-->
       <!-- Marketing messaging and featurettes
       ================================================== -->
       <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <?php include_once ROOT . '/views/include/banner.php' ?>
 
       <div class="container marketing">
 

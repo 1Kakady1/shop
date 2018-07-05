@@ -6,6 +6,20 @@ $price = include ($paramsPath);
 
 <?php include_once ROOT . '/views/include/banner.php' ?>
 
+<?php   if ($result): ?>
+    <div class="animated slideInLeft"><p class="msg-send">Ваше комментарий добавлен.</p></div>
+<?php else: ?>
+    <?php if (isset($errors) && is_array($errors)): ?>
+        <div class="animated slideInLeft">
+            <ul class="msg-send-error">
+                <?php foreach ($errors as $error): ?>
+                    <li> - <?php echo $error; ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>
+
 <main role="main">
 
 
@@ -106,21 +120,6 @@ $price = include ($paramsPath);
             </div>
 
             <div class="col-md-6">
-
-                <?php   if ($result): ?>
-                    <p>Вы зарегистрированы!</p>
-                <?php else: ?>
-
-                    <?php if (isset($errors) && is_array($errors)): ?>
-                        <ul>
-                            <?php foreach ($errors as $error): ?>
-                                <li> - <?php echo $error; ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    <?php endif; ?>
-                <?php endif; ?>
-
-
                 <div id="form-content">
 
                     <div class="name-f-msg">

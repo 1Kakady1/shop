@@ -81,7 +81,7 @@ class Comments
         $flag_count = false;
         $flag_lib = false;
 
-        if (strlen($msg) < 10) {
+        if (strlen($msg) < 5) {
             $flag_count = true;
         }
 

@@ -21,8 +21,8 @@ $price = include ($paramsPath);?>
                                     <div class="productinfo text-center">
                                         <img src="/template/images/shop/<?php echo $product['image'] ?>" alt="<?php echo $product['image'] ?>" />
                                         <h2><?php echo $product['id']." ".$product['price']." ".$price["price"] ?></h2>
-                                        <p><?php echo $product['name'] ?></p>
-                                        <a href="/product/<?php echo $product['id'] ?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
+                                        <a href="/product/<?php echo $product['id'] ?>"><p><?php echo $product['name'] ?></p></a>
+                                        <a href="/cart/<?php echo $product['id'] ?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
                                     </div>
                                     <?php if($product['is_new']): ?>
                                         <img src="/template/images/new.png" class="new" alt="">

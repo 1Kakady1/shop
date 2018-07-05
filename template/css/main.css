@@ -1,4 +1,28 @@
-﻿.vhImg{    height: 7vw!important;}
+﻿.msg-send {    background: #28a745;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  padding-left: 2vw;
+  color: #333;
+  font-size: 23px;}
+
+.msg-send-error {
+  background: #ff4125;
+  height: auto;
+  display: block;
+  padding-left: 2vw;
+  color: #333;
+  font-size: 20px;
+}
+#contact-page{    margin-top: 4vw;}
+
+#contact-page .btn-primary {
+  color: #fff;
+  background-color: #343a40!important;
+  border-color: #343a40!important;
+}
+
+.vhImg{    height: 7vw!important;}
 .img-avatar{
   display: -webkit-box;
   width: 21vw;
@@ -83,6 +107,7 @@ iframe {width: 100%;height: 33vw;}
   width: 100%;
   height: 16.5vmax;
   background-color: #fff;
+  margin-top: -0.5vw;
 }
 
 
@@ -620,7 +645,7 @@ a#scrollUp {
   bottom: 0px;
   right: 10px;
   padding: 5px 10px;
-  background: #FE980F;
+  background: #343a40;
   color: #FFF;
   -webkit-animation: bounce 2s ease infinite;
   animation: bounce 2s ease infinite;
@@ -1123,7 +1148,7 @@ h2.title:before{
 
 
 h2.title {
-  color: #FE980F;
+  color: #28a745;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 700;

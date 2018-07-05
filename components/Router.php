@@ -29,7 +29,7 @@ class Router
     {
         $url = $this->getURI();
 
-
+     //   ob_start();
         foreach ($this->routes as $uriPattern => $path){
 
             if(preg_match("~$uriPattern~", $url)){
@@ -53,16 +53,21 @@ class Router
                       // подключение класса нужного контроллера
 
                 $controllerFile = ROOT.'/controller/'.$controllerName.'.php';
-var_dump($controllerName);
-                var_dump($actionName);
-                var_dump($parameters);
-                if(file_exists($controllerFile)){
 
+                if(file_exists($controllerFile)){
                     include_once($controllerFile);
                 }
-               // var_dump($actionName);
                 $controllerObject = new $controllerName;
                 $result = call_user_func_array(array($controllerObject, $actionName),$parameters); //$controllerObject->$actionName($id);
+/*
+                if($result == false)
+                {
+
+                    header("Location: /");
+                    ob_end_flush();
+снять ком строка 32
+                }
+*/
                 if($result != null){
                     break;
                 }

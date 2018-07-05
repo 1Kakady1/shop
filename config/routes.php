@@ -25,5 +25,7 @@ return array(
     'cabinet/edit' => 'cabinet/edit',
     'cabinet' => 'cabinet/index',
 
+    'contact' => 'contact/index',
+
     '' => 'home/index',
 );

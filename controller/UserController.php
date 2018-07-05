@@ -69,7 +69,7 @@ class UserController
 
     public function actionLogin()
     {
-
+        ob_start();
         $cat = array();
         $cat = Category::getCategoriesList();
         $catId = 0;
@@ -82,7 +82,7 @@ class UserController
             $password = $_POST['password'];
 
             $errors = false;
-            ob_start();
+
 
             if (!User::checkEmail($email)) {
                 $errors[] = 'Неправильный email';
@@ -100,7 +100,6 @@ class UserController
             } else {
                 // Если данные правильные, запоминаем пользователя (сессия)
                 User::auth($id,$email);
-
                 // Перенаправляем пользователя в закрытую часть - кабинет
                 header("Location:/cabinet/");
                 ob_end_flush();
@@ -121,7 +120,7 @@ class UserController
         session_destroy();
         header("Location: /");
         ob_end_flush();
-        exit();
+
     }
 
     public function actionActive()
