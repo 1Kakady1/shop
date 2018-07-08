@@ -30,6 +30,11 @@ $(function(){
       		document.getElementById('info1').style.display = 'block';
 		}
 
+		document.getElementById('new-add').onclick = function() {
+            document.getElementById('add').style.display = 'initial';
+            $('#add').addClass('bounceInUp');
+        }
+
         });
 
 

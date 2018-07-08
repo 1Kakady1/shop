@@ -36,7 +36,7 @@
 <script src="/template/js/popper.min.js"></script>
 <script src="/template/js/holder.min.js"></script>
 <script src="/template/js/main.js"></script>
-<!--
+
 <script>
     $(document).ready(function(){
         $(".add-to-cart").click(function () {
@@ -48,7 +48,7 @@
         });
     });
 </script>
--->
+
 <script type="text/javascript">
 
     // Wow Animations

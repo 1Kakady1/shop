@@ -13,6 +13,10 @@ class NewsController
 {
     public function actionIndex()
     {
+        $cat = array();
+        $cat = Category::getCategoriesList();
+        $catId = 0;
+
         $newsList = array();
         $newsList = News::getNewsList();
 
@@ -30,6 +34,11 @@ class NewsController
     public function actionView($id)
     {
        if($id){
+
+           $cat = array();
+           $cat = Category::getCategoriesList();
+           $catId = 0;
+
            $newsItem = News::getNewsItemById($id);
            $newsGallery = News:: getNewsGalleryItemById($id);
            require_once(ROOT . '/views/news/article_news.php');

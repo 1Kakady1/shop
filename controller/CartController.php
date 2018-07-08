@@ -103,8 +103,6 @@ class CartController
                     Cart::clear();
                 }
             } else {
-
-                echo "noooooooooooooooooooooooooooot";
                 // Форма заполнена корректно? - Нет
                 // Итоги: общая стоимость, количество товаров
                 $productsInCart = Cart::getProducts();
@@ -132,7 +130,6 @@ class CartController
                 $totalPrice = Cart::getTotalPrice($products);
                 $totalQuantity = Cart::countItems();
 
-
                 $userName = false;
                 $userPhone = false;
                 $userComment = false;
@@ -148,6 +145,7 @@ class CartController
                     $user = User::getUserById($userId);
                     // Подставляем в форму
                     $userName = $user['name'];
+                    $userEmail= $user['email'];
                 }
             }
         }

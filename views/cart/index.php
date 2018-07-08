@@ -13,7 +13,7 @@ $price = include ($paramsPath);
 
 <?php include_once ROOT . '/views/include/banner.php'; ?>
 
-<section id="cart_items" style="margin-top: 6vw;">
+<section id="cart_items" style="margin-top: 6vw;margin-bottom: 2vw;">
     <div class="container">
         <div class="row">
 
@@ -21,6 +21,7 @@ $price = include ($paramsPath);
 
 
             <div class="col-sm-9">
+                <?php if(isset($_SESSION['products'])): ?>
                 <div class="table-responsive cart_info">
                     <table class="table table-condensed">
                         <thead>
@@ -43,7 +44,7 @@ $price = include ($paramsPath);
                                     <p><?php echo $cartProd['code'] ?></p>
                                 </td>
                                 <td class="cart_price">
-                                    <p><?php echo $cartProd['price']." ".$price['price'] ?></p>
+                                    <p><?php echo $cartProd['price']*$_SESSION['products'][$cartProd['id']]." ".$price['price'] ?></p>
                                 </td>
                                 <td class="cart_total">
                                     <p class="cart_total_price"><?php echo $_SESSION['products'][$cartProd['id']]?></p>
@@ -58,10 +59,14 @@ $price = include ($paramsPath);
                         </tbody>
                     </table>
                 </div>
+                    <button type="button" class="btn btn-success"><a href="/cart/check" style="color:#fff;">Заказать</a></button>
+                <?php else: ?>
+                <h3>В корзине нет товаров</h3>
+                <?php endif; ?>
             </div>
         </div>
     </div>
-    <a href="/cart/check">Заказать</a>
+
 </section> <!--/#cart_items-->
 
 <?php include_once ROOT . '/views/footer.php' ?>

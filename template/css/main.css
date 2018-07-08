@@ -1,4 +1,7 @@
-﻿.description{    width: 47%;}
+﻿.new-add{display: none;}
+label span {color: red;}
+#cart-count{color: #676b70;}
+.description{    width: 47%;}
 
 #cart-img{
   width: 8vw;

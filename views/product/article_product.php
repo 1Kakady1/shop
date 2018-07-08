@@ -48,13 +48,9 @@ $price = include ($paramsPath);
                 <img class="featurette-image img-fluid mx-auto" src="/template/images/shop/<?php echo $productItem['image'] ?>" alt="500x500" style="width: 500px; height: 500px;"  data-holder-rendered="true">
 
                 <div class="col-md-12 " style="margin-top: 1vw;">
-                    <span class="priceProd"> Стоимость за одну шт.: <?php echo $productItem['price']." ".$price['price']; ?></span>
-                    <form action="" class="za">
-                        <button class="btn" >Купить</button>
-                        <span>колличество:</span>
-                        <input type="text" class="form-control" value="1">
-                    </form>
-                    <p>В наличии есть</p>
+                    <span class="priceProd"> Цена: <?php echo $productItem['price']." ".$price['price']; ?></span>
+                    <a href="/cart/addAjax/<?php echo $productItem['id'] ?>" data-id="<?php echo $productItem['id']?>" class="btn btn-success add-to-cart" id="new-add"><i class="fa fa-shopping-cart"></i>В корзину</a>
+                    <span class="new-add animated" id="add">Товар добавлен</span>
                 </div>
             </div>
 
