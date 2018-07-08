@@ -18,6 +18,7 @@ $my_cat_tb = $setting['prefix']."category";
 $my_prod_tb = $setting['prefix']."product";
 $my_users_tb = $setting['prefix']."users";
 $my_comments_tb = $setting['prefix']."comments";
+$my_order_tb = $setting['prefix']."order";
 
 $db = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
 
@@ -106,3 +107,17 @@ try {
     echo $e->getMessage();
 }
 
+// table order
+try {
+    $queryStr = "CREATE TABLE $my_order_tb ( id INT(15) NOT NULL AUTO_INCREMENT  PRIMARY KEY , 
+                                                name VARCHAR(150) NULL DEFAULT NULL , 
+                                                phone VARCHAR(50) NULL DEFAULT NULL , 
+                                                comments TEXT NULL DEFAULT NULL,
+                                                email VARCHAR(150) NOT NULL , 
+                                                us_id INT(11) NOT NULL , 
+                                                product TEXT NOT NULL)";
+    $db->query($queryStr);
+    echo 'Таблица comments создана <br><br>';
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}

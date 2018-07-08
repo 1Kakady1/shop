@@ -70,7 +70,9 @@ $active = $title->print_url_link();
 
                 <div class="shop-menu  pull-right">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a href="#"><i class="fa fa-shopping-cart"></i> Корзина</a></li>
+                        <li class="nav-item"><a href="/cart"><i class="fa fa-shopping-cart"></i> Корзина</a>
+                         <span id="cart-count"><?php echo Cart::countItems(); ?></span>
+                        </li>
                         <?php if(User::isGuest()): ?>
                             <li class="nav-item"><a href="/user/login/"><i class="fa fa-lock"></i> Вход</a></li>
                         <?php else: ?>

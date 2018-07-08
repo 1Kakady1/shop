@@ -1,4 +1,10 @@
-﻿.msg-send {    background: #28a745;
+﻿.description{    width: 47%;}
+
+#cart-img{
+  width: 8vw;
+  height: 8vw;
+}
+.msg-send {    background: #28a745;
   height: 36px;
   display: flex;
   align-items: center;
@@ -1858,7 +1864,7 @@ h2.title {
 
 
 #cart_items .cart_info .cart_menu {
-  background: #FE980F;
+  background: #343a40;
   color: #fff;
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
@@ -1907,14 +1913,16 @@ h2.title {
 
 
 #cart_items .cart_info .cart_price p {
-  color:#696763;
+  color: #212529;
+  text-align: center;
   font-size: 18px
 }
 
 
 #cart_items .cart_info .cart_total_price {
-  color: #FE980F;
+  color: #343a40;
   font-size: 24px;
+  text-align: center;
 }
 
 .cart_product {

@@ -344,4 +344,12 @@ case 3: $sql = "UPDATE $userTab SET usimg = :usimg WHERE id = :id";
 
 
         }
+
+    public static function checkPhone($phone)
+    {
+        if (strlen($phone) >= 8) {
+            return true;
+        }
+        return false;
+    }
 }
