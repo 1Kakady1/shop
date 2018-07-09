@@ -1,4 +1,6 @@
-﻿.new-add{display: none;}
+﻿#l-cab{margin-bottom: 1vw;}
+#l-cab button a {color:#fff;}
+.new-add{display: none;}
 label span {color: red;}
 #cart-count{color: #676b70;}
 .description{    width: 47%;}

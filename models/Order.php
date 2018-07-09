@@ -5,8 +5,23 @@ class Order
 
     public static function save($userName, $userPhone, $userComment,$userEmail, $userId, $products)
     {
-        $products = json_encode($products);
 
+   /*    $oldProd = self::getOldLastProdUser($userId);
+        if($oldProd != false){
+
+            var_dump($oldProd);
+            $products = json_encode($products);
+            $oldProd = json_encode($oldProd['product']);
+            $oldProd =trim($oldProd, '"');
+            $oldProd=stripcslashes ($oldProd);
+            var_dump($oldProd);
+            $products .="#".$oldProd;
+            var_dump($products);
+
+
+        } else {$products = json_encode($products);}*/
+//exit;
+        $products = json_encode($products);
         if($userId==false) {$userId=0;}
         $orderTab=Db::dbTableName('order');
         $db = Db::getConnection();
@@ -21,6 +36,19 @@ class Order
         $result->bindParam(':product', $products, PDO::PARAM_STR);
 
         return $result->execute();
+    }
+
+    public static function getOldLastProdUser($userId)
+    {
+        $orderTab=Db::dbTableName('order');
+        $db = Db::getConnection();
+        $result = $db->query("SELECT product FROM $orderTab WHERE us_id=$userId");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+       // var_dump($result);
+        $OldProdUser = $result->fetch();
+        //var_dump($OldProdUser);
+        return $OldProdUser ;
+
     }
 
     public static function getOrdersList()
@@ -41,6 +69,36 @@ class Order
             $i++;
         }
         return $ordersList;
+    }
+
+    public static function getOrdersListID($id)
+    {
+        $orderTab=Db::dbTableName('order');
+        $db = Db::getConnection();
+
+        $result = $db->query("SELECT * FROM $orderTab WHERE us_id=$id");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $i = 0;
+        $orderUser = array();
+        while ($row = $result->fetch()){
+
+            $orderUser[$i]['id'] = $row['id'];
+            $orderUser[$i]['product'] = $row['product'];
+            $orderUser[$i]['date'] = $row['date'];
+            $orderUser[$i]['status'] = $row['status'];
+            $i++;
+        }
+
+    /*    $i=0;$key=array();$j=0;$g=0;
+        while ($i < count($orderUser))
+        {
+            $orderUser[$i]['product'] = json_decode($orderUser[$i]['product'], true);
+            $key += array_keys($orderUser[$i]['product']);
+            $i++;
+        }
+*/
+
+        return $orderUser  ;
     }
 
     /**
@@ -85,7 +143,6 @@ class Order
         $result->bindParam(':id', $id, PDO::PARAM_INT);
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $result->execute();
-
         return $result->fetch();
     }
 

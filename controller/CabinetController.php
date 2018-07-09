@@ -16,6 +16,7 @@ class CabinetController
         $catId = 0;
 
         $userId = User::checkLogged();
+        $order = Order::getOrdersListID($userId);
 
         require_once (ROOT.'/views/cabinet/index.php');
         return true;

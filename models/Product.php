@@ -165,4 +165,12 @@ class Product
 
         return $products;
     }
+
+    public static function getTableProd($array)
+    {
+        $productsQuantity = json_decode($array['product'], true);
+        $productsIds = array_keys($productsQuantity);
+        $products = Product::getProdustsByIds($productsIds);
+        return $products;
+    }
 }

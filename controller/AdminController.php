@@ -58,7 +58,7 @@ class AdminController extends AdminBase
         $productsIds = array_keys($productsQuantity);
 
         $products = Product::getProdustsByIds($productsIds);
-       // var_dump($order);
+
         require_once(ROOT . '/views/admin/order/view.php');
         return true;
     }
