@@ -46,6 +46,14 @@ class CartController
             $totalPrice = Cart::getTotalPrice($products);
         }
 
+        if (isset($_POST['del-prod'])) {
+            $idProdDel = $_POST['del-prod'];
+            ob_start();
+            unset($_SESSION['products'][$idProdDel]);
+            header("Location: /cart");
+            ob_end_flush();
+        }
+
         require_once(ROOT . '/views/cart/index.php');
 
         return true;
@@ -133,11 +141,11 @@ class CartController
                 $userName = false;
                 $userPhone = false;
                 $userComment = false;
-
+                $userEmail = false;
                 // Пользователь авторизирован?
                 if (User::isGuest()) {
                     // Нет
-                    // Значения для формы пустые
+                    // Значения формы пустые
                 } else {
                     // Да, авторизирован
                     // Получаем информацию о пользователе из БД по id

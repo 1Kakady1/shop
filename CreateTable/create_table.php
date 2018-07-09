@@ -85,7 +85,8 @@ try {
                                              email VARCHAR(100) NOT NULL,
                                              usimg VARCHAR(100) NOT NULL,
                                              active INT(2) NOT NULL DEFAULT '0',
-                                             code VARCHAR(50) NULL DEFAULT NULL,)";
+                                             code VARCHAR(50) NULL DEFAULT NULL,
+                                             role VARCHAR(100) NOT NULL)";
     $db->query($queryStr);
     echo 'Таблица users создана <br><br>';
 } catch (PDOException $e) {
@@ -115,9 +116,11 @@ try {
                                                 comments TEXT NULL DEFAULT NULL,
                                                 email VARCHAR(150) NOT NULL , 
                                                 us_id INT(11) NOT NULL , 
-                                                product TEXT NOT NULL)";
+                                                product TEXT NOT NULL,
+                                                date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+                                                status INT(11) NOT NULL DEFAULT '1' )";
     $db->query($queryStr);
-    echo 'Таблица comments создана <br><br>';
+    echo 'Таблица order создана <br><br>';
 } catch (PDOException $e) {
     echo $e->getMessage();
 }

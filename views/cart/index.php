@@ -22,7 +22,8 @@ $price = include ($paramsPath);
 
             <div class="col-sm-9">
                 <?php if(isset($_SESSION['products'])): ?>
-                <div class="table-responsive cart_info">
+                    <form action="#" method="post">
+                <div class="table-responsive cart_info" >
                     <table class="table table-condensed">
                         <thead>
                         <tr class="cart_menu">
@@ -50,7 +51,7 @@ $price = include ($paramsPath);
                                     <p class="cart_total_price"><?php echo $_SESSION['products'][$cartProd['id']]?></p>
                                 </td>
                                 <td class="cart_delete">
-                                    <button type="button" class="btn btn-danger" value="1"><i class="fas fa-trash-alt"></i></button>
+                                    <button type="submit" name="del-prod" class="btn btn-danger" value="<?php echo $cartProd['id'] ?>"><i class="fas fa-trash-alt"></i></button>
                                 </td>
                             </tr>
 
@@ -59,6 +60,7 @@ $price = include ($paramsPath);
                         </tbody>
                     </table>
                 </div>
+                    </form>
                     <button type="button" class="btn btn-success"><a href="/cart/check" style="color:#fff;">Заказать</a></button>
                 <?php else: ?>
                 <h3>В корзине нет товаров</h3>

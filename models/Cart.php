@@ -79,4 +79,12 @@ class Cart
         }
     }
 
+    /*public static function delCartProd($id)
+    {
+        ob_start();
+        unset($_SESSION['products'][$id]);
+        header("Location: /");
+        ob_end_flush();
+    } */
+
 }

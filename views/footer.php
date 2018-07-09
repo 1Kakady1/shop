@@ -51,6 +51,8 @@
 
 <script type="text/javascript">
 
+   // $('#del-reset').load("/cart #del-reset",  function () { GenerateData(); });
+
     // Wow Animations
     wow = new WOW(
         {

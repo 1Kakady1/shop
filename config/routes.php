@@ -27,6 +27,11 @@ return array(
     'user/logout' => 'user/logout',
     'user/active' => 'user/active',
 
+    'admin/order/update/([0-9]+)' => 'admin/update/$1',
+    'admin/order/delete/([0-9]+)' => 'admin/delete/$1',
+    'admin/order/view/([0-9]+)' => 'admin/view/$1',
+    'admin' => 'admin/index',
+
     'cabinet/edit' => 'cabinet/edit',
     'cabinet' => 'cabinet/index',
 
