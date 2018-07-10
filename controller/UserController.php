@@ -99,6 +99,9 @@ class UserController
                 $errors[] = 'Неправильные данные для входа на сайт';
             } else {
                 // Если данные правильные, запоминаем пользователя (сессия)
+               /* if (isset($_POST['remember'])) {
+                    setcookie('user_cookie',$password,strtotime('+15 day'),'/');
+                } */
                 User::auth($id,$email);
                 // Перенаправляем пользователя в закрытую часть - кабинет
                 header("Location:/cabinet/");
@@ -110,6 +113,63 @@ class UserController
         require_once(ROOT . '/views/forms/login.php');
 
         return true;
+    }
+
+    public function actionRestore()
+    {
+
+        if(empty($_COOKIE['grdcvr']))
+        {
+            $_SESSION["login-restore"] = 1;
+            header("Location:/user/login/");
+            exit;
+        }
+
+        ob_start();
+
+        $cat = array();
+        $cat = Category::getCategoriesList();
+        $catId = 0;
+
+        $email = '';
+        $usname = '';
+
+        if (isset($_POST['submit'])) {
+
+                $email = $_POST['email'];
+                $usname = $_POST['usname'];
+
+                $errors = false;
+
+
+                if (!User::checkEmail($email)) {
+                    $errors[] = 'Проверьте на верность введеные данные';
+                }
+
+                if (!User::checkName($usname)) {
+                    $errors[] = 'Проверьте на верность введеные данные';
+                }
+
+                // Проверяем существует ли пользователь
+                $id = User::checkUserRestore($email, $usname);
+
+                if ($id == false) {
+
+                    $errors[] = 'Неправильные данные для входа на сайт';
+                } else {
+
+                    User::newUserPasword($usname, $email);
+                    setcookie('grdcvr', 1, strtotime(time() + 3600), '/');
+                    $_SESSION["restore"] = 1;
+                    header("Location:/user/login/");
+                    ob_end_flush();
+                }
+        }
+
+        require_once(ROOT . '/views/forms/restore.php');
+
+        return true;
+
     }
 
     public function actionLogout()

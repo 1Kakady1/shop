@@ -100,6 +100,53 @@ case 3: $sql = "UPDATE $userTab SET usimg = :usimg WHERE id = :id";
         return false;
     }
 
+    public static function checkUserRestore($email, $usname)
+    {
+        $db = Db::getConnection();
+        $userTab=Db::dbTableName('users');
+
+        $sql = "SELECT * FROM $userTab WHERE email = :email AND usname= :usname";
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':email', $email, PDO::PARAM_INT);
+        $result->bindParam(':usname', $usname, PDO::PARAM_INT);
+        $result->execute();
+
+        $user = $result->fetch();
+        if ($user) {
+            return $user['id'];
+        }
+
+        return false;
+    }
+
+    public static function newUserPasword($usname,$email){
+
+        $db = Db::getConnection();
+        $userTab=Db::dbTableName('users');
+
+        $paramsPath = ROOT.'/config/config_site.php';
+        $setting = include ($paramsPath);
+
+        $String="";
+        $Char = '0123456789abcdefghijklmnopqrstuvwxyz';
+        for ($i = 0; $i < 11; $i ++) $String .= $Char[rand(0, strlen($Char) - 1)];
+
+        $password = md5($setting['key1'].md5($setting['key2'].$String.$setting['key3']).md5($setting['key4'].$usname.$setting['key5']));
+
+        $sql = "UPDATE $userTab SET password = :password WHERE usname = :usname";
+        $result = $db->prepare($sql);
+        $result->bindParam(':usname', $usname, PDO::PARAM_INT);
+        $result->bindParam(':password', $password , PDO::PARAM_STR);
+        $result->execute();
+
+        mail($email, 'Востановление пароля', 'Новый пароль: '.$String." После входа не забудьте сменить его нановый.", 'From: '.$setting['MyEmail'].'');
+        return true;
+
+
+
+    }
+
     public static function auth($userId,$userEmail)
     {   //session_start();
         $_SESSION['user'] = $userId;

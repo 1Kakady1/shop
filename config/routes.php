@@ -18,14 +18,16 @@ return array(
     'product' => 'product/index',
 
     'cart/check' => 'cart/check',
-    'cart/add/([0-9]+)' => 'cart/add/$1', // actionAdd в CartController
-    'cart/addAjax/([0-9]+)' => 'cart/addAjax/$1', // actionAdd в CartController
-    'cart' => 'cart/index', // actionIndex в CartController
+    'cart/add/([0-9]+)' => 'cart/add/$1',
+    'cart/addAjax/([0-9]+)' => 'cart/addAjax/$1',
+    'cart' => 'cart/index',
 
+    'user/restore' => 'user/restore',
     'user/register' => 'user/register',
     'user/login' => 'user/login',
     'user/logout' => 'user/logout',
     'user/active' => 'user/active',
+
 
     'admin/order/update/([0-9]+)' => 'admin/update/$1',
     'admin/order/delete/([0-9]+)' => 'admin/delete/$1',

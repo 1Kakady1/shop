@@ -51,6 +51,7 @@ header {    width: 100%;
   margin-top: 3vw;
   margin-bottom: 3vw;
 }
+#flex_center a{color: #343a40}
 #flex_center img{
   width: 30%;
   height: 10vw;

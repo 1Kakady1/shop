@@ -12,7 +12,7 @@
       <div class="container marketing">
 
         <!-- START THE FEATURETTES -->
-
+        <h1><span>Интересные предложения</span></h1>
         <hr class="featurette-divider">
           <div class="row featurette wow slideInRight">
               <div class="col-md-7">

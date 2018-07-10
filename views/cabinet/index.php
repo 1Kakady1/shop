@@ -7,6 +7,7 @@
  */
 
 include_once ROOT.'/views/header.php'?>
+<div class="animated slideInLeft"><p class="msg-send">Никнейм служит для восстановления пароля. Никому не сообщайте его!!!</p></div>
 
 <main role="main" class="col-md-12 ml-sm-auto col-lg-12 "><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
 
@@ -14,7 +15,7 @@ include_once ROOT.'/views/header.php'?>
             <button type="button" class="btn btn-success"><a href="/cabinet">Ваши заказы</a></button>
             <button type="button" class="btn btn-success"><a href="/cabinet/edit">Изменить профиль</a></button>
         </div>
-    <h2>Последние заказы</h2>
+    <h2>Заказы</h2>
     <div class="table-responsive">
         <table class="table table-striped table-sm">
             <thead>
