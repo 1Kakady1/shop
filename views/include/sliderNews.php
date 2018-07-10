@@ -6,8 +6,6 @@
  * Time: 14:23
  */
 
-$paramsPath = ROOT.'/config/config_site.php';
-$setting = include ($paramsPath);
 
 ?>
 
@@ -20,34 +18,34 @@ $setting = include ($paramsPath);
     <div class="carousel-inner">
 
         <div class="carousel-item active">
-            <img class="first-slide" src="/template/images/news/<?php echo $newsList[$setting['news1']]['preview']?>" alt="First slide">
+            <img class="first-slide" src="/template/images/news/<?php echo $newsList[$listSetting[8]['info']]['preview']?>" alt="First slide">
             <div class="container">
                 <div class="carousel-caption text-left">
-                    <h1><?php echo $newsList[$setting['news1']]['short_content']?></h1>
+                    <h1><?php echo $newsList[$listSetting[8]['info']]['short_content']?></h1>
                     <p></p>
-                    <p><a class="btn btn-lg btn-primary" href="/news/<?php echo $newsList[$setting['news1']]['id']?>" role="button">Посмотреть</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="/news/<?php echo $newsList[$listSetting[8]['info']]['id']?>" role="button">Посмотреть</a></p>
                 </div>
             </div>
         </div>
 
         <div class="carousel-item">
-            <img class="second-slide" src="/template/images/news/<?php echo $newsList[$setting['news2']]['preview']?>" alt="Second slide">
+            <img class="second-slide" src="/template/images/news/<?php echo $newsList[$listSetting[9]['info']]['preview']?>" alt="Second slide">
             <div class="container">
                 <div class="carousel-caption">
-                    <h1><?php echo $newsList[$setting['news2']]['short_content']?></h1>
+                    <h1><?php echo $newsList[$listSetting[9]['info']]['short_content']?></h1>
                     <p></p>
-                    <p><a class="btn btn-lg btn-primary" href="/news/<?php echo $newsList[$setting['news2']]['id']?>" role="button">Посмотреть</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="/news/<?php echo $newsList[$listSetting[9]['info']]['id']?>" role="button">Посмотреть</a></p>
                 </div>
             </div>
         </div>
 
         <div class="carousel-item">
-            <img class="third-slide" src="/template/images/news/<?php echo $newsList[$setting['news3']]['preview']?>" alt="Third slide">
+            <img class="third-slide" src="/template/images/news/<?php echo $newsList[$listSetting[10]['info']]['preview']?>" alt="Third slide">
             <div class="container">
                 <div class="carousel-caption text-right">
-                    <h1><?php echo $newsList[$setting['news3']]['short_content']?></h1>
+                    <h1><?php echo $newsList[$listSetting[10]['info']]['short_content']?></h1>
                     <p></p>
-                    <p><a class="btn btn-lg btn-primary" href="/news/<?php echo $newsList[$setting['news3']]['id']?>" role="button">Посмотреть</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="/news/<?php echo $newsList[$listSetting[10]['info']]['id']?>" role="button">Посмотреть</a></p>
                 </div>
             </div>
         </div>

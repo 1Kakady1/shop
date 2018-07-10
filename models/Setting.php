@@ -40,4 +40,110 @@ class Setting
         }
     }
 
+    public static function updateSetting($email,$phone,$adr,$workTime)
+    {
+        $settingTab=Db::dbTableName('setting');
+        $db = Db::getConnection();
+
+        $listSetting = array();
+        $listSetting = self::getSetting();
+
+        $id1 = $listSetting[3]['id'] ;
+        $id2 = $listSetting[4]['id'] ;
+        $id3 = $listSetting[5]['id'] ;
+        $id4 = $listSetting[6]['id'] ;
+
+
+        $sql = "UPDATE $settingTab SET info = :email  WHERE id = :id1";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id1', $id1, PDO::PARAM_INT);
+        $result->bindParam(':email', $email, PDO::PARAM_STR);
+        $fl1=$result->execute();
+
+        $sql = "UPDATE $settingTab SET info = :phone  WHERE id = :id2";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id2', $id2, PDO::PARAM_INT);
+        $result->bindParam(':phone', $phone, PDO::PARAM_STR);
+        $fl2=$result->execute();
+
+
+        $sql = "UPDATE $settingTab SET info = :adr  WHERE id = :id3";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id3', $id3, PDO::PARAM_INT);
+        $result->bindParam(':adr', $adr, PDO::PARAM_STR);
+        $fl3= $result->execute();
+
+        $sql = "UPDATE $settingTab SET info = :workTime  WHERE id = :id4";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id4', $id4, PDO::PARAM_INT);
+        $result->bindParam(':workTime', $workTime, PDO::PARAM_STR);
+        $fl4= $result->execute();
+
+        if($fl3!=false && $fl2!=false && $fl1!=false && $fl4!=false)
+        {
+            return "Данные изменены";
+        } else {return false; }
+
+
+
+    }
+
+    public static function getSetting()
+    {
+        $settingTab=Db::dbTableName('setting');
+        $db = Db::getConnection();
+
+        $sql = "SELECT * FROM $settingTab";
+        $result = $db->query($sql);
+        $st=array();
+
+
+        $i = 0;
+        while ($row = $result->fetch()) {
+            $st[$i]['id'] = $row['id'];
+            $st[$i]['info'] = $row['info'];
+            $i++;
+        }
+        return $st;
+
+    }
+
+    public static function updateNewsDb($op1,$op2,$op3)
+    {
+        $settingTab=Db::dbTableName('setting');
+        $db = Db::getConnection();
+
+        $listSetting = array();
+        $listSetting = self::getSetting();
+
+        $id1 = $listSetting[8]['id'] ;
+        $id2 = $listSetting[9]['id'] ;
+        $id3 = $listSetting[10]['id'] ;
+
+
+        $sql = "UPDATE $settingTab SET info = :news1  WHERE id = :id1";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id1', $id1, PDO::PARAM_INT);
+        $result->bindParam(':news1', $op1, PDO::PARAM_STR);
+        $fl1=$result->execute();
+
+        $sql = "UPDATE $settingTab SET info = :news2  WHERE id = :id2";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id2', $id2, PDO::PARAM_INT);
+        $result->bindParam(':news2', $op2, PDO::PARAM_STR);
+        $fl2=$result->execute();
+
+
+        $sql = "UPDATE $settingTab SET info = :news3  WHERE id = :id3";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id3', $id3, PDO::PARAM_INT);
+        $result->bindParam(':news3', $op3, PDO::PARAM_STR);
+        $fl3=$result->execute();
+
+        if($fl3!=false && $fl2!=false && $fl1!=false )
+        {
+            return "Данные изменены";
+        } else {return false; }
+
+    }
 }

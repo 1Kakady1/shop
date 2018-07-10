@@ -4,6 +4,9 @@ $setting = include ($paramsPath);
 ?>
 
     <section >
+        <?php if(isset($_SESSION['result'])):?>
+            <div class="animated slideInLeft"><p class="msg-send">Данные были изменены!</p></div>
+            <?php unset($_SESSION['result']); endif; ?>
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -16,7 +19,7 @@ $setting = include ($paramsPath);
                             </tr>
                             <tr>
                                 <td>Email для связи</td>
-                                <td><input type="email" name="email" value="$"></td>
+                                <td><input type="email" name="email" value="<?php echo $listSetting[3]['info'] ?>"></td>
                             </tr>
                             <tr>
                                 <td>Перенаправление на сайт</td>
@@ -24,15 +27,15 @@ $setting = include ($paramsPath);
                             </tr>
                             <tr>
                                 <td>Телефон для связи(если несколько тел., то разделить их &)</td>
-                                <td><input type="text" name="tel" value="$"></td>
+                                <td><input type="text" name="tel" value="<?php echo $listSetting[4]['info'] ?>"></td>
                             </tr>
                             <tr>
                                 <td>Где Вы находитесь:</td>
-                                <td><input type="text" name="adr" value="$"></td>
+                                <td><input type="text" name="adr" value="<?php echo $listSetting[5]['info'] ?>"></td>
                             </tr>
                             <tr>
                                 <td><b>Время работы:</b></td>
-                                <td><input type="text" name="work" value="$"></td>
+                                <td><input type="text" name="work" value="<?php echo $listSetting[6]['info'] ?>"></td>
                             </tr>
 
                         </table>
@@ -41,28 +44,26 @@ $setting = include ($paramsPath);
                 </div>
 
                 <div class="col-md-6">
-                    <h5>Слайдер новастей</h5>
+                    <h5>Слайдер новостей</h5>
                     <form method="post" id="select-st">
 
                         <select name="news1">
-                            <option value="1">Новый заказ</option>
-                            <option value="2">В обработке</option>
-                            <option value="3">Доставляется</option>
-                            <option value="4">Закрыт</option>
+                            <?php foreach ($newsList as $newsItem): ?>
+                                <option value="<?php echo $newsItem['id'] ?>" <?php if($newsItem['id']==$listSetting[8]['info']){echo "selected";}?>><?php echo $newsItem['title'] ?></option>
+                            <?php endforeach; ?>
+
                         </select>
 
                         <select name="news2">
-                            <option value="1">Новый заказ</option>
-                            <option value="2">В обработке</option>
-                            <option value="3">Доставляется</option>
-                            <option value="4">Закрыт</option>
+                            <?php foreach ($newsList as $newsItem): ?>
+                                <option value="<?php echo $newsItem['id'] ?>" <?php if($newsItem['id']==$listSetting[9]['info']){echo "selected";}?>><?php echo $newsItem['title'] ?></option>
+                            <?php endforeach; ?>
                         </select>
 
                         <select name="news3">
-                            <option value="1">Новый заказ</option>
-                            <option value="2">В обработке</option>
-                            <option value="3">Доставляется</option>
-                            <option value="4">Закрыт</option>
+                            <?php foreach ($newsList as $newsItem): ?>
+                                <option value="<?php echo $newsItem['id'] ?>" <?php if($newsItem['id']==$listSetting[10]['info']){echo "selected";}?>><?php echo $newsItem['title'] ?></option>
+                            <?php endforeach; ?>
                         </select>
 
                         <button type="submit" class="btn btn-primary" name="send2">Изменить</button>

@@ -23,6 +23,12 @@ class AdminController extends AdminBase
     public function actionSetting()
     {
         self::checkAdmin();
+        $listSetting = array();
+        $listSetting = Setting::getSetting();
+
+        $newsList = array();
+        $newsList = News::getNewsListFull();
+
 
         if(isset($_POST['send3']))
         {
@@ -40,6 +46,42 @@ class AdminController extends AdminBase
 
             header("Location: /admin/setting");
             exit;
+        }
+
+        if(isset($_POST['send1']))
+        {
+            ob_start();
+            $email=$_POST['email'] ;
+            $phone=$_POST['tel'] ;
+            $adr=$_POST['adr'];
+            $work=$_POST['work'];
+
+            $result = Setting::updateSetting($email,$phone,$adr,$work);
+
+            if( $result!= false)
+            {
+                $_SESSION['result'] = $result;
+                header("Location: /admin/setting");
+                ob_end_flush();
+                exit;
+            }
+
+
+        }
+
+        if(isset($_POST['send2']))
+        {
+            ob_start();
+            $post1=$_POST['news1'] ;
+            $post2=$_POST['news2'] ;
+            $post3=$_POST['news3'];
+
+            $result = Setting::updateNewsDb($post1,$post2,$post3);
+
+            header("Location: /admin/setting");
+            ob_end_flush();
+            exit;
+
         }
 
         require_once (ROOT.'/views/admin/setting.php');

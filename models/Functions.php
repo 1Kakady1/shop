@@ -39,6 +39,7 @@ class Functions
             case "cabinet":return 'Ваш личный кабинет';
             case "contact":return 'Контакты';
             case "cart":return 'Корзина';
+            case "admin":return 'Admin';
         }
 
     }

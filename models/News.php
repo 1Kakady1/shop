@@ -71,4 +71,31 @@ class News
 
         return  $newsList;
     }
+
+    public  static  function getNewsListFull()
+    {
+
+        $newsTab=Db::dbTableName('news');
+        $db= Db::getConnection();
+
+        $newsList = array();
+
+        $result = $db->query("SELECT id, title, date, short_content, content, preview FROM $newsTab ORDER BY date DESC");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $i = 0;
+
+        while ($row = $result->fetch()){
+
+            $newsList[$i]['id'] = $row['id'];
+            $newsList[$i]['title'] = $row['title'];
+            $newsList[$i]['date'] = $row['date'];
+            $newsList[$i]['short_content'] = $row['short_content'];
+            $newsList[$i]['content'] = $row['content'];
+            $newsList[$i]['preview'] = $row['preview'];
+
+            $i++;
+        }
+
+        return  $newsList;
+    }
 }

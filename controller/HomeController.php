@@ -16,6 +16,11 @@ class HomeController
         $newsList = array();
         $newsList = News::getNewsList();
 
+        $listSetting=array();
+        $listSetting=Setting::getSetting();
+
+
+
         $cat = array();
         $cat = Category::getCategoriesList();
         $catId = 0;
