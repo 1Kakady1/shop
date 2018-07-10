@@ -20,6 +20,32 @@ class AdminController extends AdminBase
         return true;
     }
 
+    public function actionSetting()
+    {
+        self::checkAdmin();
+
+        if(isset($_POST['send3']))
+        {
+            if($_FILES['picture1']['name'] !== ''){
+                $img1 = Setting::loadBanner(ROOT.'/template/images/banner/','bn1','picture1');
+            }
+
+            if($_FILES['picture2']['name'] !== ''){
+                $img2 = Setting::loadBanner(ROOT.'/template/images/banner/','bn2','picture2');
+            }
+
+            if($_FILES['picture3']['name'] !== ''){
+                $img3 = Setting::loadBanner(ROOT.'/template/images/banner/','bn3','picture3');
+            }
+
+            header("Location: /admin/setting");
+            exit;
+        }
+
+        require_once (ROOT.'/views/admin/setting.php');
+        return true;
+    }
+
     public function actionUpdate($id)
     {
         // Проверка доступа
@@ -40,7 +66,7 @@ class AdminController extends AdminBase
         }
 
         // Подключаем вид
-        require_once(ROOT . '/views/admin_order/update.php');
+        require_once(ROOT . '/views/admin/order/update.php');
         return true;
     }
 
@@ -77,7 +103,7 @@ class AdminController extends AdminBase
             header("Location: /admin/order");
         }
 
-        require_once(ROOT . '/views/admin_order/delete.php');
+        require_once(ROOT . '/views/admin/order/delete.php');
         return true;
     }
 

@@ -305,8 +305,7 @@ case 3: $sql = "UPDATE $userTab SET usimg = :usimg WHERE id = :id";
                 else
                     return $name_file;//msg ok!
             }
-
-        }
+    }
         public static function sendActiveUsMail($id,$email)
         {
             $paramsPath = ROOT.'/config/config_site.php';

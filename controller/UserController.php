@@ -96,7 +96,7 @@ class UserController
 
             if ($id == false) {
 
-                $errors[] = 'Неправильные данные для входа на сайт';
+                $errors[] = 'Неверные данные для входа на сайт';
             } else {
                 // Если данные правильные, запоминаем пользователя (сессия)
                /* if (isset($_POST['remember'])) {
@@ -118,7 +118,7 @@ class UserController
     public function actionRestore()
     {
 
-        if(empty($_COOKIE['grdcvr']))
+        if(isset($_COOKIE['grdcvr']))
         {
             $_SESSION["login-restore"] = 1;
             header("Location:/user/login/");
@@ -155,7 +155,7 @@ class UserController
 
                 if ($id == false) {
 
-                    $errors[] = 'Неправильные данные для входа на сайт';
+                    $errors[] = 'Неверные данные для входа на сайт';
                 } else {
 
                     User::newUserPasword($usname, $email);

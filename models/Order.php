@@ -148,8 +148,6 @@ class Order
 
     /**
      * Удаляет заказ с заданным id
-     * @param integer $id <p>id заказа</p>
-     * @return boolean <p>Результат выполнения метода</p>
      */
     public static function deleteOrderById($id)
     {

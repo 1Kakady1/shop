@@ -33,9 +33,9 @@
                 <td><?php echo $order['user_phone']; ?></td>
                 <td><?php echo $order['date']; ?></td>
                 <td><?php echo Order::getStatusText($order['status']); ?></td>
-                <td><a href="/admin/order/view/<?php echo $order['id']; ?>" title="Смотреть"><i class="fas fa-eye"></i>d</a></td>
-                <td><a href="/admin/order/update/<?php echo $order['id']; ?>" title="Редактировать"><i class="fas fa-pencil-square-o"></i>dd</a></td>
-                <td><a href="/admin/order/delete/<?php echo $order['id']; ?>" title="Удалить"><i class="fas fa-times"></i></a>dd</td>
+                <td><a href="/admin/order/view/<?php echo $order['id']; ?>" title="Смотреть"><i class="fas fa-eye"></i></a></td>
+                <td><a href="/admin/order/update/<?php echo $order['id']; ?>" title="Редактировать"><i class="fas fa-file-invoice"></i></a></td>
+                <td><a href="/admin/order/delete/<?php echo $order['id']; ?>" title="Удалить"><i class="fas fa-times"></i></a></td>
             </tr>
             <?php endforeach; ?>
             </tbody>

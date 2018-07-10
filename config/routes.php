@@ -32,6 +32,7 @@ return array(
     'admin/order/update/([0-9]+)' => 'admin/update/$1',
     'admin/order/delete/([0-9]+)' => 'admin/delete/$1',
     'admin/order/view/([0-9]+)' => 'admin/view/$1',
+    'admin/setting' => 'admin/setting',
     'admin' => 'admin/index',
 
     'cabinet/edit' => 'cabinet/edit',

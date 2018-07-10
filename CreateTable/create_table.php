@@ -19,6 +19,7 @@ $my_prod_tb = $setting['prefix']."product";
 $my_users_tb = $setting['prefix']."users";
 $my_comments_tb = $setting['prefix']."comments";
 $my_order_tb = $setting['prefix']."order";
+$my_setting_tb = $setting['prefix']."setting";
 
 $db = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
 
@@ -121,6 +122,16 @@ try {
                                                 status INT(11) NOT NULL DEFAULT '1' )";
     $db->query($queryStr);
     echo 'Таблица order создана <br><br>';
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+// table setting
+try {
+    $queryStr = "CREATE TABLE $my_setting_tb (id INT(11) NOT NULL AUTO_INCREMENT  PRIMARY KEY ,  
+                                            title VARCHAR(100) NOT NULL , 
+                                            info TEXT NOT NULL )";
+    $db->query($queryStr);
+    echo 'Таблица setting создана <br><br>';
 } catch (PDOException $e) {
     echo $e->getMessage();
 }

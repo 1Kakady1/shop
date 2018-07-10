@@ -12,7 +12,7 @@
         </div>
 
         <div class="mySlides fade">
-            <img src="/template/images/banner/Etsy-Banners.png" style="width:100%;">
+            <img src="/template/images/banner/bn2.png" style="width:100%;">
         </div>
 
     </div>

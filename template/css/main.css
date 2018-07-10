@@ -1,4 +1,17 @@
-﻿#l-cab{margin-bottom: 1vw;}
+﻿.mg-top{margin-top: 1vw;}
+#st-banner img {
+  width: 100%;
+  height: 7vw;
+  /* margin-top: 1vw; */
+  padding-top: 1vw;
+  margin-bottom: 1vw;
+}
+#select-st select {
+  margin-bottom: 1vw;
+  border: 1px solid #7f8388;
+}
+
+#l-cab{margin-bottom: 1vw;}
 #l-cab button a {color:#fff;}
 .new-add{display: none;}
 label span {color: red;}
@@ -1754,9 +1767,9 @@ h2.title {
 
 
 .login-form form input, .signup-form form input {
-  background: #F0F0E9;
+  background: #dee2e6;
   border: medium none;
-  color: #696763;
+  color: #000000;
   display: block;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
@@ -2060,9 +2073,9 @@ h2.title {
 }
 
 .user_info input, select, textarea {
-  background: #F0F0E9;
+  background: #dee2e6;
+  color: #000000;
   border:0;
-  color: #696763;
   padding: 5px;
   width: 100%;
   border-radius: 0;

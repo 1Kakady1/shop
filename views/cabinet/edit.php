@@ -1,7 +1,7 @@
 <?php include_once ROOT . '/views/header.php'; ?>
 <section>
     <?php if ($result): ?>
-    <div class="animated slideInLeft"><p class="msg-send"><p>Данные отредактированы!</p></div>
+    <div class="animated slideInLeft"><p class="msg-send">Данные отредактированы!</p></div>
     <?php else: ?>
     <?php if (isset($errors) && is_array($errors)): ?>
     <div class="animated slideInLeft">

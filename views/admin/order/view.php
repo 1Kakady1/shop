@@ -50,15 +50,19 @@
                     <th>Цена</th>
                     <th>Количество</th>
                 </tr>
-                <?php foreach ($products as $product): ?>
+                <?php $fullPrice=0; foreach ($products as $product): ?>
                     <tr>
                         <td><?php echo $product['id']; ?></td>
                         <td><?php echo $product['code']; ?></td>
                         <td><?php echo $product['name']; ?></td>
-                        <td>$<?php echo $product['price']; ?></td>
+                        <td><?php echo $product['price']; ?></td>
                         <td><?php echo $productsQuantity[$product['id']]; ?></td>
                     </tr>
-                <?php endforeach; ?>
+                <?php $fullPrice+=(int)$product['price']; endforeach; ?>
+                <tr>
+                    <td>Общая стоимость:</td>
+                    <td><?php echo $fullPrice; ?></td>
+                </tr>
             </table>
 
             <a href="/admin" class="btn btn-default back"><i class="fa fa-arrow-left"></i> Назад</a>

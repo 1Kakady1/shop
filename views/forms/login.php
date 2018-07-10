@@ -1,10 +1,10 @@
 <?php include_once ROOT.'/views/header.php'?>
 
-<?php if(isset($_SESSION["restore"])): unset($_SESSION["restore"]); ?>
+<?php if(isset($_SESSION["restore"])): unset($_SESSION["restore"]);  ?>
     <div class="animated slideInLeft"><p class="msg-send">На указаный вами Email было отправлено письмо</p></div>
 <?php endif; ?>
 
-<?php if(empty($_COOKIE['grdcvr']) && isset($_SESSION["login-restore"])): unset($_SESSION["login-restore"]);?>
+<?php if(isset($_COOKIE['grdcvr']) && isset($_SESSION["login-restore"])): unset($_SESSION["login-restore"]);?>
     <div class="animated slideInLeft"><p class="msg-send">Вы уже делали запрос на восстановление. Проверьте свою почту</p></div>
 <?php endif; ?>
 
