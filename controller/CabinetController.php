@@ -11,6 +11,11 @@ class CabinetController
 
     public function actionIndex()
     {
+        if(isset($_POST['s-submit']))
+        {
+            header('Location:/search/?p='.$_POST["search"]);
+        }
+
         $cat = array();
         $cat = Category::getCategoriesList();
         $catId = 0;
@@ -24,6 +29,11 @@ class CabinetController
 
     public function actionEdit()
     {
+        if(isset($_POST['s-submit']))
+        {
+            header('Location:/search/?p='.$_POST["search"]);
+        }
+
         $cat = array();
         $cat = Category::getCategoriesList();
         $catId = 0;

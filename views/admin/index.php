@@ -6,7 +6,7 @@
         </div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
             <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
 
-    <h2>Section title</h2>
+    <h2>Все заказы</h2>
     <div class="table-responsive">
         <table class="table table-striped table-sm">
             <thead>

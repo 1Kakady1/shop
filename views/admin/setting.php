@@ -3,7 +3,7 @@ $paramsPath = ROOT.'/config/config_site.php';
 $setting = include ($paramsPath);
 ?>
 
-    <section >
+    <section id="bg-section">
         <?php if(isset($_SESSION['result'])):?>
             <div class="animated slideInLeft"><p class="msg-send">Данные были изменены!</p></div>
             <?php unset($_SESSION['result']); endif; ?>
@@ -75,15 +75,15 @@ $setting = include ($paramsPath);
                         <form method="post" runat="server" enctype="multipart/form-data">
                             <div class="row" style="align-items: flex-end;">
                                 <div class="col-md-4">
-                                    <img src="/template/images/banner/bn1.png" alt="b1">
+                                    <img src="/template/images/banner/<?php echo $banner[0]['info'] ?>" alt="b1">
                                     <input type="file" class="form-control-file" name="picture1"/>
                                 </div>
                                 <div class="col-md-4">
-                                    <img src="/template/images/banner/bn2.png" alt="b2">
+                                    <img src="/template/images/banner/<?php echo $banner[1]['info'] ?>" alt="b2">
                                     <input type="file" class="form-control-file" name="picture2"/>
                                 </div>
                                 <div class="col-md-4">
-                                    <img src="/template/images/banner/bn3.png" alt="b3">
+                                    <img src="/template/images/banner/<?php echo $banner[2]['info'] ?>" alt="b3">
                                     <input type="file" class="form-control-file" name="picture3"/>
                                 </div>
                             </div>

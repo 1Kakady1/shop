@@ -13,6 +13,11 @@ class NewsController
 {
     public function actionIndex()
     {
+        if(isset($_POST['s-submit']))
+        {
+            header('Location:/search/?p='.$_POST["search"]);
+        }
+
         $cat = array();
         $cat = Category::getCategoriesList();
         $catId = 0;
@@ -33,7 +38,12 @@ class NewsController
 
     public function actionView($id)
     {
-       if($id){
+        if(isset($_POST['s-submit']))
+        {
+            header('Location:/search/?p='.$_POST["search"]);
+        }
+
+        if($id){
 
            $cat = array();
            $cat = Category::getCategoriesList();

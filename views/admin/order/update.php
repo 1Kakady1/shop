@@ -1,6 +1,6 @@
 <?php include ROOT . '/views/admin/header.php'; ?>
 
-<section style="    margin-left: 13vw;">
+<section style="    margin-left: 13vw;" id="bg-section">
     <div class="container">
         <div class="row">
             <h4>Редактировать заказ #<?php echo $id; ?></h4>

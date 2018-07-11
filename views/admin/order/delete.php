@@ -1,6 +1,6 @@
 <?php include ROOT . '/views/admin/header.php'; ?>
 
-<section>
+<section id="bg-section">
     <div class="container">
         <div class="row">
 

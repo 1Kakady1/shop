@@ -28,12 +28,23 @@ class ProductController
         $total= Product::getTotalProducts($page);
         $pagination = new Pagination($total,$page,Product::SHOW_BY_DEFAULT,'page-');
 
+        if(isset($_POST['s-submit']))
+        {
+            header('Location:/search/?p='.$_POST["search"]);
+        }
+
         require_once(ROOT . '/views/product/index.php');
         return true;
     }
 
     public function actionView($id)
     {
+
+        if(isset($_POST['s-submit']))
+        {
+            header('Location:/search/?p='.$_POST["search"]);
+        }
+
         $name = '';
         $email = '';
         $msg= '';
@@ -115,6 +126,10 @@ class ProductController
 
     public function actionCat($id,$page=1)
     {
+        if(isset($_POST['s-submit']))
+        {
+            header('Location:/search/?p='.$_POST["search"]);
+        }
 
         $cat = array();
         $cat = Category::getCategoriesList();

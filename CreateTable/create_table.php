@@ -132,6 +132,11 @@ try {
                                             info TEXT NOT NULL )";
     $db->query($queryStr);
     echo 'Таблица setting создана <br><br>';
+
+    $queryStr = 'INSERT INTO '.$my_setting_tb.' (title, info) VALUES ("Ед. цены:","$"),("Перенаправление на сайт","http://http://bootsrapshop.loc/admin/orders"),("Шапка письма","Новый заказ!"),("Email для связи","test@mail.ru"),("Телефон для связи(если несколько тел., то разделить их &)","+38010001&+38000333"),("Где Вы находитесь:","г. Город ул. город дом 31"),("Время работы:","09.00 - 17.00"),("Префикс БД","tr_"),("Новость 1","3"),("Новость 2","2"),("Новость 3","1"),("Баннер 1","bn1.png"),("Баннер 2","bn2.png"),("Баннер 3","bn3.png")';
+    $db->query($queryStr);
+
+    echo 'Записи таб. setting созданы <br><br>';
 } catch (PDOException $e) {
     echo $e->getMessage();
 }

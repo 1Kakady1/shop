@@ -59,12 +59,10 @@ if(isset($_SESSION['user']))
 	    			<div class="contact-info">
 	    				<h2 class="title text-center">Мы ВСЕГДА НА СВЯЗИ</h2>
 	    				<address>
-	    					<p>E-Shopper Inc.</p>
-							<p>935 W. Webster Ave New Streets Chicago, IL 60614, NY</p>
-							<p>Newyork USA</p>
-							<p>Mobile: +2346 17 38 93</p>
-							<p>Fax: 1-714-252-0026</p>
-							<p>Email: info@e-shopper.com</p>
+							<p>Мы расположены: <?php echo $address[2]['info'] ?></p>
+							<p>Звоните нам по номерам:<br> <span><?php $i=0; while ($i<count($phone_array)){echo $phone_array[$i]."<br>";$i++;}?></span></p>
+							<p>Email: <?php echo $address[0]['info'] ?></p>
+                            <p>Время работы: <?php echo $address[3]['info'] ?></p>
 	    				</address>
                         <!--
 	    				<div class="social-networks">

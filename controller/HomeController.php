@@ -31,6 +31,11 @@ class HomeController
         $randId = array();
         $randId = Home::prodRandId('product');
 
+        if(isset($_POST['s-submit']))
+        {
+            header('Location:/search/?p='.$_POST["search"]);
+        }
+
         require_once(ROOT . '/views/home/index.php');
         return true;
     }

@@ -5,6 +5,10 @@ class ContactController
     public function actionIndex()
     {
 
+        if(isset($_POST['s-submit']))
+        {
+            header('Location:/search/?p='.$_POST["search"]);
+        }
 
         $cat = array();
         $cat = Category::getCategoriesList();
@@ -96,6 +100,10 @@ class ContactController
             }
 
         }
+
+        $address= Functions::getAddress();
+
+        $phone_array = explode("&", $address[1]['info']);
 
 
         require_once(ROOT . '/views/contact/index.php');

@@ -10,7 +10,7 @@ $active = $title->print_url_link();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="https://getbootstrap.com/favicon.ico">
+    <link rel="icon" href="/template/images/icons.png">
 
     <title><?php echo $titleSite."- TopShop"  ?></title>
     <!-- Bootstrap core CSS -->
@@ -20,7 +20,7 @@ $active = $title->print_url_link();
         @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-<body>
+<body id="bg-body">
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
 
     <img src="/template/images/logo.png" class="animated slideInLeft" alt="logo" id="logo">
@@ -33,7 +33,7 @@ $active = $title->print_url_link();
 
 <div class="container-fluid">
     <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar" id="nav-full">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">

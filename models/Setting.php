@@ -9,7 +9,7 @@
 class Setting
 {
 
-    public static function loadBanner($path,$fileName,$file)
+    public static function loadBanner($path,$fileName,$file,$id_bn)
     {
         $types = array('image/gif', 'image/png', 'image/jpeg','image/jpg');
         $exp_tupe_array = array('gif','png','jpeg','jpg' );
@@ -35,8 +35,19 @@ class Setting
             $_FILES[$file]['name'] =$name_file;
             if (!@copy($_FILES[$file]['tmp_name'], $path . $_FILES[$file]['name']))
                 return 3;//msg bad type
-            else
+            else{
+                $settingTab=Db::dbTableName('setting');
+                $db = Db::getConnection();
+
+                $sql = "UPDATE $settingTab SET info = :name  WHERE id = :id1";
+                $result = $db->prepare($sql);
+                $result->bindParam(':id1', $id_bn, PDO::PARAM_INT);
+                $result->bindParam(':name', $name_file, PDO::PARAM_STR);
+                $fl1=$result->execute();
+
                 return $name_file;//msg ok!
+              }
+
         }
     }
 

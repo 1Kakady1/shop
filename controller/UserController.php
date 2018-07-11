@@ -11,6 +11,10 @@ class UserController
 {
     public function actionRegister()
     {
+        if(isset($_POST['s-submit']))
+        {
+            header('Location:/search/?p='.$_POST["search"]);
+        }
 
         $cat = array();
         $cat = Category::getCategoriesList();
@@ -69,6 +73,11 @@ class UserController
 
     public function actionLogin()
     {
+        if(isset($_POST['s-submit']))
+        {
+            header('Location:/search/?p='.$_POST["search"]);
+        }
+
         ob_start();
         $cat = array();
         $cat = Category::getCategoriesList();
@@ -117,6 +126,10 @@ class UserController
 
     public function actionRestore()
     {
+        if(isset($_POST['s-submit']))
+        {
+            header('Location:/search/?p='.$_POST["search"]);
+        }
 
         if(isset($_COOKIE['grdcvr']))
         {

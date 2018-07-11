@@ -82,10 +82,11 @@ $active = $title->print_url_link();
                     </ul>
                 </div>
 
-                <form class="form-inline mt-2 mt-md-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Введите что нужно найти" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+                <form class="form-inline mt-2 mt-md-0" method="post">
+                    <input class="form-control mr-sm-2" type="text" name="search" placeholder="Введите, что нужно найти" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="s-submit">Поиск</button>
                 </form>
+
             </div>
         </nav>
     </header>

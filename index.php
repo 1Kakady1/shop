@@ -9,6 +9,8 @@ session_start();
 // подключение файлов
 define('ROOT', dirname(__FILE__));
 
+
+
 require_once (ROOT.'/components/Autoload.php');
 /*
  if( isset($_SESSION['user']) && $_COOKIE['user_cookie'])

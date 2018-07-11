@@ -5,12 +5,17 @@
  * Date: 09.06.2018
  * Time: 21:21
  */
+$footerInfo=Functions::getAddress();
+$phone_array1 = explode("&", $footerInfo[1]['info']);
 ?>
 
-<footer class="container-fluid">
+<footer>
+    <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6"><p>© 2017-2018 Company</p></div>
-        <div class="col-md-6">
+        <div class="col-md-3"><p>© 2017-2018 Company</p></div>
+        <div class="col-md-3"><p>Звоните нам по номерам:<br><span><?php $i=0; while ($i<count($phone_array1)){echo $phone_array1[$i]."<br>";$i++;}?></span></p></div>
+        <div class="col-md-2"><p><p>Мы работаем:<br> <?php echo $footerInfo[3]['info']  ?>  </p></div>
+        <div class="col-md-4">
             <div class="flr">
                 <a href="#"><img src="/template/images/vk.png" alt="vk"></a>
                 <a href="#"><img src="/template/images/telegram.png" alt="telegram"></a>
@@ -19,7 +24,7 @@
 
         </div>
     </div>
-
+    </div>
 </footer>
 
 <!-- Bootstrap core JavaScript

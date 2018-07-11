@@ -29,19 +29,21 @@ class AdminController extends AdminBase
         $newsList = array();
         $newsList = News::getNewsListFull();
 
+        $banner = Functions::getBanner(12,13,14);
+
 
         if(isset($_POST['send3']))
         {
             if($_FILES['picture1']['name'] !== ''){
-                $img1 = Setting::loadBanner(ROOT.'/template/images/banner/','bn1','picture1');
+                $img1 = Setting::loadBanner(ROOT.'/template/images/banner/','bn1','picture1', 12);
             }
 
             if($_FILES['picture2']['name'] !== ''){
-                $img2 = Setting::loadBanner(ROOT.'/template/images/banner/','bn2','picture2');
+                $img2 = Setting::loadBanner(ROOT.'/template/images/banner/','bn2','picture2', 13);
             }
 
             if($_FILES['picture3']['name'] !== ''){
-                $img3 = Setting::loadBanner(ROOT.'/template/images/banner/','bn3','picture3');
+                $img3 = Setting::loadBanner(ROOT.'/template/images/banner/','bn3','picture3', 14);
             }
 
             header("Location: /admin/setting");

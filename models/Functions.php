@@ -40,8 +40,45 @@ class Functions
             case "contact":return 'Контакты';
             case "cart":return 'Корзина';
             case "admin":return 'Admin';
+            case "search":return 'Поиск';
         }
 
+    }
+
+    public static function getBanner($id1,$id2,$id3)
+    {
+        $settingTab=Db::dbTableName('setting');
+        $db = Db::getConnection();
+
+        $sql = "SELECT * FROM $settingTab WHERE id=$id1 OR id=$id2 OR id=$id3";
+        $result = $db->query($sql);
+        $st=array();
+
+        $i = 0;
+        while ($row = $result->fetch()) {
+            $st[$i]['id'] = $row['id'];
+            $st[$i]['info'] = $row['info'];
+            $i++;
+        }
+        return $st;
+    }
+
+    public static function getAddress()
+    {
+        $settingTab=Db::dbTableName('setting');
+        $db = Db::getConnection();
+
+        $sql = "SELECT * FROM $settingTab WHERE id=4 OR id=5 OR id=6 OR id=7";
+        $result = $db->query($sql);
+        $st=array();
+
+        $i = 0;
+        while ($row = $result->fetch()) {
+            $st[$i]['id'] = $row['id'];
+            $st[$i]['info'] = $row['info'];
+            $i++;
+        }
+        return $st;
     }
 
 }

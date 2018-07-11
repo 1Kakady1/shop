@@ -38,6 +38,8 @@ return array(
     'cabinet/edit' => 'cabinet/edit',
     'cabinet' => 'cabinet/index',
 
+    'search' => 'search/index',
+
     'contact' => 'contact/index',
 
     '' => 'home/index',

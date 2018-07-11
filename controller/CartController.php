@@ -27,6 +27,11 @@ class CartController
 
     public function actionIndex()
     {
+        if(isset($_POST['s-submit']))
+        {
+            header('Location:/search/?p='.$_POST["search"]);
+        }
+
         $cat = array();
         $cat = Category::getCategoriesList();
 
@@ -61,6 +66,10 @@ class CartController
 
     public function actionCheck()
     {
+        if(isset($_POST['s-submit']))
+        {
+            header('Location:/search/?p='.$_POST["search"]);
+        }
 
         $cat = array();
         $cat = Category::getCategoriesList();
