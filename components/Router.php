@@ -53,6 +53,9 @@ class Router
                       // подключение класса нужного контроллера
 
                 $controllerFile = ROOT.'/controller/'.$controllerName.'.php';
+               // var_dump($parameters);
+              //  var_dump($actionName);
+             //   var_dump($controllerFile);
                 if(file_exists($controllerFile)){
                     include_once($controllerFile);
                 }
@@ -63,7 +66,7 @@ class Router
                 {
 
                     header("Location: /");
-                    ob_end_flush();
+                    ob_end_flush();break;
 снять ком строка 32
                 }
 */

@@ -1,5 +1,9 @@
 ﻿/*#bg-section{    background: #fff;}
 #bg-body{    background: #f8f9fa;} */
+#mg-TB{margin-top: 1vw;
+  margin-bottom: 0.5vw;}
+
+#mg-bot { margin-bottom: 0.5vw;}
 
 #nav-full {height: -webkit-fill-available;}
 .mg-top{margin-top: 1vw;}

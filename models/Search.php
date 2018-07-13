@@ -33,6 +33,8 @@ class Search
                 $st[$i]['image'] = $row['image'];
                 $st[$i]['is_new'] = $row['is_new'];
                 $st[$i]['price'] = $row['price'];
+                $st[$i]['code'] = $row['code'];
+                $st[$i]['description'] = $row['description'];
                 $i++;
             }
             return $st;

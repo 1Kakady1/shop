@@ -25,7 +25,7 @@ class ProductController
         $latestProducts = array();
         $latestProducts = Product::getLatestProducts($page);
 
-        $total= Product::getTotalProducts($page);
+        $total= Product::getTotalProducts();
         $pagination = new Pagination($total,$page,Product::SHOW_BY_DEFAULT,'page-');
 
         if(isset($_POST['s-submit']))
@@ -148,7 +148,7 @@ class ProductController
         $listProdCat = Product::getProductsCategoriesId($id,$page);
 
         $total= Product::getTotalProductsInCategory($id,$page);
-        $pagination = new Pagination($total,$page,Product::SHOW_BY_DEFAULT,'page-');
+        $pagination = new Pagination($total,$page,Product::SHOW_BY_DEFAULT_ADMIN,'page-');
 
         require_once(ROOT . '/views/product/category_id.php');
         return true;

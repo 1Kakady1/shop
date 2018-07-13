@@ -29,9 +29,25 @@ return array(
     'user/active' => 'user/active',
 
 
+
+    //  product не работает
+    'admin/prod/create' => 'adminProduct/create',
+    'admin/prod/update/([0-9]+)' => 'adminProduct/update/$1',
+    'admin/prod/delete/([0-9]+)' => 'adminProduct/delete/$1',
+    'admin/prod/cat/([0-9]+)/page-([0-9]+)' => 'adminProduct/cat/$1/$2',
+    'admin/prod/cat/([0-9]+)' => 'adminProduct/cat/$1',
+    'admin/prod/page-([0-9]+)' => 'adminProduct/index/$1',
+    'admin/prod' => 'adminProduct/index',
+
+    'admin/cat/create' => 'adminCategory/create',
+    'admin/cat/update/([0-9]+)' => 'adminCategory/update/$1',
+    'admin/cat/delete/([0-9]+)' => 'adminCategory/delete/$1',
+    'admin/cat' => 'adminCategory/index',
+
     'admin/order/update/([0-9]+)' => 'admin/update/$1',
     'admin/order/delete/([0-9]+)' => 'admin/delete/$1',
     'admin/order/view/([0-9]+)' => 'admin/view/$1',
+    'admin/search' => 'admin/search',
     'admin/setting' => 'admin/setting',
     'admin' => 'admin/index',
 

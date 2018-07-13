@@ -151,6 +151,24 @@ class AdminController extends AdminBase
         return true;
     }
 
+    public function actionSearch($page=1)
+    {
+
+        if(isset($_POST['b-search']))
+        {
+            header('Location:/admin/search/?p='.$_POST["search"]);exit;
+        }
+
+        $productsList = array();
+        $productsList = Search::getSearch($_GET['p'],$page);
+
+        $cat=array();
+        $cat=Category::getCategoriesList();
+
+        require_once(ROOT . '/views/admin/search.php');
+        return true;
+    }
+
 }
 
 

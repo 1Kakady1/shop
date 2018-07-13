@@ -8,10 +8,10 @@
 
  include_once '../config/config_site.php';
 
-$host = 'localhost';
-$dbname = 'BS_shop';
-$user = 'root';
-$password ='';
+$paramsPath = '../config/db_setting.php';
+$params = include ($paramsPath);
+
+$db = new PDO("mysql:host={$params['host']};dbname={$params['dbname']}", $params['user'], $params['password']);
 
 $my_news_tb = $setting['prefix']."news";
 $my_cat_tb = $setting['prefix']."category";

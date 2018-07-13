@@ -9,11 +9,11 @@
 class Product
 {
     const SHOW_BY_DEFAULT = 6;
-
+    const SHOW_BY_DEFAULT_ADMIN = 13;
 
     public static function getLatestProducts($page=1)
     {
-       // $count = intval($count);
+
         $productTab=Db::dbTableName('product');
         $db = Db::getConnection();
         $productsList = array();
@@ -21,9 +21,7 @@ class Product
         $page = intval($page);
         $offset = ($page -1)* self::SHOW_BY_DEFAULT;
 
-        //$result = $db->query("SELECT id, name, price, image, description, is_new FROM $productTab WHERE status = 1 ORDER BY id DESC LIMIT " . $count);
-
-        $result = $db->query("SELECT id, name, price, image, description, is_new FROM ".$productTab
+        $result = $db->query("SELECT id, name, price, image, code, description, is_new FROM ".$productTab
             ." WHERE status = 1 "
             ."ORDER BY id DESC "
             ."LIMIT " .self::SHOW_BY_DEFAULT
@@ -57,7 +55,7 @@ class Product
             $db = Db::getConnection();
             $productsCatList = array();
 
-            $result = $db->query("SELECT id, name, price, image, description, is_new FROM ".$productTab
+            $result = $db->query("SELECT id, name, price, image, code, description, is_new FROM ".$productTab
             ." WHERE status = 1 AND category_id ='$id' "
             ."ORDER BY id DESC "
             ."LIMIT " .self::SHOW_BY_DEFAULT
@@ -70,6 +68,7 @@ class Product
                 $productsCatList[$i]['image'] = $row['image'];
                 $productsCatList[$i]['description'] = $row['description'];
                 $productsCatList[$i]['price'] = $row['price'];
+                $productsCatList[$i]['code'] = $row['code'];
                 $productsCatList[$i]['is_new'] = $row['is_new'];
                 $i++;
             }
@@ -172,5 +171,46 @@ class Product
         $productsIds = array_keys($productsQuantity);
         $products = Product::getProdustsByIds($productsIds);
         return $products;
+    }
+
+    public static function getProductsList($page)
+    {
+        $productTab=Db::dbTableName('product');
+        $db = Db::getConnection();
+        $productsList = array();
+
+        $page = intval($page);
+        $offset = ($page -1)* self::SHOW_BY_DEFAULT;
+
+        $result = $db->query("SELECT id, name, price, image, code, description, is_new FROM ".$productTab
+            ." WHERE status = 1 "
+            ."ORDER BY id DESC "
+            ."LIMIT " .self::SHOW_BY_DEFAULT_ADMIN
+            .' OFFSET ' .$offset);
+
+        $i = 0;
+        while ($row = $result->fetch()) {
+            $productsList[$i]['id'] = $row['id'];
+            $productsList[$i]['name'] = $row['name'];
+            $productsList[$i]['code'] = $row['code'];
+            $productsList[$i]['image'] = $row['image'];
+            $productsList[$i]['description'] = $row['description'];
+            $productsList[$i]['price'] = $row['price'];
+            $productsList[$i]['is_new'] = $row['is_new'];
+            $i++;
+        }
+
+        return $productsList;
+    }
+
+    public static function deleteProductById($id)
+    {
+        $productTab=Db::dbTableName('product');
+        $db = Db::getConnection();
+
+        $sql = "DELETE FROM $productTab WHERE id = :id";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        return $result->execute();
     }
 }
