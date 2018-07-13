@@ -1,23 +1,10 @@
-<?php include ROOT . '/views/layouts/header_admin.php'; ?>
+<?php include ROOT . '/views/admin/header.php'; ?>
 
 <section>
     <div class="container">
+        <form method="post" enctype="multipart/form-data">
         <div class="row">
 
-            <br/>
-
-            <div class="breadcrumbs">
-                <ol class="breadcrumb">
-                    <li><a href="/admin">Админпанель</a></li>
-                    <li><a href="/admin/product">Управление товарами</a></li>
-                    <li class="active">Редактировать товар</li>
-                </ol>
-            </div>
-
-
-            <h4>Добавить новый товар</h4>
-
-            <br/>
 
             <?php if (isset($errors) && is_array($errors)): ?>
                 <ul>
@@ -27,17 +14,41 @@
                 </ul>
             <?php endif; ?>
 
+            <div class="col-lg-8">
+
+                    <p>Описание</p>
+                    <textarea name="description" rows="8"></textarea>
+                    <br/><br/>
+                    <p>Характреристки (значения разделять ';')</p>
+                    <textarea name="info" rows="8"></textarea>
+                    <br/><br/>
+
+                    <p>Изображение товара</p>
+                    <input type="file" name="image" placeholder="" value="">
+
+                    <div id="gall">
+                        <p>Галлерея</p>
+                        <div class="img-avatar" id="img-avatar">
+                            <img src="/template/images/z1.png" alt="" id="blah" >
+                        </div>
+                        <input type="file" name="g1" id="imgInp1">
+                        <input type="file" name="g2" id="imgInp2">
+                        <input type="file" name="g3" id="imgInp3">
+                        <input type="file" name="g4" id="imgInp4">
+                        <input type="file" name="g5" id="imgInp5">
+                    </div>
+
+            </div>
+
             <div class="col-lg-4">
                 <div class="login-form">
-                    <form action="#" method="post" enctype="multipart/form-data">
-
                         <p>Название товара</p>
                         <input type="text" name="name" placeholder="" value="">
 
                         <p>Артикул</p>
                         <input type="text" name="code" placeholder="" value="">
 
-                        <p>Стоимость, $</p>
+                        <p>Стоимость</p>
                         <input type="text" name="price" placeholder="" value="">
 
                         <p>Категория</p>
@@ -55,14 +66,6 @@
 
                         <p>Производитель</p>
                         <input type="text" name="brand" placeholder="" value="">
-
-                        <p>Изображение товара</p>
-                        <input type="file" name="image" placeholder="" value="">
-
-                        <p>Детальное описание</p>
-                        <textarea name="description"></textarea>
-
-                        <br/><br/>
 
                         <p>Наличие на складе</p>
                         <select name="availability">
@@ -96,17 +99,17 @@
 
                         <br/><br/>
 
-                        <input type="submit" name="submit" class="btn btn-default" value="Сохранить">
+                        <input type="submit" name="submit" class="btn btn-primary" value="Сохранить">
 
                         <br/><br/>
-
-                    </form>
                 </div>
+                </form>
+
             </div>
 
         </div>
     </div>
 </section>
 
-<?php include ROOT . '/views/layouts/footer_admin.php'; ?>
+<?php include ROOT . '/views/admin/footer.php'; ?>
 

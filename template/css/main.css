@@ -1,5 +1,10 @@
 ﻿/*#bg-section{    background: #fff;}
 #bg-body{    background: #f8f9fa;} */
+
+#imgInp1,#imgInp2,#imgInp3,#imgInp4,#imgInp5 {
+  margin-bottom: 0.5vw;
+}
+
 #mg-TB{margin-top: 1vw;
   margin-bottom: 0.5vw;}
 

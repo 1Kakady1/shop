@@ -213,4 +213,90 @@ class Product
         $result->bindParam(':id', $id, PDO::PARAM_INT);
         return $result->execute();
     }
+
+    public static function createProduct($options)
+    {
+        $productTab=Db::dbTableName('product');
+        $db = Db::getConnection();
+
+        $gallery="";$i=1;
+
+        while($i<count($options['gal']))
+        {
+            if($options['gal'][$i] != false)
+            {
+                $gallery.=$options['gal'][$i].";";
+            }
+
+            $i++;
+        }
+
+        $sql = 'INSERT INTO  '.$productTab
+            . ' (name, category_id,code, price,availability ,brand, image,'
+            . 'description, is_new, is_recommended, status,gallery, info)'
+            . 'VALUES '
+            . '(:name, :category_id,:code, :price,:availability, :brand, :image, '
+            . ':description, :is_new, :is_recommended, :status, :gallery, :info)';
+
+        // Получение и возврат результатов. Используется подготовленный запрос
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $result = $db->prepare($sql);
+        $result->bindParam(':name', $options['name'], PDO::PARAM_STR);
+        $result->bindParam(':category_id', $options['category_id'], PDO::PARAM_INT);
+        $result->bindParam(':code', $options['code'], PDO::PARAM_STR);
+        $result->bindParam(':price', $options['price'], PDO::PARAM_STR);
+        $result->bindParam(':availability', $options['availability'], PDO::PARAM_INT);
+        $result->bindParam(':brand', $options['brand'], PDO::PARAM_STR);
+        $result->bindParam(':image', $options['image'], PDO::PARAM_STR);
+        $result->bindParam(':description', $options['description'], PDO::PARAM_STR);
+        $result->bindParam(':is_new', $options['is_new'], PDO::PARAM_INT);
+        $result->bindParam(':is_recommended', $options['is_recommended'], PDO::PARAM_INT);
+        $result->bindParam(':status', $options['status'], PDO::PARAM_INT);
+        $result->bindParam(':gallery', $gallery, PDO::PARAM_STR);
+        $result->bindParam(':info', $options['info'], PDO::PARAM_STR);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        if ($result->execute()) {
+            // Если запрос выполенен успешно, возвращаем id добавленной записи
+            return $db->lastInsertId();
+        }
+        // Иначе возвращаем 0
+        return 0;
+    }
+
+    public static function loadImageProd($email,$path,$key)
+    {
+
+        //function LoadImg($path,$connection2,$users_tab_my)
+        $types = array('image/gif', 'image/png', 'image/jpeg','image/jpg');
+        $exp_tupe_array = array('gif','png','jpeg','jpg' );
+        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            if (!in_array($_FILES[$key]['type'], $types))
+            {return false;} //msg error
+            $typeImg= explode(".",$_FILES[$key]['name']);
+            // var_dump($typeImg);
+            for($i=0;$i<count($exp_tupe_array);$i++)
+            {
+                if($typeImg[count($typeImg)-1] == $exp_tupe_array[$i])
+                {
+                    $byfType=$exp_tupe_array[$i];
+                    break;
+                }
+                $byfType = null;
+            }
+
+            if($byfType == null )
+            {
+                return false;
+            }
+
+            $name_file = md5($typeImg[0].$email).'.'.$byfType;
+            $_FILES[$key]['name'] =$name_file;
+            if (!@copy($_FILES[$key]['tmp_name'], $path . $_FILES[$key]['name']))
+                return false;//msg bad type
+            else
+                return $name_file;//msg ok!
+        }
+    }
 }
