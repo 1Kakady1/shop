@@ -14,12 +14,10 @@ class HomeController
     public function actionIndex()
     {
         $newsList = array();
-        $newsList = News::getNewsList();
+        $newsList = News::getNewsListHome();
 
         $listSetting=array();
         $listSetting=Setting::getSetting();
-
-
 
         $cat = array();
         $cat = Category::getCategoriesList();

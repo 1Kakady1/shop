@@ -87,7 +87,7 @@
                 </h1>
             </div>
                 <?php foreach ($newsGallery as $newsGList): ?>
-        	        <div class="col-md-2"><img src="../template/images/news/<?php echo $newsGList ?>" class="image" alt=""></div>
+        	        <div class="col-md-2"><img src="/template/images/news/<?php echo $newsGList ?>" class="image" alt=""></div>
         	    <?php endforeach; ?>
         </div>
 

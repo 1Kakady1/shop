@@ -41,19 +41,10 @@ class AdminNewsController extends AdminBase
         // Обработка формы
         if (isset($_POST['submit'])) {
             ob_start();
-            $options['name'] = $_POST['name'];
-            $options['code'] = $_POST['code'];
-            $options['price'] = $_POST['price'];
-            $options['category_id'] = $_POST['category_id'];
-            $options['brand'] = $_POST['brand'];
-            $options['availability'] = $_POST['availability'];
-            $options['is_new'] = $_POST['is_new'];
-            $options['is_recommended'] = $_POST['is_recommended'];
-            $options['status'] = $_POST['status'];
-
+            $options['title'] = $_POST['title'];
+            $options['short'] = $_POST['short'];
             $options['description'] = $_POST['description'];
-            $options['info'] = $_POST['info'];
-
+            $options['info'] = $_POST['aut'];
 
             $options['gal']=array();
             $post=array();
@@ -66,7 +57,7 @@ class AdminNewsController extends AdminBase
 
             $errors = false;
 
-            $imageProd = Product::loadImageProd($post[0],ROOT.'/template/images/shop/','image');
+            $imageProd = Product::loadImageProd($post[0],ROOT.'/template/images/news/','image');
 
             if($imageProd == false)
             {
@@ -77,28 +68,20 @@ class AdminNewsController extends AdminBase
             {
                 if(isset($post[$i]))
                 {
-                    $imageBuf = Product::loadImageProd($post[$i],ROOT.'/template/images/shop/',$key[$i]);
+                    $imageBuf = Product::loadImageProd($post[$i],ROOT.'/template/images/news/',$key[$i]);
                     $options['gal'][$i] = $imageBuf;
                 }
             }
 
-            if (!isset($options['name']) || empty($options['name'])) {
+            if (!isset($options['title']) || empty($options['title'])) {
                 $errors[] = 'Заполните поля';
             }
 
-            $code =Product::checkArticle($options['code']);
-
-            if($code !=false)
-            {
-                $errors[] = 'Такой код уже есть!!!';
-            }
-
-
             if ($errors == false) {
 
-                $id = Product::createProduct($options);
+                $id = News::createNews($options);
 
-                header("Location: /admin/prod");
+                header("Location: /admin/novelty");
                 ob_end_flush();
             }
         }
@@ -106,4 +89,78 @@ class AdminNewsController extends AdminBase
         require_once(ROOT . '/views/admin/news/create.php');
         return true;
     }
+
+    public function actionUpdate($id)
+    {
+
+        self::checkAdmin();
+
+
+         $newsList = News::getNewsItemById($id);
+
+        $gal_list = explode(";",$newsList['gallery']);
+        if($gal_list[count($gal_list)-1] == '')
+        {
+            array_pop($gal_list);
+        }
+
+        if (isset($_POST['submit'])) {
+
+            ob_start();
+
+            $options['title'] = $_POST['title'];
+            $options['short'] = $_POST['short'];
+            $options['description'] = $_POST['description'];
+            $options['info'] = $_POST['aut'];
+
+            $options['gal']=array();
+            $post=array();
+            $key=array('image','g1','g2','g3','g4','g5');
+
+            for($i=0;$i<count($_FILES);$i++)
+            {
+                $post[$i]=$_FILES[$key[$i]]['name'];
+            }
+
+
+            $errors = false;
+            if($_FILES['image']['name'] != '')
+            {
+                $imageProd = Product::loadImageProd($post[0],ROOT.'/template/images/shop/','image');
+            } else {$imageProd=$newsList['preview'];}
+
+            for($i=1;$i<count($post);$i++)
+            {
+                if($post[$i] != false)
+                {
+                    $imageBuf = Product::loadImageProd($post[$i],ROOT.'/template/images/shop/',$key[$i]);
+                    $options['gal'][$i] = $imageBuf;
+                }
+            }
+
+            if(empty($options['gal']))
+            {
+                $options['gal'] = $gal_list;
+            }
+
+            if($imageProd == false)
+            {
+                $errors[] = 'Ошибка с изображением';
+            } else {$options['image']=$imageProd;}
+
+            if ($errors == false) {
+                News::updateNewsById($id, $options);
+                header("Location: /admin/novelty");
+                ob_end_flush();
+            }
+
+            ob_end_flush();
+        }
+
+        // Подключаем вид
+        require_once(ROOT . '/views/admin/news/update.php');
+        return true;
+    }
+
+
 }
