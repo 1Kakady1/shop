@@ -61,7 +61,7 @@ $active = $title->print_url_link();
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin/cat">
+                        <a class="nav-link" href="/admin/cat">
                             <i class="fas fa-clipboard-list"></i>
                             Категориии
                         </a>
