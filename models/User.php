@@ -398,4 +398,5 @@ case 3: $sql = "UPDATE $userTab SET usimg = :usimg WHERE id = :id";
         }
         return false;
     }
+
 }

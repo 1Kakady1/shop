@@ -37,6 +37,10 @@ class AdminProductController extends AdminBase
 
     public function actionCat($id,$page=1)
     {
+        if(isset($_POST['b-search']))
+        {
+            header('Location:/admin/search/?p='.$_POST["search"]);exit;
+        }
 
         if(isset($_POST['sort']))
         {
@@ -117,12 +121,18 @@ class AdminProductController extends AdminBase
                     $options['gal'][$i] = $imageBuf;
                 }
             }
-            // При необходимости можно валидировать значения нужным образом
+
             if (!isset($options['name']) || empty($options['name'])) {
                 $errors[] = 'Заполните поля';
             }
 
-            //сделать проверку артикла
+            $code =Product::checkArticle($options['code']);
+
+            if($code !=false)
+            {
+                $errors[] = 'Такой код уже есть!!!';
+            }
+
 
             if ($errors == false) {
 
@@ -133,26 +143,31 @@ class AdminProductController extends AdminBase
             }
         }
 
-        // Подключаем вид
         require_once(ROOT . '/views/admin/product/create.php');
         return true;
     }
 
     public function actionUpdate($id)
     {
-        // Проверка доступа
+
         self::checkAdmin();
 
-        // Получаем список категорий для выпадающего списка
-        $categoriesList = Category::getCategoriesListAdmin();
 
-        // Получаем данные о конкретном заказе
-        $product = Product::getProductById($id);
+        $categoriesList  = array();
+        $categoriesList = Category::getCategoriesList();
+        $product = Product::getProductItemById($id);
+
+        $gal_list = explode(";",$product['gallery']);
+        if($gal_list[count($gal_list)-1] == '')
+        {
+            array_pop($gal_list);
+        }
 
         // Обработка формы
         if (isset($_POST['submit'])) {
-            // Если форма отправлена
-            // Получаем данные из формы редактирования. При необходимости можно валидировать значения
+
+            ob_start();
+
             $options['name'] = $_POST['name'];
             $options['code'] = $_POST['code'];
             $options['price'] = $_POST['price'];
@@ -163,22 +178,50 @@ class AdminProductController extends AdminBase
             $options['is_new'] = $_POST['is_new'];
             $options['is_recommended'] = $_POST['is_recommended'];
             $options['status'] = $_POST['status'];
+            $options['info'] = $_POST['info'];
 
-            // Сохраняем изменения
-            if (Product::updateProductById($id, $options)) {
+            $options['gal']=array();
+            $post=array();
+            $key=array('image','g1','g2','g3','g4','g5');
+
+            for($i=0;$i<count($_FILES);$i++)
+            {
+                $post[$i]=$_FILES[$key[$i]]['name'];
+            }
 
 
-                // Если запись сохранена
-                // Проверим, загружалось ли через форму изображение
-                if (is_uploaded_file($_FILES["image"]["tmp_name"])) {
+            $errors = false;
+            if($_FILES['image']['name'] != '')
+            {
+                $imageProd = Product::loadImageProd($post[0],ROOT.'/template/images/shop/','image');
+            } else {$imageProd=$product['image'];}
 
-                    // Если загружалось, переместим его в нужную папке, дадим новое имя
-                   move_uploaded_file($_FILES["image"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . "/upload/images/products/{$id}.jpg");
+            for($i=1;$i<count($post);$i++)
+            {
+                if($post[$i] != false)
+                {
+                    $imageBuf = Product::loadImageProd($post[$i],ROOT.'/template/images/shop/',$key[$i]);
+                    $options['gal'][$i] = $imageBuf;
                 }
             }
 
-            // Перенаправляем пользователя на страницу управлениями товарами
-            header("Location: /admin/product");
+            if(empty($options['gal']))
+            {
+                $options['gal'] = $gal_list;
+            }
+
+            if($imageProd == false)
+            {
+                $errors[] = 'Ошибка с изображением';
+            } else {$options['image']=$imageProd;}
+
+            if ($errors == false) {
+                Product::updateProductById($id, $options);
+                header("Location: /admin/prod");
+                ob_end_flush();
+            }
+
+            ob_end_flush();
         }
 
         // Подключаем вид

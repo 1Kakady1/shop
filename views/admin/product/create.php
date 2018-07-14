@@ -2,7 +2,7 @@
 
 <section>
     <div class="container">
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" id="inp-bg">
         <div class="row">
 
 

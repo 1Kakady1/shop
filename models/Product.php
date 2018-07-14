@@ -239,7 +239,7 @@ class Product
             . ':description, :is_new, :is_recommended, :status, :gallery, :info)';
 
         // Получение и возврат результатов. Используется подготовленный запрос
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $result = $db->prepare($sql);
         $result->bindParam(':name', $options['name'], PDO::PARAM_STR);
         $result->bindParam(':category_id', $options['category_id'], PDO::PARAM_INT);
@@ -254,7 +254,7 @@ class Product
         $result->bindParam(':status', $options['status'], PDO::PARAM_INT);
         $result->bindParam(':gallery', $gallery, PDO::PARAM_STR);
         $result->bindParam(':info', $options['info'], PDO::PARAM_STR);
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+       // $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         if ($result->execute()) {
             // Если запрос выполенен успешно, возвращаем id добавленной записи
@@ -270,6 +270,7 @@ class Product
         //function LoadImg($path,$connection2,$users_tab_my)
         $types = array('image/gif', 'image/png', 'image/jpeg','image/jpg');
         $exp_tupe_array = array('gif','png','jpeg','jpg' );
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             if (!in_array($_FILES[$key]['type'], $types))
@@ -298,5 +299,69 @@ class Product
             else
                 return $name_file;//msg ok!
         }
+    }
+
+    public static function checkArticle($article)
+    {
+        $productTab=Db::dbTableName('product');
+        $db = Db::getConnection();
+        $sql = "SELECT code FROM $productTab WHERE code  LIKE ?";
+        $result = $db->prepare($sql);
+        $result->execute(array($article));
+        return $result->fetch();
+    }
+
+    public static function updateProductById($id, $options)
+    {
+        $productTab=Db::dbTableName('product');
+        $db = Db::getConnection();
+
+        $gallery="";$i=1;
+
+        while($i<count($options['gal']))
+        {
+            if($options['gal'][$i] != false)
+            {
+                $gallery.=$options['gal'][$i].";";
+            }
+
+            $i++;
+        }
+
+        $sql = "UPDATE $productTab
+            SET 
+                name = :name, 
+                category_id = :category_id,
+                code = :code, 
+                price = :price, 
+                availability = :availability, 
+                brand = :brand, 
+                image=:image,
+                description = :description, 
+                is_new = :is_new, 
+                is_recommended = :is_recommended, 
+                status = :status,
+                gallery=:gallery,
+                info=:info
+            WHERE id = :id";
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->bindParam(':name', $options['name'], PDO::PARAM_STR);
+        $result->bindParam(':code', $options['code'], PDO::PARAM_STR);
+        $result->bindParam(':price', $options['price'], PDO::PARAM_STR);
+        $result->bindParam(':category_id', $options['category_id'], PDO::PARAM_INT);
+        $result->bindParam(':brand', $options['brand'], PDO::PARAM_STR);
+        $result->bindParam(':availability', $options['availability'], PDO::PARAM_INT);
+        $result->bindParam(':description', $options['description'], PDO::PARAM_STR);
+        $result->bindParam(':is_new', $options['is_new'], PDO::PARAM_INT);
+        $result->bindParam(':is_recommended', $options['is_recommended'], PDO::PARAM_INT);
+        $result->bindParam(':info', $options['info'], PDO::PARAM_INT);
+        $result->bindParam(':status', $options['status'], PDO::PARAM_INT);
+        $result->bindParam(':image', $options['image'], PDO::PARAM_INT);
+        $result->bindParam(':gallery', $gallery, PDO::PARAM_INT);
+
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $result->execute();
     }
 }

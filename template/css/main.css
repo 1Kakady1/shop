@@ -1,6 +1,8 @@
 ﻿/*#bg-section{    background: #fff;}
 #bg-body{    background: #f8f9fa;} */
-
+#inp-bt {    background-color: #007bff!important;
+  border-color: #007bff!important;}
+#inp-bg input {background: #dee2e6;border: 1px solid #b9bbbd;}
 #imgInp1,#imgInp2,#imgInp3,#imgInp4,#imgInp5 {
   margin-bottom: 0.5vw;
 }
@@ -9,8 +11,8 @@
   margin-bottom: 0.5vw;}
 
 #mg-bot { margin-bottom: 0.5vw;}
-
-#nav-full {height: -webkit-fill-available;}
+#bg-section{    margin-top: 3vw;}
+#nav-full {height: 48.5vw;}
 .mg-top{margin-top: 1vw;}
 #st-banner img {
   width: 100%;
