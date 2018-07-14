@@ -72,6 +72,12 @@ $active = $title->print_url_link();
                             Товары
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/novelty">
+                            <i class="far fa-newspaper"></i>
+                            Новости
+                        </a>
+                    </li>
 
                 </ul>
             </div>

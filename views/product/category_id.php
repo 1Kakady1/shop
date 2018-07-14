@@ -20,7 +20,7 @@ $price = include ($paramsPath);?>
                                 <div class="single-products">
                                     <div class="productinfo text-center">
                                         <img src="/template/images/shop/<?php echo $product['image'] ?>" alt="<?php echo $product['image'] ?>" />
-                                        <h2><?php echo $product['id']." ".$product['price']." ".$price["price"] ?></h2>
+                                        <h2><?php echo $product['price']." ".$price["price"] ?></h2>
                                         <a href="/product/<?php echo $product['id'] ?>"><p><?php echo $product['name'] ?></p></a>
                                         <a href="/cart/addAjax/<?php echo $product['id'] ?>" data-id="<?php echo $product['id']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
                                     </div>

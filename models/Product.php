@@ -91,6 +91,7 @@ class Product
             $BufGallery = $result->fetch();
 
             $productGallery = explode(";",$BufGallery['gallery']);
+            array_pop($productGallery);
 
             return $productGallery;
         }

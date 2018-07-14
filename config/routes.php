@@ -28,9 +28,13 @@ return array(
     'user/logout' => 'user/logout',
     'user/active' => 'user/active',
 
+    //  news не работает
+    'admin/novelty/create' => 'adminNews/create',
+    'admin/novelty/update/([0-9]+)' => 'adminNews/update/$1',
+    'admin/novelty/delete/([0-9]+)' => 'adminNews/delete/$1',
+    'admin/novelty' => 'adminNews/index',
 
 
-    //  product не работает
     'admin/prod/create' => 'adminProduct/create',
     'admin/prod/update/([0-9]+)' => 'adminProduct/update/$1',
     'admin/prod/delete/([0-9]+)' => 'adminProduct/delete/$1',

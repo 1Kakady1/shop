@@ -27,7 +27,7 @@
                     <input type="file" name="image" placeholder="" value="">
 
                     <div id="gall">
-                        <p>Галлерея</p>
+                        <p>Галерея</p>
                         <div class="img-avatar" id="img-avatar">
                             <img src="/template/images/z1.png" alt="" id="blah" >
                         </div>

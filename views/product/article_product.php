@@ -65,7 +65,7 @@ $price = include ($paramsPath);
                     </h1>
                 </div>
                 <?php foreach ($productGallery as $productGList): ?>
-                    <div class="col-md-2"><img src="../template/images/news/<?php echo $productGList ?>" class="image" alt=""></div>
+                    <div class="col-md-2"><img src="/template/images/shop/<?php echo $productGList ?>" class="image" alt=""></div>
                 <?php endforeach; ?>
             </div>
 
@@ -119,7 +119,7 @@ $price = include ($paramsPath);
 
                     <div class="name-f-msg">
 
-                        <form action="#" method="post" class="main_flex__nowrap">
+                        <form action="#" method="post" class="main_flex__nowrap disp">
                             <div id="left_form" <?php if(isset($_SESSION['user'])){echo 'style="display: none"';} ?> >
                                 <div class="input main_flex__nowrap flex__align-items_center">
                                     <div class="form_icon">

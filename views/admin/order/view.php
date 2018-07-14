@@ -28,7 +28,7 @@
                 </tr>
                     <tr>
                         <td>ID клиента</td>
-                        <td><?php if($order['us_id']!= 0){echo $order['us_id'];}else{echo "заказ сделал не зарегистрированный пользователь ";} ?></td>
+                        <td><?php if($order['us_id']!= 0){echo $order['us_id'];}else{echo "заказ сделал незарегистрированный пользователь ";} ?></td>
                     </tr>
                 <tr>
                     <td><b>Статус заказа</b></td>

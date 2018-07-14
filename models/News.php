@@ -98,4 +98,42 @@ class News
 
         return  $newsList;
     }
+
+    public  static  function getNewsListFullAdmin()
+    {
+
+        $newsTab=Db::dbTableName('news');
+        $db= Db::getConnection();
+
+        $newsList = array();
+
+        $result = $db->query("SELECT * FROM $newsTab ORDER BY date DESC");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $i = 0;
+
+        while ($row = $result->fetch()){
+
+            $newsList[$i]['id'] = $row['id'];
+            $newsList[$i]['title'] = $row['title'];
+            $newsList[$i]['date'] = $row['date'];
+            $newsList[$i]['short_content'] = $row['short_content'];
+            $newsList[$i]['content'] = $row['content'];
+            $newsList[$i]['preview'] = $row['preview'];
+            $newsList[$i]['autor_name'] = $row['autor_name'];
+            $i++;
+        }
+
+        return  $newsList;
+    }
+
+    public static function deleteNewsById($id)
+    {
+        $newsTab=Db::dbTableName('news');
+        $db = Db::getConnection();
+
+        $sql = "DELETE FROM $newsTab WHERE id = :id";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        return $result->execute();
+    }
 }
