@@ -8,9 +8,9 @@
 
 
 return $setting = array(
-'prefix'=>'tr_', //
+'prefix'=>'tr_', 
 'news1'=> 0,'news2'=> 1,'news3'=> 2,
 'price' =>"$",
 'key1'=>"Tort",'key2'=>"228",'key3'=>"wEr0",'key4'=>"sdwcc1",'key5'=>"232cAA",
-'MyEmail'=>"test@mail.ru",'msg'=>"http://http://test.loc/admin/orders",'subject'=>"Новый заказ!",
+'MyEmail'=>"test@mail.ru",'msg'=>"http://site.loc/admin/orders",'subject'=>"Новый заказ!",
 );

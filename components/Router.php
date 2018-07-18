@@ -29,14 +29,14 @@ class Router
     {
         $url = $this->getURI();
 
-     //   ob_start();
+        ob_start();
         foreach ($this->routes as $uriPattern => $path){
 
             if(preg_match("~$uriPattern~", $url)){
 
                 // определение контроллера и способа обработки
 
-                $internalRoute = preg_replace("~$uriPattern~",$path,$url); //??????????????????
+                $internalRoute = preg_replace("~$uriPattern~",$path,$url);
 
                 $segments =explode('/',$internalRoute);
 
@@ -53,45 +53,25 @@ class Router
                       // подключение класса нужного контроллера
 
                 $controllerFile = ROOT.'/controller/'.$controllerName.'.php';
-               // var_dump($parameters);
-              //  var_dump($actionName);
-             //   var_dump($controllerFile);
+
                 if(file_exists($controllerFile)){
                     include_once($controllerFile);
                 }
                 $controllerObject = new $controllerName;
                 $result = call_user_func_array(array($controllerObject, $actionName),$parameters); //$controllerObject->$actionName($id);
-/*
+				
                 if($result == false)
                 {
 
                     header("Location: /");
                     ob_end_flush();break;
-снять ком строка 32
                 }
-*/
+
                 if($result != null){
                     break;
                 }
             }
         }
 
-
-/*
-        if($url == '' ){
-            $controllerName='HomeController';
-            $actionName='homeContent';
-            $controllerFile = ROOT.'/controller/'.$controllerName.'.php';
-
-            if(file_exists($controllerFile)){
-
-                include_once($controllerFile);
-            }
-
-            $controllerObject = new $controllerName;
-            $result = $controllerObject->$actionName();
-
-            return $result;
-        }*/
     }
 }

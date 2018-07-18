@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5553c1a9-e747-4ba2-969f-c3a28ae9c543" name="Default" comment="Регистрация">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/AdminNewsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/AdminNewsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/News.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/News.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/news/update.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/news/update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config_site.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/config_site.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/news/article_news.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/news/article_news.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,13 +17,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.42541087">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="AdminNewsController.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/controller/AdminNewsController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="202">
+                <state relative-caret-position="17">
                   <caret line="115" column="24" selection-start-line="115" selection-start-column="22" selection-end-line="115" selection-end-column="24" />
                 </state>
               </provider>
@@ -53,8 +50,8 @@
           <file leaf-file-name="Product.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/models/Product.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1545">
-                  <caret line="367" column="1" lean-forward="true" selection-start-line="367" selection-start-column="1" selection-end-line="367" selection-end-column="1" />
+                <state relative-caret-position="6154">
+                  <caret line="367" column="1" selection-start-line="367" selection-start-column="1" selection-end-line="367" selection-end-column="1" />
                   <folding>
                     <element signature="e#6#87#0#PHP" expanded="true" />
                   </folding>
@@ -74,7 +71,7 @@
           <file leaf-file-name="News.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/models/News.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="409">
+                <state relative-caret-position="3757">
                   <caret line="226" column="43" selection-start-line="226" selection-start-column="43" selection-end-line="226" selection-end-column="43" />
                 </state>
               </provider>
@@ -83,7 +80,7 @@
           <file leaf-file-name="AdminProductController.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/controller/AdminProductController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="833">
+                <state relative-caret-position="3893">
                   <caret line="229" column="5" lean-forward="true" selection-start-line="149" selection-start-column="3" selection-end-line="229" selection-end-column="5" />
                 </state>
               </provider>
@@ -101,12 +98,12 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="article_news.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/views/news/article_news.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="646">
-                  <caret line="89" column="52" selection-start-line="89" selection-start-column="52" selection-end-line="89" selection-end-column="52" />
+                <state relative-caret-position="51">
+                  <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
                 </state>
               </provider>
             </entry>
@@ -230,7 +227,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -256,31 +252,13 @@
             <path>
               <item name="BootsrapShop.loc" type="b2602c69:ProjectViewProjectNode" />
               <item name="BootsrapShop.loc" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BootsrapShop.loc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BootsrapShop.loc" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-              <item name="news" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BootsrapShop.loc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BootsrapShop.loc" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BootsrapShop.loc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BootsrapShop.loc" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="news" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -390,16 +368,17 @@
       <workItem from="1531512896340" duration="141000" />
       <workItem from="1531554827407" duration="4002000" />
       <workItem from="1531583034161" duration="9664000" />
-      <workItem from="1531598787665" duration="3956000" />
+      <workItem from="1531598787665" duration="4708000" />
+      <workItem from="1531655440106" duration="696000" />
+      <workItem from="1531668204279" duration="9000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="297791000" />
+    <option name="totallyTimeSpent" value="299248000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17604166" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -688,7 +667,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/AdminProductController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
+        <state relative-caret-position="3893">
           <caret line="229" column="5" lean-forward="true" selection-start-line="149" selection-start-column="3" selection-end-line="229" selection-end-column="5" />
         </state>
       </provider>
@@ -730,8 +709,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/Product.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1545">
-          <caret line="367" column="1" lean-forward="true" selection-start-line="367" selection-start-column="1" selection-end-line="367" selection-end-column="1" />
+        <state relative-caret-position="6154">
+          <caret line="367" column="1" selection-start-line="367" selection-start-column="1" selection-end-line="367" selection-end-column="1" />
           <folding>
             <element signature="e#6#87#0#PHP" expanded="true" />
           </folding>
@@ -740,7 +719,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/AdminNewsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
+        <state relative-caret-position="17">
           <caret line="115" column="24" selection-start-line="115" selection-start-column="22" selection-end-line="115" selection-end-column="24" />
         </state>
       </provider>
@@ -773,8 +752,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/news/article_news.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="89" column="52" selection-start-line="89" selection-start-column="52" selection-end-line="89" selection-end-column="52" />
+        <state relative-caret-position="51">
+          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
         </state>
       </provider>
     </entry>
