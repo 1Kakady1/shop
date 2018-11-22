@@ -16,10 +16,26 @@ class Functions
     public function print_url_link()
     {
         if (!empty($_SERVER['REQUEST_URI'])) {
-
+            //var_dump( $_SERVER['REQUEST_URI']);
             $link_url = trim($_SERVER['REQUEST_URI'], '/');
             $buf = explode("/", $link_url);
             return $buf[0];
+        }
+    }
+
+    public  static  function getTitleById($id,$tabName)
+    {
+        $id = intval($id);
+
+        if($id) {
+            $hTab=Db::dbTableName($tabName);
+            $db= Db::getConnection();
+
+            $result = $db->query("SELECT * FROM $hTab WHERE id=" . $id);
+            $result->setFetchMode(PDO::FETCH_ASSOC);
+            $productItem = $result->fetch();
+
+            return $productItem;
         }
     }
 
@@ -27,21 +43,33 @@ class Functions
     {
         if (!empty($_SERVER['REQUEST_URI'])) {
 
-            $link_url = trim($_SERVER['REQUEST_URI'], '/');
-            $buf = explode("/", $link_url);
+            $link_url = explode('/',$_SERVER['REQUEST_URI']);
         }
 
-        switch ($buf[0]) {
-            case "":return 'Главная';
-            case "product":return 'Товары';
-            case "news":return 'Новости';
-            case "user":return 'Работа с данными';
-            case "cabinet":return 'Ваш личный кабинет';
-            case "contact":return 'Контакты';
-            case "cart":return 'Корзина';
-            case "admin":return 'Admin';
-            case "search":return 'Поиск';
+        if(count($link_url)==3 && $link_url[2] != null){
+           $bufTitle =  self::getTitleById($link_url[2],$link_url[1]);
+           if(array_key_exists("title", $bufTitle)){
+               return $bufTitle['title'];
+           }
+
+            if(array_key_exists("name", $bufTitle)){
+                return $bufTitle['name'];
+            }
+
+        } else {
+            switch ($link_url[1]) {
+                case "":return 'Главная';
+                case "product":return 'Товары';
+                case "news":return 'Новости';
+                case "user":return 'Работа с данными';
+                case "cabinet":return 'Ваш личный кабинет';
+                case "contact":return 'Контакты';
+                case "cart":return 'Корзина';
+                case "admin":return 'Admin';
+                case "search":return 'Поиск';
+            }
         }
+
 
     }
 

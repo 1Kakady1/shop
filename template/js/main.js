@@ -1,68 +1,101 @@
+window.onload = function(){
 
+    let path = window.location.pathname,
+    pathBuf= path.split(`/`);
 
-$(function(){
+console.log(window.location.pathname);
+if (window.location.pathname != '/' && pathBuf[1] != 'admin' && pathBuf[1] != 'cabinet') {
+    $(document).ready(function() {
 
-    var slideIndex = 0;
-    showSlides();
+        let slideIndex = 0;
+        let slides = document.getElementsByClassName("mySlides");
+        showSlides();
+        function showSlides() {
+            for ( let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex-1].style.display = "block";
 
-    function showSlides() {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
+            setTimeout(showSlides, 3500); // Change image every 7 seconds
         }
-        slideIndex++;
-        if (slideIndex > slides.length) {slideIndex = 1}
-        slides[slideIndex-1].style.display = "block";
-        setTimeout(showSlides, 4000); // Change image every 7 seconds
-    }
-});
+    });
 
-$(function(){
-            "use strict";
-		document.getElementById('hideInfo2').onclick = function() {
-      		document.getElementById('info1').style.display = 'none';
-      		document.getElementById('info2').style.display = 'block';
-		}
+}
+if (pathBuf[1] == 'product' && pathBuf.length >=2) {
+    $(function () {
+        "use strict";
+        document.getElementById('hideInfo2').onclick = function () {
+            document.getElementById('info1').style.display = 'none';
+            document.getElementById('info2').style.display = 'block';
+        }
 
-		document.getElementById('hideInfo1').onclick = function() {
-      		document.getElementById('info2').style.display = 'none';
-      		document.getElementById('info1').style.display = 'block';
-		}
+        document.getElementById('hideInfo1').onclick = function () {
+            document.getElementById('info2').style.display = 'none';
+            document.getElementById('info1').style.display = 'block';
+        }
 
-		document.getElementById('new-add').onclick = function() {
+        document.getElementById('new-add').onclick = function () {
             document.getElementById('add').style.display = 'initial';
             $('#add').addClass('bounceInUp');
         }
 
+    });
+
+}
+if ((pathBuf[1] == 'product' || pathBuf[2] == 'news' ) && pathBuf.length >=2 ){
+    $(document).ready(function() {
+        $('.popup-gallery').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            tLoading: 'Loading image #%curr%...',
+            mainClass: 'mfp-img-mobile',
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+            },
+            image: {
+                tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+                titleSrc: function(item) {
+                    return item.el.attr('title') + '<small>by Marsel Van Oosten</small>';
+                }
+            }
         });
+    });
+}
+console.log(pathBuf);
+    if ((pathBuf[1] == 'cabinet' && pathBuf[2] == 'edit' ) ||(pathBuf[1] == 'admin' && pathBuf[2] == 'prod' && pathBuf[3] == 'update')
+    || (pathBuf[1] == 'admin' && pathBuf[2] == 'prod' && pathBuf[3] == 'create')) {
+        document.getElementById('imgInp').onclick = function () {
 
+            document.getElementById('img-avatar').style.display = '-webkit-box';
+            $('#blah').addClass('bounceInUp');
+            $('#blah').removeClass('vhImg');
 
+            function func() {
+                $('#blah').removeClass('bounceInUp');
+            }
 
-$(document).ready(function() { // Ждём загрузки страницы
+            setTimeout(func, 1000);
+        }
 
-	$(".image").click(function(){	// Событие клика на маленькое изображение
-	  	var img = $(this);	// Получаем изображение, на которое кликнули
-		var src = img.attr('src'); // Достаем из этого изображения путь до картинки
-		$("body").append("<div class='popup'>"+ //Добавляем в тело документа разметку всплывающего окна
-						 "<div class='popup_bg'></div>"+ // Блок, который будет служить фоном затемненным
-						 "<img src='"+src+"' class='popup_img' />"+ // Само увеличенное фото
-						 "</div>");
-		$(".popup").fadeIn(800); // Медленно выводим изображение
-		$(".popup_bg").click(function(){	// Событие клика на затемненный фон
-			$(".popup").fadeOut(800);	// Медленно убираем всплывающее окно
-			setTimeout(function() {	// Выставляем таймер
-			  $(".popup").remove(); // Удаляем разметку всплывающего окна
-			}, 800);
-		});
-	});
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#blah').attr('src', e.target.result);
+                }
 
-});
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 
-      /*price range*/
-
-      $('#sl2').slider();
-
+        $("#imgInp").change(function () {
+            readURL(this);
+        });
+    }
       var RGBChange = function() {
           $('#RGB').css('background', 'rgb('+r.getValue()+','+g.getValue()+','+b.getValue()+')')
       };
@@ -89,5 +122,6 @@ $(document).ready(function() { // Ждём загрузки страницы
               });
           });
       });
+};
 
 

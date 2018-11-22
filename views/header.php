@@ -21,7 +21,7 @@ $active = $title->print_url_link();
     <meta name="author" content="">
     <link rel="icon" href="/template/images/icons.png">
 
-    <title><?php echo $titleSite."- TopShop"  ?></title>
+    <title><?php echo $titleSite."- TopShop"?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="/template/css/bootstrap.min.css" rel="stylesheet">
@@ -31,7 +31,9 @@ $active = $title->print_url_link();
     <link href="/template/css/price-range.css" rel="stylesheet">
     <link href="/template/css/animate.min.css" rel="stylesheet">
     <link href="/template/css/responsive.css" rel="stylesheet">
-
+    <?php if ($active == 'product' || $active == 'news'): ?>
+        <link href="/template/css/magnific-popup.css" rel="stylesheet">
+    <?php endif;?>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
 

@@ -64,9 +64,11 @@ $price = include ($paramsPath);
                         <span class="text-muted">Gallery</span>
                     </h1>
                 </div>
-                <?php foreach ($productGallery as $productGList): ?>
-                    <div class="col-md-2"><img src="/template/images/shop/<?php echo $productGList ?>" class="image" alt=""></div>
-                <?php endforeach; ?>
+                <div class="popup-gallery">
+                    <?php foreach ($productGallery as $productGList): ?>
+                        <a href="/template/images/shop/<?php echo $productGList ?>" title="<?php echo $productGList ?>"><img src="/template/images/shop/<?php echo $productGList ?>" class="image" alt="img"></a>
+                    <?php endforeach; ?>
+                </div>
             </div>
 
         <?php endif;?>

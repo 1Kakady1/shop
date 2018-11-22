@@ -10,7 +10,7 @@ RewriteRule . /index.php [L]
 
 RewriteEngine On
 # url сайта
- RewriteCond %{HTTP_REFERER} !^http://(.+\.)?site\.loc/ [NC]
+ RewriteCond %{HTTP_REFERER} !^http://(.+\.)?bootsrapshop\.loc/ [NC]
 #
  RewriteCond %{HTTP_REFERER} !^$
  RewriteCond %{HTTP_USER_AGENT} !Googlebot [NC]

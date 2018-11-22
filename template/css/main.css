@@ -238,6 +238,8 @@ a, a:hover,img:hover, button, button:hover, .anime {
 
 .image {
   cursor:pointer;
+  width: 30%;
+  height: 60%;
 }
 
 .popup {

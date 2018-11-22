@@ -7,6 +7,7 @@
  */
 $footerInfo=Functions::getAddress();
 $phone_array1 = explode("&", $footerInfo[1]['info']);
+$linck_script = $title->print_url_link();
 ?>
 
 <footer>
@@ -31,16 +32,19 @@ $phone_array1 = explode("&", $footerInfo[1]['info']);
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="../template/js/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="/template/js/bootstrap.min.js"></script>
 <script src="/template/js/jquery.scrollUp.min.js"></script>
 <!--<script src="/template/js/price-range.js"></script> -->
 <!--<script src="/template/js/jquery.prettyPhoto.js"></script> -->
 <script src="/template/js/wow.min.js"></script>
-<script src="/template/js/popper.min.js"></script>
+<!--<script src="/template/js/popper.min.js"></script>-->
 <script src="/template/js/holder.min.js"></script>
 <script src="/template/js/main.js"></script>
+<?php if ($linck_script == 'product' || $linck_script == 'news'): ?>
+    <script src="/template/js/jquery.magnific-popup.min.js"></script>
+<?php endif;?>
 
 <script>
     $(document).ready(function(){
@@ -54,53 +58,6 @@ $phone_array1 = explode("&", $footerInfo[1]['info']);
     });
 </script>
 
-<script type="text/javascript">
-
-   // $('#del-reset').load("/cart #del-reset",  function () { GenerateData(); });
-
-    // Wow Animations
-    wow = new WOW(
-        {
-            boxClass:     'wow',      // default
-            animateClass: 'animated', // default
-            offset:       0,          // default
-            mobile:       true,       // default
-            live:         true        // default
-        }
-    )
-    wow.init();
-
-    $(function () {
-        $('[data-toggle="popover"]').popover()
-    });
-
-    document.getElementById('imgInp').onclick = function() {
-
-        document.getElementById('img-avatar').style.display = '-webkit-box';
-        $('#blah').addClass('bounceInUp');
-        $('#blah').removeClass('vhImg');
-
-        function func() {
-            $('#blah').removeClass('bounceInUp');
-        }
-        setTimeout(func, 1000);
-    }
-
-    function readURL(input) {
-        if (input.files && input.files[0])
-        {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('#blah').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    $("#imgInp").change(function() {
-        readURL(this);
-    });
-</script>
 
 </body>
 </html>
