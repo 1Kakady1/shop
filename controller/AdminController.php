@@ -57,8 +57,9 @@ class AdminController extends AdminBase
             $phone=$_POST['tel'] ;
             $adr=$_POST['adr'];
             $work=$_POST['work'];
-
-            $result = Setting::updateSetting($email,$phone,$adr,$work);
+            $tinyPng=0;
+            $tiniPngAPI=0;
+            $result = Setting::updateSetting($email,$phone,$adr,$work,$tinyPng,$tiniPngAPI);
 
             if( $result!= false)
             {

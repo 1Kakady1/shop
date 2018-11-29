@@ -46,7 +46,7 @@ class Functions
             $link_url = explode('/',$_SERVER['REQUEST_URI']);
         }
 
-        if(count($link_url)==3 && $link_url[2] != null){
+        if(count($link_url)==3 && $link_url[2] != null && $link_url[1] != 'admin'){
            $bufTitle =  self::getTitleById($link_url[2],$link_url[1]);
            if(array_key_exists("title", $bufTitle)){
                return $bufTitle['title'];

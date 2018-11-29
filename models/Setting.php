@@ -51,7 +51,7 @@ class Setting
         }
     }
 
-    public static function updateSetting($email,$phone,$adr,$workTime)
+    public static function updateSetting($email,$phone,$adr,$workTime,$tinyPng,$tiniPngAPI)
     {
         $settingTab=Db::dbTableName('setting');
         $db = Db::getConnection();
@@ -63,6 +63,8 @@ class Setting
         $id2 = $listSetting[4]['id'] ;
         $id3 = $listSetting[5]['id'] ;
         $id4 = $listSetting[6]['id'] ;
+        $id14 = $listSetting[14]['id'] ;
+        $id15 = $listSetting[15]['id'] ;
 
 
         $sql = "UPDATE $settingTab SET info = :email  WHERE id = :id1";
@@ -88,6 +90,18 @@ class Setting
         $result = $db->prepare($sql);
         $result->bindParam(':id4', $id4, PDO::PARAM_INT);
         $result->bindParam(':workTime', $workTime, PDO::PARAM_STR);
+        $fl4= $result->execute();
+
+        $sql = "UPDATE $settingTab SET info = :tinyPng  WHERE id = :id14";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id14', $id14, PDO::PARAM_INT);
+        $result->bindParam(':tinyPng', $tinyPng, PDO::PARAM_STR);
+        $fl4= $result->execute();
+
+        $sql = "UPDATE $settingTab SET info = :tiniPngAPI  WHERE id = :id15";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id15', $id15, PDO::PARAM_INT);
+        $result->bindParam(':tiniPngAPI', $tiniPngAPI, PDO::PARAM_STR);
         $fl4= $result->execute();
 
         if($fl3!=false && $fl2!=false && $fl1!=false && $fl4!=false)

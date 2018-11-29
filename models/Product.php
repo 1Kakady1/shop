@@ -267,8 +267,23 @@ class Product
 
     public static function loadImageProd($email,$path,$key)
     {
-
         //function LoadImg($path,$connection2,$users_tab_my)
+        require_once("vendor/autoload.php");
+        $TinyON = Setting::getSetting();
+
+        if($TinyON[14]['info'] == "on"){
+            try {
+                \Tinify\setKey($TinyON[15]['info']);
+                \Tinify\validate();
+            } catch(\Tinify\Exception $e) {
+                print("The error message is: " . $e->getMessage());
+                return false;
+                exit;
+            }
+        }
+
+
+
         $types = array('image/gif', 'image/png', 'image/jpeg','image/jpg');
         $exp_tupe_array = array('gif','png','jpeg','jpg' );
 
@@ -294,11 +309,39 @@ class Product
             }
 
             $name_file = md5($typeImg[0].$email).'.'.$byfType;
-            $_FILES[$key]['name'] =$name_file;
-            if (!@copy($_FILES[$key]['tmp_name'], $path . $_FILES[$key]['name']))
-                return false;//msg bad type
-            else
-                return $name_file;//msg ok!
+
+            $source = \Tinify\fromFile($_FILES[$key]['tmp_name']);
+            $source->toFile( $path.$name_file);
+            if($TinyON[14]['info'] == "on") {
+                try {
+                    return $name_file;
+                } catch (\Tinify\AccountException $e) {
+                    print("The error message is: " . $e->getMessage());
+                    return false;
+                    exit;
+                } catch (\Tinify\ClientException $e) {
+                    print("The error message is: " . $e->getMessage());
+                    return false;
+                    exit;
+                } catch (\Tinify\ServerException $e) {
+                    print("The error message is: " . $e->getMessage());
+                    return false;
+                    exit;
+                } catch (\Tinify\ConnectionException $e) {
+                    return false;
+                } catch (Exception $e) {
+                    print("The error message is: " . $e->getMessage());
+                    return false;
+                    exit;
+                }
+            } else {
+                $_FILES[$key]['name'] =$name_file;
+                 if (!@copy($_FILES[$key]['tmp_name'], $path . $_FILES[$key]['name']))
+                   return false;//msg bad type
+                  else
+                     return $name_file;//msg ok!
+            }
+
         }
     }
 

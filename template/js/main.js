@@ -3,7 +3,7 @@ window.onload = function(){
     let path = window.location.pathname,
     pathBuf= path.split(`/`);
 
-console.log(window.location.pathname);
+//console.log(window.location.pathname);
 if (window.location.pathname != '/' && pathBuf[1] != 'admin' && pathBuf[1] != 'cabinet') {
     $(document).ready(function() {
 
@@ -35,14 +35,14 @@ if (pathBuf[1] == 'product' && pathBuf.length >=2) {
             document.getElementById('info2').style.display = 'none';
             document.getElementById('info1').style.display = 'block';
         }
-
+//???????????????????????????????????????????????????????????
         document.getElementById('new-add').onclick = function () {
             document.getElementById('add').style.display = 'initial';
             $('#add').addClass('bounceInUp');
         }
 
     });
-
+//???????????????????????????????????????????????????????????
 }
 if ((pathBuf[1] == 'product' || pathBuf[2] == 'news' ) && pathBuf.length >=2 ){
     $(document).ready(function() {
@@ -59,7 +59,7 @@ if ((pathBuf[1] == 'product' || pathBuf[2] == 'news' ) && pathBuf.length >=2 ){
             image: {
                 tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
                 titleSrc: function(item) {
-                    return item.el.attr('title') + '<small>by Marsel Van Oosten</small>';
+                    return item.el.attr('title') + '<small>TopShop</small>';
                 }
             }
         });
