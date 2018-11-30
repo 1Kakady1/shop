@@ -4,6 +4,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="/template/js/bootstrap.min.js"></script>
+<script src="/template/js/main.js"></script>
 
 <script type="text/javascript">
 

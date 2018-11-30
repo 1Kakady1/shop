@@ -23,6 +23,8 @@ class AdminController extends AdminBase
     public function actionSetting()
     {
         self::checkAdmin();
+        require_once("vendor/autoload.php");
+
         $listSetting = array();
         $listSetting = Setting::getSetting();
 
@@ -31,6 +33,17 @@ class AdminController extends AdminBase
 
         $banner = Functions::getBanner(12,13,14);
 
+
+        try {
+            \Tinify\setKey($listSetting[15]['info']);
+            \Tinify\validate();
+            $compressionsThisMonth = \Tinify\compressionCount();
+        } catch(\Tinify\Exception $e) {
+            if($listSetting[14]['info'] == "on"){
+                $compressionsThisMonth =$e;
+            } else {$compressionsThisMonth = "TinyPNG OFF"; }
+
+        }
 
         if(isset($_POST['send3']))
         {
@@ -168,6 +181,11 @@ class AdminController extends AdminBase
 
         require_once(ROOT . '/views/admin/search.php');
         return true;
+    }
+
+    public function actionAjaxTiny(){
+        echo "good";
+        exit;
     }
 
 }

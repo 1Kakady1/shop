@@ -52,6 +52,7 @@ return array(
     'admin/order/delete/([0-9]+)' => 'admin/delete/$1',
     'admin/order/view/([0-9]+)' => 'admin/view/$1',
     'admin/search' => 'admin/search',
+    'admin/ajaxTiny' => 'admin/ajaxTiny',
     'admin/setting' => 'admin/setting',
     'admin' => 'admin/index',
 

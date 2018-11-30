@@ -44,30 +44,48 @@ $setting = include ($paramsPath);
                 </div>
 
                 <div class="col-md-6">
-                    <h5>Слайдер новостей</h5>
-                    <form method="post" id="select-st">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Слайдер новостей</h5>
+                            <form method="post" id="select-st">
 
-                        <select name="news1">
-                            <?php foreach ($newsList as $newsItem): ?>
-                                <option value="<?php echo $newsItem['id'] ?>" <?php if($newsItem['id']==$listSetting[8]['info']){echo "selected";}?>><?php echo $newsItem['title'] ?></option>
-                            <?php endforeach; ?>
+                                <select name="news1">
+                                    <?php foreach ($newsList as $newsItem): ?>
+                                        <option value="<?php echo $newsItem['id'] ?>" <?php if($newsItem['id']==$listSetting[8]['info']){echo "selected";}?>><?php echo $newsItem['title'] ?></option>
+                                    <?php endforeach; ?>
 
-                        </select>
+                                </select>
 
-                        <select name="news2">
-                            <?php foreach ($newsList as $newsItem): ?>
-                                <option value="<?php echo $newsItem['id'] ?>" <?php if($newsItem['id']==$listSetting[9]['info']){echo "selected";}?>><?php echo $newsItem['title'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                                <select name="news2">
+                                    <?php foreach ($newsList as $newsItem): ?>
+                                        <option value="<?php echo $newsItem['id'] ?>" <?php if($newsItem['id']==$listSetting[9]['info']){echo "selected";}?>><?php echo $newsItem['title'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
 
-                        <select name="news3">
-                            <?php foreach ($newsList as $newsItem): ?>
-                                <option value="<?php echo $newsItem['id'] ?>" <?php if($newsItem['id']==$listSetting[10]['info']){echo "selected";}?>><?php echo $newsItem['title'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                                <select name="news3">
+                                    <?php foreach ($newsList as $newsItem): ?>
+                                        <option value="<?php echo $newsItem['id'] ?>" <?php if($newsItem['id']==$listSetting[10]['info']){echo "selected";}?>><?php echo $newsItem['title'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
 
-                        <button type="submit" class="btn btn-primary" name="send2">Изменить</button>
-                    </form>
+                                <button type="submit" class="btn btn-primary" name="send2">Изменить</button>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Оптимизация картинок</h5>
+                            <div class="wrap-tiny">
+                                <div class="center">
+                                    <input id="checkbox" class="<?php echo $listSetting[14]['info']; ?>" type="checkbox">
+                                </div>
+                            </div>
+                            <div class="tiny-input">
+                                <input type="text" class="form-control-file" id = "apiKey" value="<?php echo $listSetting[15]['info'] ?>">
+                                <div class="count-tiny">
+                                    <h2>Сжато за месяц: <?php echo $compressionsThisMonth?></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-md-12" id="st-banner">
