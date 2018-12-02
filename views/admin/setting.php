@@ -79,7 +79,10 @@ $setting = include ($paramsPath);
                                 </div>
                             </div>
                             <div class="tiny-input">
-                                <input type="text" class="form-control-file" id = "apiKey" value="<?php echo $listSetting[15]['info'] ?>">
+                                <div class="wrap-input-key">
+                                    <input type="text" class="form-control-file" id = "apiKey" value="<?php echo $listSetting[15]['info'] ?>">
+                                    <button class="btn btn-primary" id="sendApiKey" type="submit">+</button>
+                                </div>
                                 <div class="count-tiny">
                                     <h2>Сжато за месяц: <?php echo $compressionsThisMonth?></h2>
                                 </div>

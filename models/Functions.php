@@ -41,32 +41,51 @@ class Functions
 
     public function print_title()
     {
+
+        $flagErr = 0;
+
         if (!empty($_SERVER['REQUEST_URI'])) {
 
             $link_url = explode('/',$_SERVER['REQUEST_URI']);
         }
 
         if(count($link_url)==3 && $link_url[2] != null && $link_url[1] != 'admin'){
-           $bufTitle =  self::getTitleById($link_url[2],$link_url[1]);
-           if(array_key_exists("title", $bufTitle)){
-               return $bufTitle['title'];
-           }
 
-            if(array_key_exists("name", $bufTitle)){
-                return $bufTitle['name'];
-            }
+            $bufTitle =  self::getTitleById($link_url[2],$link_url[1]);
 
-        } else {
+           if($bufTitle != null){
+               if(array_key_exists("title", $bufTitle)){
+                   return $bufTitle['title'];
+               }
+
+               if(array_key_exists("name", $bufTitle)){
+                   return $bufTitle['name'];
+               }
+           } else { $flagErr = 1;}
+
+
+        }  else { $flagErr = 1;}
+
+
+        if($flagErr == 1){
             switch ($link_url[1]) {
                 case "":return 'Главная';
                 case "product":return 'Товары';
                 case "news":return 'Новости';
-                case "user":return 'Работа с данными';
+                case "user":
+                    if($link_url[2] == 'login'){
+                        return 'Вход';
+                     } else  if($link_url[2] == 'register'){
+                        return 'Регистрация';
+                    } else  if($link_url[2] == 'restore'){
+                        return 'Восстановить пароль';
+                    } else {return 'Error title';};
                 case "cabinet":return 'Ваш личный кабинет';
                 case "contact":return 'Контакты';
                 case "cart":return 'Корзина';
                 case "admin":return 'Admin';
                 case "search":return 'Поиск';
+                default: return 'Error title';
             }
         }
 

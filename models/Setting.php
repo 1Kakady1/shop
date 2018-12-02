@@ -171,4 +171,31 @@ class Setting
         } else {return false; }
 
     }
+
+    public static function ajaxTiny($key){
+
+        $settingTab=Db::dbTableName('setting');
+        $db = Db::getConnection();
+
+        if($key == 'on' || $key == 'off'){
+
+            $sql = "UPDATE $settingTab SET info = :tinyWork  WHERE id = 15";
+            $result = $db->prepare($sql);
+            $result->bindParam(':tinyWork', $key, PDO::PARAM_INT);
+            $row=$result->execute();
+
+        } else {
+            $sql = "UPDATE $settingTab SET info = :keyApi  WHERE id = 16";
+            $result = $db->prepare($sql);
+            $result->bindParam(':keyApi', $key, PDO::PARAM_INT);
+            $row=$result->execute();
+        }
+        if($row == true ){
+            return 'Изменения прошли успешно';
+        } else {
+            return 'Ошибка.';
+        }
+
+
+    }
 }

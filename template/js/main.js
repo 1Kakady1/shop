@@ -46,7 +46,8 @@ window.onload = function() {
         });
 //???????????????????????????????????????????????????????????
     }
-    if ((pathBuf[1] == 'product' || pathBuf[2] == 'news') && pathBuf.length >= 2) {
+    if ((pathBuf[1] == 'product' || pathBuf[1] == 'news') && pathBuf.length >= 2) {
+        console.log(1);
         $(document).ready(function () {
             $('.popup-gallery').magnificPopup({
                 delegate: 'a',
@@ -68,40 +69,6 @@ window.onload = function() {
         });
     }
 
-    if (pathBuf[1] == 'admin' && pathBuf[2] == 'setting') {
-
-        let flagCheck = 0;
-        if($("#checkbox")[0].className == "on"){
-            $("#checkbox").prop("checked", true);
-            $(".tiny-input").css("display","block");
-            flagCheck = 1;
-        } else {
-            $(".tiny-input").css("display","none");
-            $("#checkbox").prop("checked", false);
-            flagCheck = 0;
-        }
-
-        $("#checkbox").click(function(e){
-           if(flagCheck == 1){
-               //off
-               $(".tiny-input").css("display","none");
-               flagCheck = 0;
-           } else {
-               console.log("on");
-               //on
-               $(".tiny-input").css("display","block");
-               flagCheck = 1;
-           }
-
-        });
-
-        $("#apiKey").focusout(function (e) {
-
-        });
-
-
-
-    }
 
     if ((pathBuf[1] == 'cabinet' && pathBuf[2] == 'edit') || (pathBuf[1] == 'admin' && pathBuf[2] == 'prod' && pathBuf[3] == 'update')
         || (pathBuf[1] == 'admin' && pathBuf[2] == 'prod' && pathBuf[3] == 'create')) {

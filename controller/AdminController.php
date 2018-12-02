@@ -167,7 +167,7 @@ class AdminController extends AdminBase
 
     public function actionSearch($page=1)
     {
-
+        self::checkAdmin();
         if(isset($_POST['b-search']))
         {
             header('Location:/admin/search/?p='.$_POST["search"]);exit;
@@ -183,9 +183,11 @@ class AdminController extends AdminBase
         return true;
     }
 
-    public function actionAjaxTiny(){
-        echo "good";
-        exit;
+    public function actionAjaxTiny($key){
+        self::checkAdmin();
+        $rezult =  Setting::ajaxTiny($key);
+        echo $rezult;
+        return true;
     }
 
 }

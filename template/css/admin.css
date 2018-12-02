@@ -47,3 +47,9 @@ input[type="checkbox"]::before {
 input:checked[type="checkbox"]::before {
     left: 120px;
 }
+.wrap-input-key{
+    display: flex;
+}
+.wrap-input-key > .btn{
+    border-radius: 0px!important;
+}
