@@ -46,6 +46,83 @@ window.onload = function() {
         });
 //???????????????????????????????????????????????????????????
     }
+    if (pathBuf[1] == 'product' && parseInt(pathBuf[2]) > 0 && pathBuf.length >= 2) {
+
+        $('#send').click (function (event) {
+            event.preventDefault();
+            let sendMsgInfo = {
+                email: $('#email').val (),
+                name : $('#name').val (),
+                msg : $('#msg').val (),
+            };
+
+            //$('#error-msg > span').text ("");
+            $.ajax({
+                url:    	location.protocol+"//"+location.hostname+'/product/sendMsg/'+parseInt(pathBuf[2]),
+                type:		'POST',
+                cache: 		false,
+                data:   	{'data':JSON.stringify(sendMsgInfo)},
+                dataType:	'json',
+                beforeSend: function () {
+                    console.log("start msg");
+                  //  $('#send').attr ("disabled", "disabled");
+                   // $('#error-msg > div').addClass("btn-load");
+                },
+                success: function(data) {
+                    console.log(data);
+                    if (data == true) {
+                        $('#name').val ("");
+                        $('#email').val ("");
+                        $('#msg').val ("");
+                       // $('#error-msg > span').text ("Сообщение отправлено");
+                        $('#email').css ("border-color", "#60fc8c");
+                        $('#name').css ("border-color", "#60fc8c");
+                        $('#msg').css ("border-color", "#60fc8c");
+
+                    } else {
+                        setTimeout(function () {
+                            if (data == false)
+                                $('#error-msg > span').text ("Проблема в работе сервера.Повторте через несколько минут");
+                            else {
+                                let err_msg = data;
+
+                                switch (data) {
+                                    case "Имя не должно быть короче 2-х символов":
+                                    $('#name').css ("border-color", "#f50606");
+                                    //$('#error-msg > span').text ("Введите больше 3 символов");
+                                    break;
+                                    case "Имя содержит недопустимые символы":
+                                        $('#name').css ("border-color", "#f50606");
+                                        //$('#error-msg > span').text ("Введите больше 3 символов");
+                                        break;
+                                    case "Неправильный email":
+                                        $('#email').css ("border-color", "#f50606");
+                                        //$('#error-msg > span').text ("Неверный e-mail");
+                                        break;
+                                    case "Возможно сообщение короче 10-ти символов или содержит оскорбления и т.п.":
+                                        $('#msg').css ("border-color", "#f7b4b4");
+                                        //$('#error-msg > span').text ("Неверный номер");
+                                        break;
+                                    default:
+                                        $('#email').css ("border-color", "#f50606");
+                                        $('#name').css ("border-color", "#f50606");
+                                        $('#msg').css ("border-color", "#f50606");
+                                       // $('#error-msg > span').text ("Заполните все поля");
+                                        break;
+                                }
+                            }
+
+                        }, 1000);
+                    }
+                   // $('#send').removeAttr ("disabled");
+                  //  setTimeout(function () {
+                  //      $('#error-msg > div').removeClass("btn-load");
+                  //  }, 1000);
+                },
+                error: function(data) {console.log(data);}
+            });
+        });
+    }
     if ((pathBuf[1] == 'product' || pathBuf[1] == 'news') && pathBuf.length >= 2) {
         console.log(1);
         $(document).ready(function () {

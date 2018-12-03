@@ -7,7 +7,7 @@ $price = include ($paramsPath);
 <?php include_once ROOT . '/views/include/banner.php' ?>
 
 <?php   if ($result): ?>
-    <div class="animated slideInLeft"><p class="msg-send">Ваше комментарий добавлен.</p></div>
+    <div class="animated slideInLeft"><p class="msg-send">Ваш комментарий добавлен.</p></div>
 <?php else: ?>
     <?php if (isset($errors) && is_array($errors)): ?>
         <div class="animated slideInLeft">
@@ -127,14 +127,14 @@ $price = include ($paramsPath);
                                     <div class="form_icon">
                                         <img src="/template/images/p.png" alt="">
                                     </div>
-                                    <input type="text" name="name" placeholder="Ваше имя" value="<?php echo $name?>">
+                                    <input type="text" id="name" name="name" placeholder="Ваше имя" value="<?php echo $name?>">
                                 </div>
 
                                 <div class="input main_flex__nowrap flex__align-items_center">
                                     <div class="form_icon">
                                         <img src="/template/images/msg.png" alt="">
                                     </div>
-                                    <input type="email" name="email" placeholder="Email" value="<?php echo $email?>">
+                                    <input type="email" id="email" name="email" placeholder="Email" value="<?php echo $email?>">
                                 </div>
 
                             </div>
@@ -142,9 +142,9 @@ $price = include ($paramsPath);
                             <div id="right_form">
 
                                 <div class="input main_flex__nowrap flex__align-items_center">
-                                    <textarea type="text" name="msg" id="" placeholder="Сообщение" value="<?php echo $msg?>"></textarea>
+                                    <textarea type="text" name="msg" id="msg" placeholder="Сообщение" value="<?php echo $msg?>"></textarea>
                                 </div>
-                                <button type="submit" name="submit">отправить</button>
+                                <button type="submit" id="send" name="submit">отправить</button>
                             </div>
                         </form>
 

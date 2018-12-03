@@ -37,6 +37,72 @@ class ProductController
         return true;
     }
 
+    public function actionSendMsg($id)
+    {
+        $name = '';
+        $email = '';
+        $msg= '';
+        $result = false;
+        $author=NULL;
+        $infoPr = 0;
+        $ajaxData = json_decode($_POST['data'], true);
+            if(isset($_SESSION['user']))
+            {
+                $userId = $_SESSION['user'];
+                $user= User::getUserById($userId);
+
+                $name=$user['name'];
+                $email=$user['email'];
+
+                $author=1;
+
+            } else {
+
+                $name = htmlspecialchars($ajaxData['name']);
+                $email = htmlspecialchars($ajaxData['email']);
+                $infoPr = 1;
+            }
+
+        $msg = htmlspecialchars($ajaxData['msg']);
+            $errors = false;
+
+            if($infoPr == 1){
+
+                if (!Comments::checkName($name)) {
+                    $errors[] = 'Имя не должно быть короче 2-х символов';
+                }
+
+                if (Comments::delErrorNameMSG($name) ==  true) {
+                    $errors[] = 'Имя содержит недопустимые символы';
+                   // echo "Имя содержит недопустимые символы";
+                    //return true;
+                }
+
+                if (!Comments::checkEmail($email)) {
+                    $errors[] = 'Неправильный email';
+                    //echo "Неправильный email";
+                    //return true;
+                }
+            }
+
+            if (!Comments::checkMSG($msg)) {
+                $errors[] = 'Возможно сообщение короче 10-ти символов или содержит оскорбления и т.п.';
+                //echo "Возможно сообщение короче 10-ти символов или содержит оскорбления и т.п.";
+                //return true;
+            }
+
+
+            if ($errors == false) {
+                $result = Comments::registerComments($id,$author,$name,$email,$msg);
+                $name = '';
+                $email = '';
+                $msg= '';
+
+            }
+        echo  json_encode($errors, JSON_FORCE_OBJECT);
+        return true;
+    }
+
     public function actionView($id)
     {
 
@@ -45,13 +111,15 @@ class ProductController
             header('Location:/search/?p='.$_POST["search"]);
         }
 
+        $result = false;
+
         $name = '';
         $email = '';
         $msg= '';
-        $result = false;
+
         $author=NULL;
         $infoPr = 0;
-
+/*
 
         if (isset($_POST['submit'])) {
 
@@ -106,7 +174,7 @@ class ProductController
             }
 
         }
-
+*/
         $cat = array();
         $cat = Category::getCategoriesList();
         $catId = 0;
