@@ -136,6 +136,10 @@ $price = include ($paramsPath);
                                     </div>
                                     <input type="email" id="email" name="email" placeholder="Email" value="<?php echo $email?>">
                                 </div>
+                                <div id="error-msg">
+                                    <div class="prod-send"></div>
+                                    <span class="wow slideInUp"></span>
+                                </div>
 
                             </div>
 

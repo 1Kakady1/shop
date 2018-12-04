@@ -97,9 +97,9 @@ class ProductController
                 $name = '';
                 $email = '';
                 $msg= '';
+                echo true;
+            } else { echo  json_encode($errors, JSON_FORCE_OBJECT);}
 
-            }
-        echo  json_encode($errors, JSON_FORCE_OBJECT);
         return true;
     }
 

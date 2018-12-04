@@ -1,5 +1,22 @@
 window.onload = function() {
 
+    var wow = new WOW(
+        {
+            boxClass:     'wow',      // animated element css class (default is wow)
+            animateClass: 'animated', // animation css class (default is animated)
+            offset:       0,          // distance to the element when triggering the animation (default is 0)
+            mobile:       true,       // trigger animations on mobile devices (default is true)
+            live:         true,       // act on asynchronously loaded content (default is true)
+            callback:     function(box) {
+                // the callback is fired every time an animation is started
+                // the argument that is passed in is the DOM node being animated
+            },
+            scrollContainer: null,    // optional scroll container selector, otherwise use window,
+            resetAnimation: true,     // reset animation on end (default is true)
+        }
+    );
+    wow.init();
+
     let path = window.location.pathname,
         pathBuf = path.split(`/`);
 
@@ -56,17 +73,16 @@ window.onload = function() {
                 msg : $('#msg').val (),
             };
 
-            //$('#error-msg > span').text ("");
+            $('#error-msg > span').text ("");
             $.ajax({
                 url:    	location.protocol+"//"+location.hostname+'/product/sendMsg/'+parseInt(pathBuf[2]),
                 type:		'POST',
                 cache: 		false,
                 data:   	{'data':JSON.stringify(sendMsgInfo)},
-                dataType:	'json',
+                dataType:	'text',
                 beforeSend: function () {
-                    console.log("start msg");
-                  //  $('#send').attr ("disabled", "disabled");
-                   // $('#error-msg > div').addClass("btn-load");
+                  $('#error-msg > div').addClass("btn-load");
+                  $(this).prop('disabled', true);
                 },
                 success: function(data) {
                     console.log(data);
@@ -74,7 +90,7 @@ window.onload = function() {
                         $('#name').val ("");
                         $('#email').val ("");
                         $('#msg').val ("");
-                       // $('#error-msg > span').text ("Сообщение отправлено");
+                        $('#error-msg > span').html("Сообщение отправлено");
                         $('#email').css ("border-color", "#60fc8c");
                         $('#name').css ("border-color", "#60fc8c");
                         $('#msg').css ("border-color", "#60fc8c");
@@ -82,42 +98,40 @@ window.onload = function() {
                     } else {
                         setTimeout(function () {
                             if (data == false)
-                                $('#error-msg > span').text ("Проблема в работе сервера.Повторте через несколько минут");
+                                $('#error-msg > span').text("Проблема в работе сервера.Повторте через несколько минут");
                             else {
-                                let err_msg = data;
+                                let errMsg = JSON.parse(data),
+                                    strErrMsg = "";
 
-                                switch (data) {
-                                    case "Имя не должно быть короче 2-х символов":
-                                    $('#name').css ("border-color", "#f50606");
-                                    //$('#error-msg > span').text ("Введите больше 3 символов");
-                                    break;
-                                    case "Имя содержит недопустимые символы":
+                                for(let i =0; i < Object.keys(errMsg).length; i++){
+
+                                    if(errMsg[i]=='Имя не должно быть короче 2-х символов'){
                                         $('#name').css ("border-color", "#f50606");
-                                        //$('#error-msg > span').text ("Введите больше 3 символов");
-                                        break;
-                                    case "Неправильный email":
-                                        $('#email').css ("border-color", "#f50606");
-                                        //$('#error-msg > span').text ("Неверный e-mail");
-                                        break;
-                                    case "Возможно сообщение короче 10-ти символов или содержит оскорбления и т.п.":
-                                        $('#msg').css ("border-color", "#f7b4b4");
-                                        //$('#error-msg > span').text ("Неверный номер");
-                                        break;
-                                    default:
-                                        $('#email').css ("border-color", "#f50606");
+                                        strErrMsg +="- Введите больше 3 символов<br><br>";
+                                    }
+                                    if(errMsg[i]=='Имя содержит недопустимые символы'){
                                         $('#name').css ("border-color", "#f50606");
+                                        strErrMsg +="- Имя содержит недопустимые символы<br><br>";
+                                    }
+                                    if(errMsg[i]=='Неправильный email'){
+                                        $('#email').css ("border-color", "#f50606");
+                                        strErrMsg +="- Неправильный email<br><br>";
+                                    }
+                                    if(errMsg[i]=='Возможно сообщение короче 10-ти символов или содержит оскорбления и т.п.'){
                                         $('#msg').css ("border-color", "#f50606");
-                                       // $('#error-msg > span').text ("Заполните все поля");
-                                        break;
+                                        strErrMsg +="- Возможно сообщение короче 10-ти символов или содержит оскорбления и т.п.<br><br>";
+                                    }
                                 }
+
+                                $('#error-msg > span').html(strErrMsg);
                             }
 
                         }, 1000);
                     }
-                   // $('#send').removeAttr ("disabled");
-                  //  setTimeout(function () {
-                  //      $('#error-msg > div').removeClass("btn-load");
-                  //  }, 1000);
+                    $(this).prop('disabled', false);
+                    setTimeout(function () {
+                        $('#error-msg > div').removeClass("btn-load");
+                    }, 1000);
                 },
                 error: function(data) {console.log(data);}
             });

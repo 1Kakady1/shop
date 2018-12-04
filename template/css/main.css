@@ -1,6 +1,26 @@
 ﻿/*#bg-section{    background: #fff;}
 #bg-body{    background: #f8f9fa;} */
 
+.name-f-msg #error-msg span{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex
+}
+#error-msg{
+  position: relative;
+}
+
+.name-f-msg #error-msg .btn-load{
+  background: url(../images/pageloader.gif) no-repeat;
+  -webkit-background-size: cover;
+  background-size: cover;
+  height: 2rem;
+  width: 2rem;
+  display: block;
+  margin-left: 10px;
+}
+
 .features_items{    display: flex;
   /* justify-content: start; */
   flex-flow: row wrap;}
