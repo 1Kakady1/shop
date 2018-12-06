@@ -65,17 +65,57 @@ window.onload = function() {
     }
     if (pathBuf[1] == 'product' && parseInt(pathBuf[2]) > 0 && pathBuf.length >= 2) {
 
+        $('#com-load').css('display','flex');
+        let offset = 1;
+
+        $('#com-load').click (function (event) {
+            event.preventDefault();
+            let comInfo = {id: parseInt(pathBuf[2]),offset: 0};
+            comInfo.offset = offset;
+
+            $.ajax({
+                url:    	location.protocol+"//"+location.hostname+'/product/ajaxLoadCom',
+                type:		'POST',
+                cache: 		false,
+                data:   	{'data':JSON.stringify(comInfo)},
+                dataType:	'html',
+                beforeSend: function () {
+                    $('#com-preload > div').addClass("btn-load");
+                    $(this).css('display','none');
+                },
+                success: function(data) {
+                    console.log(data);
+                    let newCom = JSON.parse(data);
+
+                    if (newCom[newCom.length -1 ] == true) {
+                       console.log(newCom);
+                    } else {
+                        setTimeout(function () {
+                            $('#com-preload> span').html(strErrMsg);
+                        }, 1000);
+                    }
+                    setTimeout(function () {
+                        $('#com-preload > div').removeClass("btn-load");
+                        $(this).css('display','flex');
+                        offset++;
+                    }, 1000);
+                },
+                error: function(data) {$('#com-preload > span').text("Проблема в работе сервера. Повторте через несколько минут");}
+            });
+        });
+
         $('#send').click (function (event) {
             event.preventDefault();
             let sendMsgInfo = {
                 email: $('#email').val (),
                 name : $('#name').val (),
                 msg : $('#msg').val (),
+                id: parseInt(pathBuf[2])
             };
 
             $('#error-msg > span').text ("");
             $.ajax({
-                url:    	location.protocol+"//"+location.hostname+'/product/sendMsg/'+parseInt(pathBuf[2]),
+                url:    	location.protocol+"//"+location.hostname+'/product/sendMsg',
                 type:		'POST',
                 cache: 		false,
                 data:   	{'data':JSON.stringify(sendMsgInfo)},
@@ -85,8 +125,12 @@ window.onload = function() {
                   $(this).prop('disabled', true);
                 },
                 success: function(data) {
-                    console.log(data);
-                    if (data == true) {
+                    let errMsg = JSON.parse(data);
+
+                    if (errMsg[0] == true) {
+
+                        $("#list-comments > ul").prepend(errMsg[1]);
+
                         $('#name').val ("");
                         $('#email').val ("");
                         $('#msg').val ("");
@@ -97,11 +141,8 @@ window.onload = function() {
 
                     } else {
                         setTimeout(function () {
-                            if (data == false)
-                                $('#error-msg > span').text("Проблема в работе сервера.Повторте через несколько минут");
-                            else {
-                                let errMsg = JSON.parse(data),
-                                    strErrMsg = "";
+
+                                let strErrMsg = "";
 
                                 for(let i =0; i < Object.keys(errMsg).length; i++){
 
@@ -121,10 +162,15 @@ window.onload = function() {
                                         $('#msg').css ("border-color", "#f50606");
                                         strErrMsg +="- Возможно сообщение короче 10-ти символов или содержит оскорбления и т.п.<br><br>";
                                     }
+                                    if(errMsg[i]=='Нет ответа от сервера. Попробуйте через время'){
+                                        $('#msg').css ("border-color", "#f50606");
+                                        strErrMsg +="- Нет ответа от сервера. Попробуйте через время.<br><br>";
+                                    }
+
                                 }
 
                                 $('#error-msg > span').html(strErrMsg);
-                            }
+
 
                         }, 1000);
                     }
@@ -133,7 +179,7 @@ window.onload = function() {
                         $('#error-msg > div').removeClass("btn-load");
                     }, 1000);
                 },
-                error: function(data) {console.log(data);}
+                error: function(data) {$('#error-msg > span').text("Проблема в работе сервера.Повторте через несколько минут");}
             });
         });
     }

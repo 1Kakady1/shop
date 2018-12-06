@@ -40,7 +40,7 @@ class Comments
 
             $comList = array();
 
-            $result = $db->query("SELECT * FROM  $listComTab  WHERE articles_id=$id ORDER BY pupdate DESC");
+            $result = $db->query("SELECT * FROM  $listComTab  WHERE articles_id=$id ORDER BY pupdate DESC LIMIT 1");
             $result->setFetchMode(PDO::FETCH_ASSOC);
             $i = 0;
 
@@ -57,6 +57,60 @@ class Comments
             }
 
             return  $comList;
+        }
+
+    }
+
+    public static function getCommentsListOffset($id,$comOffset)
+    {
+        $id = intval($id);
+        $comOffset = intval($comOffset);
+
+        if($id) {
+            $listComTab = Db::dbTableName('comments');
+            $db = Db::getConnection();
+
+
+            $comList = array();
+
+            $result = $db->query("SELECT * FROM  $listComTab  WHERE articles_id=$id ORDER BY pupdate DESC LIMIT 2 OFFSET $comOffset");
+            $result->setFetchMode(PDO::FETCH_ASSOC);
+            $i = 0;
+
+            while ($row = $result->fetch()){
+
+                $comList[$i]['author'] = $row['author'];
+                $comList[$i]['nickname'] = $row['nickname'];
+                $comList[$i]['email'] = $row['email'];
+                $comList[$i]['text'] = $row['text'];
+                $comList[$i]['pupdate'] = $row['pupdate'];
+                $comList[$i]['usimg'] = $row['usimg'];
+
+                $i++;
+            }
+
+            $comHeader = '<li class="wow slideInUp">
+                            <div class="comments main_flex__nowrap">
+                                <div class="img-com">';
+            $comFooter = '</div></div></li>';
+            $z=0;
+            $comRez = array();
+            while(count($comList) > $z){
+
+                $comImg =' <img src="https://ru.gravatar.com/avatar/'.md5('test@gg.mm').'?s=125" alt="c1"></div><div class="msg-com">';
+                if($comList[$z]['usimg'] != NULL){
+                    $comImg =  '<img src="/template/images/avatar/'.$comList[$z]['usimg'].'" alt="c1"></div><div class="msg-com">';
+                }
+
+                $c = '<h4>'.$comList[$z]['author'].': '.$comList[$z]['nickname'].'<span>/ '.$comList[$z]['pupdate'].'</span></h4>';
+                $b = '<p>'.$comList[$z]['text'].'</p>';
+
+                $comRez[$z] = $comHeader.$comImg.$c.$b.$comFooter;
+                $z++;
+            }
+
+            //$comRez[count($comRez) - 1] = true;
+            return  $comRez;
         }
 
     }

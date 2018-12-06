@@ -37,7 +37,18 @@ class ProductController
         return true;
     }
 
-    public function actionSendMsg($id)
+    public function actionAjaxLoadCom()
+    {
+        $ajaxData = json_decode($_POST['data'], true);
+
+        $offsetComments = Comments::getCommentsListOffset($ajaxData['id'],$ajaxData['offset']);
+
+        echo json_encode($offsetComments, JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE);
+
+        return true;
+    }
+
+    public function actionSendMsg()
     {
         $name = '';
         $email = '';
@@ -46,6 +57,7 @@ class ProductController
         $author=NULL;
         $infoPr = 0;
         $ajaxData = json_decode($_POST['data'], true);
+        $id = (int)$ajaxData['id'];
             if(isset($_SESSION['user']))
             {
                 $userId = $_SESSION['user'];
@@ -74,30 +86,46 @@ class ProductController
 
                 if (Comments::delErrorNameMSG($name) ==  true) {
                     $errors[] = 'Имя содержит недопустимые символы';
-                   // echo "Имя содержит недопустимые символы";
-                    //return true;
                 }
 
                 if (!Comments::checkEmail($email)) {
                     $errors[] = 'Неправильный email';
-                    //echo "Неправильный email";
-                    //return true;
                 }
             }
 
             if (!Comments::checkMSG($msg)) {
                 $errors[] = 'Возможно сообщение короче 10-ти символов или содержит оскорбления и т.п.';
-                //echo "Возможно сообщение короче 10-ти символов или содержит оскорбления и т.п.";
-                //return true;
             }
 
-
             if ($errors == false) {
-                $result = Comments::registerComments($id,$author,$name,$email,$msg);
+                $result = Comments::registerComments($id ,$author,$name,$email,$msg);
+
+                if($result != null) {
+                    $postDate = date("Y-m-d H:i:s");
+                    $rezultJson = array();
+                    $rezultJson[0] = true;
+                    $rezultJson[1] = '<li class="wow slideInUp animated">
+                            <div class="comments main_flex__nowrap">
+                                <div class="img-com">
+                                    <img src="https://ru.gravatar.com/avatar/055ee8ba82a2b7ee09e28bf9935dbf13?s=125" alt="c1">
+                                </div>
+                                <div class="msg-com">
+                                    <h4>Автор: ' . $name . '<span>/ ' . $postDate . '</span></h4>
+                                    <p>' . $msg . '</p>
+                                </div>
+
+                            </div>
+                        </li>';
+                    echo json_encode($rezultJson, JSON_FORCE_OBJECT);
+                } else {
+
+                    $errors [] = "Нет ответа от сервера. Попробуйте через время";
+                    echo  json_encode($errors, JSON_FORCE_OBJECT);
+                }
                 $name = '';
                 $email = '';
                 $msg= '';
-                echo true;
+
             } else { echo  json_encode($errors, JSON_FORCE_OBJECT);}
 
         return true;

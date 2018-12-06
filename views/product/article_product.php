@@ -107,13 +107,18 @@ $price = include ($paramsPath);
                     <?php endforeach; else:?>
                     <li><h4><span>Будь первым, кто оставмит комментарий!!!</span></h4></li>
                    <?php endif; ?>
-
-
-
-
                     </ul>
                 </div>
+                <?php if(count($listComments) != 1111): ?>
+                <div class="comments-loader">
+                    <button type="submit" id="com-load" name="submit">Больше +</button>
+                    <div id="error-msg">
+                        <div class="prod-send"></div>
+                        <span class="wow slideInUp"></span>
+                    </div>
+                </div>
 
+                <?php endif; ?>
             </div>
 
             <div class="col-md-6">

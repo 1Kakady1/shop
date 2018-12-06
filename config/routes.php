@@ -15,7 +15,8 @@ return array(
     'product/cat/([0-9]+)/page-([0-9]+)' => 'product/cat/$1/$2',
     'product/cat/([0-9]+)' => 'product/cat/$1',
     'product/page-([0-9]+)' => 'product/index/$1',
-    'product/sendMsg/([0-9]+)' => 'product/sendMsg/$1',
+    'product/sendMsg' => 'product/sendMsg',
+    'product/ajaxLoadCom' => 'product/ajaxLoadCom',
     'product' => 'product/index',
 
     'cart/check' => 'cart/check',
