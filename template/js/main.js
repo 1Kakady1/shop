@@ -66,39 +66,50 @@ window.onload = function() {
     if (pathBuf[1] == 'product' && parseInt(pathBuf[2]) > 0 && pathBuf.length >= 2) {
 
         $('#com-load').css('display','flex');
-        let offset = 1;
+        let offset = 5;
 
         $('#com-load').click (function (event) {
             event.preventDefault();
             let comInfo = {id: parseInt(pathBuf[2]),offset: 0};
             comInfo.offset = offset;
-
+            let $btnThis = $(this),
+                flagEndCom = 0;
             $.ajax({
                 url:    	location.protocol+"//"+location.hostname+'/product/ajaxLoadCom',
                 type:		'POST',
                 cache: 		false,
                 data:   	{'data':JSON.stringify(comInfo)},
-                dataType:	'html',
-                beforeSend: function () {
+                dataType:	'text',
+                beforeSend: function (data) {
                     $('#com-preload > div').addClass("btn-load");
-                    $(this).css('display','none');
+                    $btnThis.css('display','none');
                 },
                 success: function(data) {
-                    console.log(data);
                     let newCom = JSON.parse(data);
+                    console.log(newCom);
+                    if (newCom[Object.keys(newCom).length -1 ] == true) {
+                       console.log(Object.keys(newCom).length -2);
+                       let m = 0;
+                       while(Object.keys(newCom).length -2  >= m){
+                            $("#list-comments > ul").append(newCom[m]);
+                            m++;
+                       }
 
-                    if (newCom[newCom.length -1 ] == true) {
-                       console.log(newCom);
                     } else {
                         setTimeout(function () {
-                            $('#com-preload> span').html(strErrMsg);
+                            $('#com-preload > span').html('На данный момент - это все комментарии');
+                            flagEndCom = 1;
+                            $btnThis.remove();
                         }, 1000);
                     }
                     setTimeout(function () {
                         $('#com-preload > div').removeClass("btn-load");
-                        $(this).css('display','flex');
-                        offset++;
-                    }, 1000);
+                        if(flagEndCom == 0){
+                            $btnThis.css('display','flex');
+                            offset++;
+                        }
+
+                    }, 2000);
                 },
                 error: function(data) {$('#com-preload > span').text("Проблема в работе сервера. Повторте через несколько минут");}
             });
@@ -177,6 +188,7 @@ window.onload = function() {
                     $(this).prop('disabled', false);
                     setTimeout(function () {
                         $('#error-msg > div').removeClass("btn-load");
+                        offset++;
                     }, 1000);
                 },
                 error: function(data) {$('#error-msg > span').text("Проблема в работе сервера.Повторте через несколько минут");}

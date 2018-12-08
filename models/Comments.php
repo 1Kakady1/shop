@@ -40,7 +40,7 @@ class Comments
 
             $comList = array();
 
-            $result = $db->query("SELECT * FROM  $listComTab  WHERE articles_id=$id ORDER BY pupdate DESC LIMIT 1");
+            $result = $db->query("SELECT * FROM  $listComTab  WHERE articles_id=$id ORDER BY pupdate DESC LIMIT 5");
             $result->setFetchMode(PDO::FETCH_ASSOC);
             $i = 0;
 
@@ -66,6 +66,7 @@ class Comments
         $id = intval($id);
         $comOffset = intval($comOffset);
 
+
         if($id) {
             $listComTab = Db::dbTableName('comments');
             $db = Db::getConnection();
@@ -73,7 +74,7 @@ class Comments
 
             $comList = array();
 
-            $result = $db->query("SELECT * FROM  $listComTab  WHERE articles_id=$id ORDER BY pupdate DESC LIMIT 2 OFFSET $comOffset");
+            $result = $db->query("SELECT * FROM  $listComTab  WHERE articles_id=$id ORDER BY pupdate DESC LIMIT 5 OFFSET $comOffset");
             $result->setFetchMode(PDO::FETCH_ASSOC);
             $i = 0;
 
@@ -95,21 +96,24 @@ class Comments
             $comFooter = '</div></div></li>';
             $z=0;
             $comRez = array();
-            while(count($comList) > $z){
+            if(count($comList) > 0 && count($comList) != 0 && count($comList) != null) {
+                while (count($comList) > $z) {
 
-                $comImg =' <img src="https://ru.gravatar.com/avatar/'.md5('test@gg.mm').'?s=125" alt="c1"></div><div class="msg-com">';
-                if($comList[$z]['usimg'] != NULL){
-                    $comImg =  '<img src="/template/images/avatar/'.$comList[$z]['usimg'].'" alt="c1"></div><div class="msg-com">';
+                    $comImg = ' <img src="https://ru.gravatar.com/avatar/' . md5('test@gg.mm') . '?s=125" alt="c1"></div><div class="msg-com">';
+                    if ($comList[$z]['usimg'] != NULL) {
+                        $comImg = '<img src="/template/images/avatar/' . $comList[$z]['usimg'] . '" alt="c1"></div><div class="msg-com">';
+                    }
+
+                    $c = '<h4>' . $comList[$z]['author'] . ': ' . $comList[$z]['nickname'] . '<span>/ ' . $comList[$z]['pupdate'] . '</span></h4>';
+                    $b = '<p>' . $comList[$z]['text'] . '</p>';
+
+                    $comRez[$z] = $comHeader . $comImg . $c . $b . $comFooter;
+                    $z++;
                 }
 
-                $c = '<h4>'.$comList[$z]['author'].': '.$comList[$z]['nickname'].'<span>/ '.$comList[$z]['pupdate'].'</span></h4>';
-                $b = '<p>'.$comList[$z]['text'].'</p>';
+                $comRez[count($comRez)] = true;
 
-                $comRez[$z] = $comHeader.$comImg.$c.$b.$comFooter;
-                $z++;
-            }
-
-            //$comRez[count($comRez) - 1] = true;
+            } else {$comRez[count($comRez)] = false;}
             return  $comRez;
         }
 

@@ -2,6 +2,7 @@
 <?php include_once ROOT . '/views/header.php';
 $paramsPath = ROOT.'/config/config_site.php';
 $price = include ($paramsPath);
+$comNot = 0;
 ?>
 
 <?php include_once ROOT . '/views/include/banner.php' ?>
@@ -106,13 +107,13 @@ $price = include ($paramsPath);
 
                     <?php endforeach; else:?>
                     <li><h4><span>Будь первым, кто оставмит комментарий!!!</span></h4></li>
-                   <?php endif; ?>
+                   <?php $comNot = 1;endif; ?>
                     </ul>
                 </div>
-                <?php if(count($listComments) != 1111): ?>
+                <?php if(count($listComments) > 0 && $comNot != 1): ?>
                 <div class="comments-loader">
                     <button type="submit" id="com-load" name="submit">Больше +</button>
-                    <div id="error-msg">
+                    <div id="com-preload">
                         <div class="prod-send"></div>
                         <span class="wow slideInUp"></span>
                     </div>

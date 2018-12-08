@@ -1,17 +1,45 @@
 ﻿/*#bg-section{    background: #fff;}
 #bg-body{    background: #f8f9fa;} */
 
-.name-f-msg #error-msg span{
+#com-load{
+  border: none;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 0.72vw;
+  border-radius: 0;
+  width: 20%;
+  align-items: center;
+  justify-content: center;
+  height: 3vw;
+  background-color: #343a40;
+  margin-top: 32px;
+}
+
+.comments-loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#com-load:hover{
+  background-color: #28a745;
+}
+#com-preload{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.name-f-msg #error-msg span,#com-preload span{
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex
 }
-#error-msg{
+#error-msg,#com-preload{
   position: relative;
 }
 
-.name-f-msg #error-msg .btn-load{
+.name-f-msg #error-msg .btn-load, #com-preload .btn-load{
   background: url(../images/pageloader.gif) no-repeat;
   -webkit-background-size: cover;
   background-size: cover;
@@ -466,6 +494,7 @@ a, a:hover,img:hover, button, button:hover, .anime {
   width: 3vw;
   height: 3vw;
   border: 1px solid #eaeaea;
+  background: #dee2e6;
 }
 
 .input input, .input textarea {
@@ -474,6 +503,7 @@ a, a:hover,img:hover, button, button:hover, .anime {
   font-size: 0.72vw;
   width: 100%;
   padding: 0.93vw;
+  background: #dee2e6;
 }
 
 .form_icon img {
@@ -500,8 +530,11 @@ a, a:hover,img:hover, button, button:hover, .anime {
   border-radius: 0;
   width: 100%;
   height: 3vw;
-  background-color: #343a40;
+  background: #343a40;
   margin-top: 0.2vw;
+}
+#right_form button:hover{
+  background: #28a745;
 }
 a, a:hover, button, button:hover, .anime {
   -moz-transition: all 200ms linear;
