@@ -20,6 +20,10 @@ class ProductController
         $cat = array();
         $cat = Category::getCategoriesList();
 
+        $recommendedProducts= array();
+        $recommendedProducts=Product::getRecommendedProducts($cat);
+
+
         $catId = 0;
 
         $latestProducts = array();
@@ -207,6 +211,9 @@ class ProductController
         $cat = Category::getCategoriesList();
         $catId = 0;
 
+        $recommendedProducts= array();
+        $recommendedProducts=Product::getRecommendedProducts($cat);
+
         $listComments = array();
         $listComments=Comments::getCommentsList($id);
 
@@ -229,6 +236,9 @@ class ProductController
 
         $cat = array();
         $cat = Category::getCategoriesList();
+
+        $recommendedProducts= array();
+        $recommendedProducts=Product::getRecommendedProducts($cat);
 
         for ($i=0;$i<count($cat);$i++)
         {

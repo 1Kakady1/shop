@@ -33,6 +33,7 @@ $active = $title->print_url_link();
     <link href="/template/css/responsive.css" rel="stylesheet">
     <?php if ($active == 'product' || $active == 'news'): ?>
         <link href="/template/css/magnific-popup.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <?php endif;?>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 

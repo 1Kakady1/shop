@@ -76,6 +76,10 @@ $comNot = 0;
 
         <hr class="featurette-divider">
 
+        <?php include_once ROOT . '/views/include/recommended-slider.php' ?>
+
+        <hr class="featurette-divider">
+
         <!-- /END THE FEATURETTES -->
 
     </div><!-- /.container -->
@@ -121,7 +125,6 @@ $comNot = 0;
 
                 <?php endif; ?>
             </div>
-
             <div class="col-md-6">
                 <div id="form-content">
 
@@ -162,16 +165,8 @@ $comNot = 0;
                 </div>
 
             </div>
-
         </div>
     </div>
-
-
-
-
-
-
-
 </main>
 
 <?php include_once ROOT . '/views/footer.php' ?>

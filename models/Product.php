@@ -76,6 +76,40 @@ class Product
             return $productsCatList;
             }
         }
+    private static function codifCatName($catList,$catId){
+
+        for($i=0;$i<count($catList);$i++){
+            if($catList[$i]['id'] == $catId){
+                return $catList[$i]['name'];
+            }
+        }
+
+        return null;
+
+    }
+    public static function getRecommendedProducts($catList)
+    {
+            $productTab=Db::dbTableName('product');
+            $db = Db::getConnection();
+            $productsRem = array();
+
+            $result = $db->query("SELECT id, name, price, image, category_id FROM ".$productTab
+                ." WHERE is_recommended = 1 "
+                ."ORDER BY id DESC ");
+
+            $i = 0;
+            while ($row = $result->fetch()) {
+                $productsRem[$i]['id'] = $row['id'];
+                $productsRem[$i]['name'] = $row['name'];
+                $productsRem[$i]['image'] = $row['image'];
+                $productsRem[$i]['price'] = $row['price'];
+                $productsRem[$i]['cat'] = self::codifCatName($catList,$row['category_id']); //$row['category_id'];
+                $i++;
+            }
+
+            return $productsRem;
+
+    }
 
     public  static  function getProductGalleryItemById($id)
     {

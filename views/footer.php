@@ -44,6 +44,7 @@ $linck_script = $title->print_url_link();
 <script src="/template/js/main.js"></script>
 <?php if ($linck_script == 'product' || $linck_script == 'news'): ?>
     <script src="/template/js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <?php endif;?>
 
 <script>
@@ -55,6 +56,37 @@ $linck_script = $title->print_url_link();
             });
             return false;
         });
+
+        $('.center').slick({
+            centerMode: true,
+            centerPadding: '60px',
+            slidesToShow: 3,
+            arrows: false,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 2
+                    }
+                },
+                {
+                    breakpoint: 580,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+
+
     });
 </script>
 

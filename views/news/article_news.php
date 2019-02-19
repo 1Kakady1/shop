@@ -11,7 +11,7 @@
         <hr class="featurette-divider">
 
         <div class="row featurette">
-          <div class="col-md-7 order-md-2">
+          <div class="col-md-7 order-md-1">
             <p class="lead " ><?php echo $newsItem['content'] ?></p>
               <div class = "flr">
                   <p>Автор: <?php echo $newsItem['autor_name'] ?></p>
@@ -20,7 +20,7 @@
 
               </div>
           </div>
-          <div class="col-md-5 order-md-1">
+          <div class="col-md-5 order-md-2">
             <img class="featurette-image img-fluid mx-auto" src="../template/images/news/<?php echo $newsItem['preview'] ?>" alt="500x500" style="width: 500px; height: 500px;"  data-holder-rendered="true">
           </div>
         </div>

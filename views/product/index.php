@@ -31,11 +31,11 @@ $price = include ($paramsPath);?>
                         </div>
                     </div>
                     <?php endforeach; ?>
-
                 </div><!--features_items-->
                 <?php echo $pagination->get(); ?>
             </div>
         </div>
+        <?php include_once ROOT . '/views/include/recommended-slider.php' ?>
     </div>
 </section>
 

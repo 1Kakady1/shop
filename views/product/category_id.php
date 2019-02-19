@@ -36,6 +36,7 @@ $price = include ($paramsPath);?>
                 <?php echo $pagination->get(); ?>
             </div>
         </div>
+        <?php include_once ROOT . '/views/include/recommended-slider.php' ?>
     </div>
 </section>
 
