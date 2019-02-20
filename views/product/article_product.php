@@ -35,9 +35,9 @@ $comNot = 0;
 
 
             <div class="col-md-7 order-md-2 wow slideInRight">
-                <div><button id="hideInfo1">Описание</button><button id="hideInfo2">Характиристики</button></div>
-                <p class="lead " id="info1"><?php echo $productItem['description'] ?></p>
-                <div class="lead hidden" id="info2">
+                <div><button  class="btn-tab" data-pos="0">Описание</button><button class="btn-tab" data-pos="1">Характиристики</button></div>
+                <p class="lead tab-info animated fadeIn"><?php echo $productItem['description'] ?></p>
+                <div class="lead tab-info animated fadeIn">
                     <h2>Характиристики</h2>
                     <?php $buf = explode(";",$productItem['info']); foreach ($buf as $productInfoList): ?>
                        <div class="table"><?php echo $productInfoList; ?></div>

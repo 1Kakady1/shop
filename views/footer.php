@@ -86,7 +86,6 @@ $linck_script = $title->print_url_link();
             ]
         });
 
-
     });
 </script>
 

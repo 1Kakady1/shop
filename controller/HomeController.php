@@ -23,6 +23,9 @@ class HomeController
         $cat = Category::getCategoriesList();
         $catId = 0;
 
+        $recommendedProducts= array();
+        $recommendedProducts=Product::getRecommendedProducts($cat);
+
         $latestProducts = array();
         $latestProducts = Home::getLatestProducts(/*10*/);
 

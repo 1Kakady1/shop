@@ -17,6 +17,8 @@ window.onload = function() {
     );
     wow.init();
 
+
+
     let path = window.location.pathname,
         pathBuf = path.split(`/`);
 
@@ -45,15 +47,23 @@ window.onload = function() {
     if (pathBuf[1] == 'product' && pathBuf.length >= 2) {
         $(function () {
             "use strict";
-            document.getElementById('hideInfo2').onclick = function () {
-                document.getElementById('info1').style.display = 'none';
-                document.getElementById('info2').style.display = 'block';
+            showTab(0);
+            function showTab(a){
+
+                for (let i = 0; i<$('.tab-info').length;i++){
+                    $('.tab-info').eq(i).css('display','none');
+                }
+
+                $('.tab-info').eq(a).css('display','block')
             }
 
-            document.getElementById('hideInfo1').onclick = function () {
-                document.getElementById('info2').style.display = 'none';
-                document.getElementById('info1').style.display = 'block';
-            }
+            $('.btn-tab').on('click', function(){
+               // $index = $(this).data("pos");
+                //console.log($(this).data("pos"))
+                showTab($(this).data("pos"));
+            });
+
+
 //???????????????????????????????????????????????????????????
             document.getElementById('new-add').onclick = function () {
                 document.getElementById('add').style.display = 'initial';
