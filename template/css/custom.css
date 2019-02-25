@@ -1,0 +1,15 @@
+body#tinymce.wp-editor {
+    font-family: Arial, Helvetica, sans-serif; /* editor font */
+    margin: 10px;
+    font-size: 16px;
+    height: 600px; /* editor window height */
+    background: #fffffa;  /* editor window color */
+}
+
+body#tinymce.wp-editor a {
+    color: #4CA6CF; /* color links */
+}
+
+.tox .tox-edit-area__iframe {
+    background-color: #dee2e6!important;
+}

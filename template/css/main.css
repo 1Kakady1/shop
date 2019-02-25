@@ -1419,6 +1419,10 @@ h2.title {
 
 }
 
+b, strong {
+    font-weight: bold!important
+}
+
 .add-to-cart:hover {
   background: #FE980F;
   border: 0 none;

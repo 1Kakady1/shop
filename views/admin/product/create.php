@@ -1,6 +1,21 @@
 <?php include ROOT . '/views/admin/header.php'; ?>
+<script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=hwtmq3vsoku8h5n8zq9b7wamau5zjzi543mr4k3mink1w8ak"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        height: 500,
+        menubar: false,
+        plugins: [
+            'advlist autolink lists link image charmap print preview anchor textcolor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table paste code help wordcount'
+        ],
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+        content_css: '/template/js/custom.css'
+    });
+</script>
 
-<section>
+    <section>
     <div class="container">
         <form method="post" enctype="multipart/form-data" id="inp-bg">
         <div class="row">
@@ -17,7 +32,7 @@
             <div class="col-lg-8">
 
                     <p>Описание</p>
-                    <textarea name="description" rows="8"></textarea>
+                    <textarea name="description" id="description" rows="8"></textarea>
                     <br/><br/>
                     <p>Характреристки (значения разделять ';')</p>
                     <textarea name="info" rows="8"></textarea>
