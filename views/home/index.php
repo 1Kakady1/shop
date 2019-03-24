@@ -53,9 +53,7 @@
 
       </div><!-- /.container -->
 
-    <div id="map" class="wow slideInUp hidden-xs hidden-sm">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d54428490.92487263!2d-100.15803435551553!3d33.629907993961865!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1530209630070"  frameborder="0" style="border:0" allowfullscreen></iframe>
-    </div>
+    <div id="map" class="wow slideInUp hidden-xs hidden-sm"></div>
 
 
 <?php include_once ROOT . '/views/footer.php' ?>

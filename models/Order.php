@@ -35,8 +35,13 @@ class Order
         $result->bindParam(':user_id', $userId, PDO::PARAM_INT);
         $result->bindParam(':product', $products, PDO::PARAM_STR);
 
-        return $result->execute();
+        $resultLast = $db->query("SELECT id FROM $orderTab ORDER BY id DESC LIMIT 1");
+        $resultLast->setFetchMode(PDO::FETCH_ASSOC);
+
+
+        return array($result->execute(),$resultLast->fetch());
     }
+
 
     public static function getOldLastProdUser($userId)
     {

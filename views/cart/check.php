@@ -15,7 +15,7 @@ $price = include ($paramsPath); ?>
 <?php if ($result): ?>
     <div class="animated slideInLeft"><p class="msg-send">Заказ оформлен. Мы Вам перезвоним.</p></div>
 <?php else: ?>
-    <div class="animated slideInLeft"><p class="msg-send">Выбрано товаров: <?php echo $totalQuantity; ?>, на сумму: <?php echo $totalPrice; ?>, грн.</p></div>
+    <div class="animated slideInLeft"><p class="msg-send">Выбрано товаров: <?php echo $totalQuantity; ?>, на сумму: <?php echo $totalPrice; ?>, руб.</p></div>
     <?php if (isset($errors) && is_array($errors)): ?>
         <div class="animated slideInLeft">
             <ul class="msg-send-error">

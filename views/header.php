@@ -36,12 +36,10 @@ $active = $title->print_url_link();
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <?php endif;?>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-
-
+    <?php include_once ROOT . '/config/yandex-map.php' ?>
 </head>
 
   <body>
-
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <img src="/template/images/logo.png" class="animated slideInLeft" alt="logo" id="logo">

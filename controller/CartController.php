@@ -106,15 +106,20 @@ class CartController
                 }
                 // Сохраняем заказ в БД
                 $result = Order::save($userName, $userPhone, $userComment,$userEmail, $userId, $productsInCart);
-                if ($result) {
+                if ($result[0]) {
                     // Оповещаем администратора о новом заказе
-
+                    //var_dump($result[1]['id']);exit;
                     $paramsPath = ROOT.'/config/config_site.php';
+                    $prodList = Product::getProdustsByIds(array_keys($productsInCart));
                     $send_mail = include ($paramsPath);
                     $adminEmail = $send_mail['MyEmail'];
                     $message = "У нас новый заказ: ".$send_mail['msg']." От".$userName.";<br> номер тел.:".$userPhone.";<br>Email:".$userEmail."<br><br> Комментарий: ".$userComment;
                     $subject = $send_mail['subject'];
                     mail($adminEmail, $subject, $message);
+
+                    $messegeContent = Cart::printMsgContentEmail($result[1]['id'],$prodList);
+                    $message =$send_mail['EmailHeaderOrder'].$messegeContent.$send_mail['EmailFooter'];
+                    mail($userEmail, 'Заказ', $message);
 
                     // Очищаем корзину
                     Cart::clear();

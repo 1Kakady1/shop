@@ -11,6 +11,7 @@ class Product
     const SHOW_BY_DEFAULT = 6;
     const SHOW_BY_DEFAULT_ADMIN = 13;
 
+
     public static function getLatestProducts($page=1)
     {
 
