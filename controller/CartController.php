@@ -117,7 +117,7 @@ class CartController
                     $subject = $send_mail['subject'];
                     mail($adminEmail, $subject, $message);
 
-                    $messegeContent = Cart::printMsgContentEmail($result[1]['id'],$prodList);
+                    $messegeContent = Cart::printMsgContentEmail($result[1]['id'],$userName,$prodList);
                     $message =$send_mail['EmailHeaderOrder'].$messegeContent.$send_mail['EmailFooter'];
                     mail($userEmail, 'Заказ', $message);
 
