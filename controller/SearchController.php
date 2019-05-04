@@ -35,4 +35,16 @@ class SearchController
         return true;
     }
 
+    public function actionAjaxSearch(){
+        $ajaxData = json_decode($_POST['data'], true);
+        $ajaxData =nl2br(htmlspecialchars(trim($ajaxData), ENT_QUOTES), false);
+
+        $result = Search::getSearchAjax($ajaxData);
+
+        echo  json_encode($result, JSON_FORCE_OBJECT);
+
+        return true;
+
+    }
+
 }

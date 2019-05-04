@@ -39,4 +39,28 @@ class Search
             }
             return $st;
         }
+
+    public static function getSearchAjax($search)
+    {
+        $search =nl2br(htmlspecialchars(trim($search), ENT_QUOTES), false);
+
+        $prodTab=Db::dbTableName('product');
+        $db = Db::getConnection();
+
+
+        $value = "$search%";
+        $sql = "SELECT * FROM $prodTab WHERE name  LIKE ? OR description LIKE ? OR code LIKE ? ORDER BY id DESC";
+        $result = $db->prepare($sql);
+        $result->execute(array($value,$value,$value));
+        $st=array();
+
+        $i = 0;
+        while ($row = $result->fetch()) {
+            $st[$i]['id'] = $row['id'];
+            $st[$i]['name'] = $row['name'];
+            $st[$i]['image'] = $row['image'];
+            $i++;
+        }
+        return $st;
+    }
 }

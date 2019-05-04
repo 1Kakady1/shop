@@ -48,43 +48,44 @@ $linck_script = $title->print_url_link();
 <?php endif;?>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         $(".add-to-cart").click(function () {
             var id = $(this).attr("data-id");
-            $.post("/cart/addAjax/"+id, {}, function (data) {
+            $.post("/cart/addAjax/" + id, {}, function (data) {
                 $("#cart-count").html(data);
             });
             return false;
         });
-
-        $('.center').slick({
-            centerMode: true,
-            centerPadding: '60px',
-            slidesToShow: 3,
-            arrows: false,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            responsive: [
-                {
-                    breakpoint: 768,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 2
+        if ($('.center').length > 0){
+            $('.center').slick({
+                centerMode: true,
+                centerPadding: '60px',
+                slidesToShow: 3,
+                arrows: false,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '40px',
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 580,
+                        settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '40px',
+                            slidesToShow: 1
+                        }
                     }
-                },
-                {
-                    breakpoint: 580,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 1
-                    }
-                }
-            ]
-        });
+                ]
+            });
+    }
 
     });
 </script>

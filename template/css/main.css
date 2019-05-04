@@ -3,6 +3,36 @@
 body {
   scroll-behavior: smooth;
 }
+.ajax-search{
+  position: absolute;
+  top: 74px;
+  right: 0px;
+  background: #343a40;
+  width: 22%;
+  padding: 9px;
+  display: none;
+  border-radius: 0% 0% 0% 6%;
+
+}
+
+.search-link{
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  justify-content: space-between;
+  text-decoration: none;
+  color: #fff;
+}
+button{outline: none!important;}
+.search-link:hover{
+  color: #28a745;
+}
+.search-link__img{
+  width: 46px;
+  height: 46px;
+}
 #com-load{
   border: none;
   text-transform: uppercase;

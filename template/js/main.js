@@ -17,6 +17,77 @@ window.onload = function() {
     );
     wow.init();
 
+    let $searchBtn = $(".search-text"),
+        $searchBlock = $(".ajax-search");
+
+
+    // $searchBtn.on("click", function(e) {
+    //     e.preventDefault();
+    //
+    //     if(this.classList.contains("search-submit_active") !== true){
+    //
+    //         this.classList.add("search-submit_active");
+    //
+    //         $searchBlock.slideDown(500,"linear",function(){
+    //             $(this).css({
+    //                 display: "block"
+    //             })
+    //         });
+    //     }else {
+    //         this.classList.remove("search-submit_active");
+    //
+    //         $searchBlock.slideUp(500,"linear",function(){
+    //             $(this).css({
+    //                 display: "none"
+    //             })
+    //         });
+    //
+    //     }
+    //
+    // });
+
+     $(document).on('input.search-text',function(ev){
+         if($(ev.target).val().length >= 3){
+
+             $searchBlock.slideDown(500,"linear",function(){
+                 $(this).css({
+                     display: "block"
+                 })
+             });
+
+             $.ajax({
+                 url:    	location.protocol+"//"+location.hostname+'/search/ajaxSearch/',
+                 type:		'POST',
+                 cache: 		false,
+                 data:   	{'data':JSON.stringify($(ev.target).val())},
+                 dataType:	'text',
+
+                 success: function(data) {
+                     let res = JSON.parse(data);
+                    $(".ajax-search .search-link").remove();
+                     for (let i =0 ; i < Object.keys(res).length; i++){
+                         $(".ajax-search").prepend(`<a href="${location.protocol+"//"+location.hostname}/product/${res[i]['id']}" class="search-link">
+                                                        <img src="/template/images/shop/${res[i]['image']}" class="search-link__img" alt="">
+                                                        <span>${res[i]['name']}</span>
+                                                    </a>`);
+                     }
+
+                 },
+                 error: function(data) {console.log(data)}
+             });
+                     $searchBlock.slideDown(500,"linear",function(){
+                         $(this).css({
+                             display: "block"
+                         })
+                     });
+         } else {
+                     $searchBlock.slideUp(500,"linear",function(){
+                         $(this).css({
+                             display: "none"
+                         })
+                     });
+         }
+     });
 
 
     let path = window.location.pathname,

@@ -61,6 +61,7 @@ return array(
     'cabinet/edit' => 'cabinet/edit',
     'cabinet' => 'cabinet/index',
 
+    'search/ajaxSearch' => 'search/ajaxSearch',
     'search' => 'search/index',
 
     'contact' => 'contact/index',
