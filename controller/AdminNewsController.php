@@ -126,14 +126,14 @@ class AdminNewsController extends AdminBase
             $errors = false;
             if($_FILES['image']['name'] != '')
             {
-                $imageProd = Product::loadImageProd($post[0],ROOT.'/template/images/shop/','image');
+                $imageProd = Product::loadImageProd($post[0],ROOT.'/template/images/news/','image');
             } else {$imageProd=$newsList['preview'];}
 
             for($i=1;$i<count($post);$i++)
             {
                 if($post[$i] != false)
                 {
-                    $imageBuf = Product::loadImageProd($post[$i],ROOT.'/template/images/shop/',$key[$i]);
+                    $imageBuf = Product::loadImageProd($post[$i],ROOT.'/template/images/news/',$key[$i]);
                     $options['gal'][$i] = $imageBuf;
                 }
             }

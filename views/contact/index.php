@@ -21,13 +21,15 @@ if(isset($_SESSION['user']))
        </div>
     <?php endif; ?>
 <?php endif; ?>
+        <div class="wrapper-contact">
+            <div id="map" class="wow slideInUp hidden-xs hidden-sm"></div>
 
         <div id="contact-page" class="container">
+
     	<div class="bg">
 	    	<div class="row">    		
 	    		<div class="col-sm-12">    			   			
 					<h2 class="title text-center">КАК С НАМИ СВЯЗАТЬСЯ</h2>
-					<div id="gmap" class="contact-map">
 					</div>
 				</div>			 		
 			</div>
@@ -88,5 +90,5 @@ if(isset($_SESSION['user']))
 	    	</div>  
     	</div>	
     </div><!--/#contact-page-->
-
+        </div>
 <?php include_once ROOT . '/views/footer.php' ?>

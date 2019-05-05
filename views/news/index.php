@@ -3,7 +3,7 @@
     <main role="main" style="margin-top: -0.6vw;">
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="jumbotron" id="cont-w" style="background: url(/template/images/background-news.jpg);background-size: 100% 100%;">
+      <div class="jumbotron" id="cont-w" style="background: url(/template/images/background-news.jpeg);background-size: 100% 100%;">
         <div class="container">
           <h1 class="display-3"><?php echo $newsList[$randNewsId[0]]['title']?></h1>
           <p><?php echo $newsList[$randNewsId[0]]['content']?></p>

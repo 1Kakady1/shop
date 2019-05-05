@@ -21,23 +21,26 @@ include_once ROOT.'/views/header.php';
 <body class="bg-light">
 
 <form class="form-signin" id="login-form" action="#" method="post" style="margin-bottom: 19.6vw;">
-    <div id="flex_center">
-        <img class="mb-4"  id="flex_center" src="/template/images/logo.png" alt="">
-    </div>
-    <div id="flex_center">
-        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Ваш Email" required="" autofocus="">
-    </div>
-    <div id="flex_center">
-        <input type="text" name="usname" id="inputPassword" class="form-control" placeholder="Никнейм" required="">
+    <div class="bg-wrap">
+        <div id="flex_center">
+            <img class="mb-4"  id="flex_center" src="/template/images/logo.png" alt="">
+        </div>
+        <div id="flex_center">
+            <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Ваш Email" required="" autofocus="">
+        </div>
+        <div id="flex_center">
+            <input type="text" name="usname" id="inputPassword" class="form-control" placeholder="Никнейм" required="">
+        </div>
+
+        <div id="flex_center">
+            <button class="btn btn-lg btn-primary btn-block"  type="submit" name="submit">Восстановить пароль</button>
+        </div>
+        <div id="flex_center" style="margin-top: 1vw">
+            <a href="/user/register/" style="padding-right: 6vw;">Регистрация</a>
+            <a href="/user/login/">Вход</a>
+        </div>
     </div>
 
-    <div id="flex_center">
-        <button class="btn btn-lg btn-primary btn-block"  type="submit" name="submit">Восстановить пароль</button>
-    </div>
-    <div id="flex_center" style="margin-top: 1vw">
-        <a href="/user/register/" style="padding-right: 6vw;">Регистрация</a>
-        <a href="/user/login/">Вход</a>
-    </div>
 
 </form>
 

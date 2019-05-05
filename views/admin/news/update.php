@@ -17,7 +17,7 @@
                     <div class="col-lg-8">
                         <p>Изображение</p>
                         <input type="file" name="image" placeholder="" value="">
-                        <img src="/template/images/news/<?php echo $newsList['preview']?>" alt=""  >
+                        <img src="/template/images/news/<?php echo $newsList['preview']?>" alt=""  style="    width: 59%;">
                         <div id="gall">
                             <p>Галерея</p>
                             <div class="img-avatar" id="img-avatar">

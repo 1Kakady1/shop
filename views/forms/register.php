@@ -2,7 +2,7 @@
 
   <body class="bg-light">
 
-    <div class="container" style="margin-bottom: calc(11vw + 3vw);">
+    <div class="container bg-wrap" style="margin-bottom: calc(11vw + 3vw);">
         <div id="flex_center" class="py-5 text-center">
             <img class="mb-4"  id="flex_center" src="/template/images/logo.png" alt="">
         </div>

@@ -25,6 +25,13 @@ body {
   text-decoration: none;
   color: #fff;
 }
+.bg-wrap{
+  background: rgba(52, 58, 64, 0.7);
+  margin-left: auto;
+  margin-right: auto;
+  width: 32%;
+  border-radius: 5%;
+}
 button{outline: none!important;}
 .search-link:hover{
   color: #28a745;
@@ -137,7 +144,14 @@ label span {color: red;}
   color: #333;
   font-size: 20px;
 }
-#contact-page{    margin-top: 4vw;}
+#contact-page{
+  background: rgba(52, 58, 64, 0.6);
+  z-index: 4;
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 53px;
+  border-radius: 3%;
+}
 
 #contact-page .btn-primary {
   color: #fff;
@@ -163,10 +177,14 @@ header {    width: 100%;
   margin-top: 3vw;
   margin-bottom: 3vw;
 }
-#flex_center a{color: #343a40}
+#flex_center a{color: #fff}
+
+#flex_center a:hover{color: #28a745}
+
 #flex_center img{
-  width: 30%;
+  width: 53%;
   height: 10vw;
+  margin-top: 4px;
 }
 
 #flex_center{
@@ -176,17 +194,27 @@ header {    width: 100%;
 }
 
 #flex_center input{
-  width: 22%;
+  width: 100%;
   margin-bottom: 2vw;
+  margin-left: 24px;
+  margin-right: 24px;
 }
 
 #flex_center label {
   width: 22%;
   margin-left: -3vw;
 }
-
+.bg-wrap h2,.bg-wrap p,.bg-wrap label{
+  color:#fff;
+}
+.btn-lg{
+  margin-bottom: 11px;
+}
 #flex_center .btn-block{
-  width: 22%!important;
+  width: 100%;
+  margin-left: 24px;
+  margin-right: 24px;
+
 }
 
 iframe {width: 100%;height: 33vw;}
@@ -1146,7 +1174,7 @@ ul.sub-menu {
 .left-sidebar h2:after, h2.title:after{
   content: " ";
   position: absolute;
-  border: 1px solid #f5f5f5;
+  border: none;
   bottom:8px;
   left: 0;
   width: 100%;
@@ -1154,10 +1182,12 @@ ul.sub-menu {
   z-index: -2;
 }
 
+.wrapper-contact #map{position: absolute;}
+
 .left-sidebar h2:before{
   content: " ";
   position: absolute;
-  background: #fff;
+  background: transparent;
   bottom: -6px;
   width: 130px;
   height: 30px;
@@ -1169,7 +1199,7 @@ ul.sub-menu {
 h2.title:before{
   content: " ";
   position: absolute;
-  background: #fff;
+  background: transparent;
   bottom: -6px;
   width: 220px;
   height: 30px;
@@ -1319,6 +1349,14 @@ h2.title {
   text-transform: uppercase;
   margin-bottom: 30px;
   position: relative;
+}
+
+.wrapper-contact h2.title{
+  color: #fff;
+}
+
+address p {
+  color: #fff;
 }
 
 .product-image-wrapper{
@@ -1602,6 +1640,13 @@ b, strong {
 **************************/
 #cont-w .container {
   max-width: 71rem!important;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 11% 1% 20% 1%;
+}
+
+.wrapper-contact{
+  position: relative;
+  overflow: hidden;
 }
 
 #cont-w{
