@@ -1,5 +1,5 @@
 <?php include_once ROOT . '/views/header.php'; ?>
-<section>
+<section style="    margin-bottom: 4%;">
     <?php if ($result): ?>
     <div class="animated slideInLeft"><p class="msg-send">Данные отредактированы!</p></div>
     <?php else: ?>

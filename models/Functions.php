@@ -1,7 +1,13 @@
 <?php
 
+$paramsPath = ROOT.'/config/config_site.php';
+$setting = include ($paramsPath);
+
 class Functions
 {
+
+    const KEY_TOKEN = "fafa35";
+
     public function stripToDomainName($suri = '')
     {
         $suri = strtolower(trim($suri));
@@ -11,6 +17,18 @@ class Functions
         $suri = preg_replace('%\/.*$%usi', '', $suri);
 
         return $suri;
+    }
+
+    public function token(){
+        $key=self::KEY_TOKEN;
+        $token = base64_encode (bin2hex(random_bytes(64)).$key);
+        if (!isset($_SESSION['token'])) {
+            $_SESSION['token'] = $token;
+        } else {
+            $token = $_SESSION['token'];
+        }
+        return $token;
+
     }
 
     public function print_url_link()

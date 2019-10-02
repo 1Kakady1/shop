@@ -539,41 +539,125 @@ case 3: $sql = "UPDATE $userTab SET usimg = :usimg WHERE id = :id";
         }
     }
 
-    public static function loadImage($email,$path)
+    public static function loadImage($email,$path,$key)
     {
-
         //function LoadImg($path,$connection2,$users_tab_my)
-            $types = array('image/gif', 'image/png', 'image/jpeg','image/jpg');
-            $exp_tupe_array = array('gif','png','jpeg','jpg' );
-            if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        require_once("vendor/autoload.php");
+        $TinyON = Setting::getSetting();
+
+        if($TinyON[14]['info'] == "on"){
+            try {
+                \Tinify\setKey($TinyON[15]['info']);
+                \Tinify\validate();
+            } catch(\Tinify\Exception $e) {
+                print("The error message is: " . $e->getMessage());
+                return false;
+                exit;
+            }
+        }
+
+
+
+        $types = array('image/gif', 'image/png', 'image/jpeg','image/jpg');
+        $exp_tupe_array = array('gif','png','jpeg','jpg' );
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            echo "<pre>";
+            var_dump($_FILES);
+            echo "</pre>";
+            if (!in_array($_FILES[$key]['type'], $types))
+            {return false;} //msg error
+            $typeImg= explode(".",$_FILES[$key]['name']);
+            // var_dump($typeImg);
+            for($i=0;$i<count($exp_tupe_array);$i++)
             {
-                if (!in_array($_FILES['picture']['type'], $types))
-                {return 5;} //msg error
-                $typeImg= explode(".",$_FILES['picture']['name']);
-               // var_dump($typeImg);
-                for($i=0;$i<count($exp_tupe_array);$i++)
+                if($typeImg[count($typeImg)-1] == $exp_tupe_array[$i])
                 {
-                    if($typeImg[count($typeImg)-1] == $exp_tupe_array[$i])
-                    {
-                        $byfType=$exp_tupe_array[$i];
-                        break;
-                    }
-                    $byfType = null;
+                    $byfType=$exp_tupe_array[$i];
+                    break;
                 }
+                $byfType = null;
+            }
 
-                if($byfType == null )
-                {
-                    return 6;
+            if($byfType == null )
+            {
+                return false;
+            }
+
+            $name_file = md5($typeImg[0].$email).'.'.$byfType;
+
+            $source = \Tinify\fromFile($_FILES[$key]['tmp_name']);
+            $source->toFile( $path.$name_file);
+            if($TinyON[14]['info'] == "on") {
+                try {
+                    return $name_file;
+                } catch (\Tinify\AccountException $e) {
+                    print("The error message is: " . $e->getMessage());
+                    return false;
+                    exit;
+                } catch (\Tinify\ClientException $e) {
+                    print("The error message is: " . $e->getMessage());
+                    return false;
+                    exit;
+                } catch (\Tinify\ServerException $e) {
+                    print("The error message is: " . $e->getMessage());
+                    return false;
+                    exit;
+                } catch (\Tinify\ConnectionException $e) {
+                    return false;
+                } catch (Exception $e) {
+                    print("The error message is: " . $e->getMessage());
+                    return false;
+                    exit;
                 }
-
-                $name_file = md5($typeImg[0].$email).'.'.$byfType;
-                $_FILES['picture']['name'] =$name_file;
-                if (!@copy($_FILES['picture']['tmp_name'], $path . $_FILES['picture']['name']))
-                    return 3;//msg bad type
+            } else {
+                $_FILES[$key]['name'] =$name_file;
+                if (!@copy($_FILES[$key]['tmp_name'], $path . $_FILES[$key]['name']))
+                    return false;//msg bad type
                 else
                     return $name_file;//msg ok!
             }
+
+        }
     }
+
+
+//    public static function loadImage($email,$path)
+//    {
+//
+//        //function LoadImg($path,$connection2,$users_tab_my)
+//            $types = array('image/gif', 'image/png', 'image/jpeg','image/jpg');
+//            $exp_tupe_array = array('gif','png','jpeg','jpg' );
+//            if ($_SERVER['REQUEST_METHOD'] == 'POST')
+//            {
+//                if (!in_array($_FILES['picture']['type'], $types))
+//                {return 5;} //msg error
+//                $typeImg= explode(".",$_FILES['picture']['name']);
+//               // var_dump($typeImg);
+//                for($i=0;$i<count($exp_tupe_array);$i++)
+//                {
+//                    if($typeImg[count($typeImg)-1] == $exp_tupe_array[$i])
+//                    {
+//                        $byfType=$exp_tupe_array[$i];
+//                        break;
+//                    }
+//                    $byfType = null;
+//                }
+//
+//                if($byfType == null )
+//                {
+//                    return 6;
+//                }
+//
+//                $name_file = md5($typeImg[0].$email).'.'.$byfType;
+//                $_FILES['picture']['name'] =$name_file;
+//                if (!@copy($_FILES['picture']['tmp_name'], $path . $_FILES['picture']['name']))
+//                    return 3;//msg bad type
+//                else
+//                    return $name_file;//msg ok!
+//            }
+//    }
         public static function sendActiveUsMail($id,$email)
         {
             $paramsPath = ROOT.'/config/config_site.php';

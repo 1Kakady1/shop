@@ -7,7 +7,7 @@
  */
 $footerInfo=Functions::getAddress();
 $phone_array1 = explode("&", $footerInfo[1]['info']);
-$linck_script = $title->print_url_link();
+$linck_script = $function ->print_url_link();
 ?>
 
 <footer>

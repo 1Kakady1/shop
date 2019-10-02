@@ -7,9 +7,9 @@
  */
 include_once ROOT.'/models/Functions.php';
 
-$title = new Functions();
-$titleSite = $title->print_title();
-$active = $title->print_url_link();
+$function = new Functions();
+$titleSite = $function->print_title();
+$active = $function->print_url_link();
 
 ?>
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ $active = $title->print_url_link();
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="csrf-token" content="<?php echo $function-> token() ?>">
     <link rel="icon" href="/template/images/icons.png">
 
     <title><?php echo $titleSite."- TopShop"?></title>

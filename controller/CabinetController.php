@@ -107,9 +107,11 @@ class CabinetController
         if (isset($_POST['submit-avatar'])) {
             $errors = false;
 
-           $resultImg =  User::loadImage($user['email'],ROOT.'/template/images/avatar/');
+           //$resultImg =  User::loadImage($user['email'],ROOT.'/template/images/avatar/');
 
-           if($resultImg==6 || $resultImg==5 || $resultImg==3 ){
+            $resultImg= User::loadImage($user['email'],ROOT.'/template/images/avatar/','picture');
+            if($resultImg == false) {
+            //if($resultImg==6 || $resultImg==5 || $resultImg==3 ){
                $errors[] = 'Не удалось загрузить изображение';
            } else {
                $result = User::edit(3,$userId, null, null,null,null,$resultImg );

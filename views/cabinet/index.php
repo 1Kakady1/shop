@@ -9,13 +9,22 @@
 include_once ROOT.'/views/header.php'?>
 <div class="animated slideInLeft"><p class="msg-send">Никнейм служит для восстановления пароля. Никому не сообщайте его!!!</p></div>
 
-<main role="main" class="col-md-12 ml-sm-auto col-lg-12 "><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+<main role="main" class="col-md-12 ml-sm-auto col-lg-12 " style="    margin-bottom: 19.6vw;"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
 
         <div class="col-md-12" id="l-cab">
             <a href="/cabinet" class="btn btn-success">Ваши заказы</a>
            <a href="/cabinet/edit" class="btn btn-success">Изменить профиль</a>
         </div>
     <h2>Заказы</h2>
+
+
+    <?php if(count($order) < 1): ?>
+    <div class="not-prod">
+        <h2>На данный момент вы еще не заказали товар.</h2>
+        <a href="/"> Начните прямо сейчас!!!</a>
+    </div>
+
+    <?php else: ?>
     <div class="table-responsive">
         <table class="table table-striped table-sm">
             <thead>
@@ -30,6 +39,9 @@ include_once ROOT.'/views/header.php'?>
             <tbody>
             <?php
             $i=0;
+           //var_dump($order[0]["product"]);
+            $listProdUser=Product::getTableProd($order[$i]);
+
             while ($i<count($order)):
                 $listProdUser=Product::getTableProd($order[$i]);
                  foreach ($listProdUser as $productsList):
@@ -46,6 +58,7 @@ include_once ROOT.'/views/header.php'?>
             </tbody>
         </table>
     </div>
+    <?php endif; ?>
 </main>
 
 <?php include_once ROOT.'/views/footer.php';?>

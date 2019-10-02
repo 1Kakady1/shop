@@ -16,7 +16,7 @@ return $setting = array(
     'price' =>"₽",
     'key1'=>"Tort",'key2'=>"228",'key3'=>"wEr0",'key4'=>"sdwcc1",'key5'=>"232cAA",
     'MyEmail'=>$mail,'msg'=>"http://site.loc/admin/orders",'subject'=>"Новый заказ!",
-
+    'key_token' => "223g5w",
     'EmailHeaderOrder' => '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" style="background: #fff; min-height: 100%;">
   <head>
