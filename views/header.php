@@ -42,7 +42,7 @@ $active = $function->print_url_link();
   <body>
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <img src="/template/images/logo.png" class="animated slideInLeft" alt="logo" id="logo">
+            <img src="./template/images/logo.png" class="animated slideInLeft" alt="logo" id="logo">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

@@ -42,6 +42,36 @@ class Product
         return $productsList;
     }
 
+	public static function getLatestProductsApi($offset=0,$limit=12)
+	{
+
+		$productTab=Db::dbTableName('product');
+		$db = Db::getConnection();
+		$productsList = array();
+
+//		$page = intval($page);
+//		$offset = ($page -1)* self::SHOW_BY_DEFAULT;
+
+		$result = $db->query("SELECT id, name, price, image, code, description, is_new FROM ".$productTab
+			." WHERE status = 1 "
+			."ORDER BY id DESC "
+			."LIMIT " .$limit
+			.' OFFSET ' .$offset);
+
+		$i = 0;
+		while ($row = $result->fetch()) {
+			$productsList[$i]['id'] = $row['id'];
+			$productsList[$i]['name'] = $row['name'];
+			$productsList[$i]['image'] = $row['image'];
+			$productsList[$i]['description'] = $row['description'];
+			$productsList[$i]['price'] = $row['price'];
+			$productsList[$i]['is_new'] = $row['is_new'];
+			$i++;
+		}
+
+		return $productsList;
+	}
+
     public static function getProductsCategoriesId($id = false,$page=1)
     {
         $id = intval($id);

@@ -53,7 +53,7 @@ class Router
                       // подключение класса нужного контроллера
 
                 $controllerFile = ROOT.'/controller/'.$controllerName.'.php';
-
+				//var_dump( $actionName);exit;
                 if(file_exists($controllerFile)){
                     include_once($controllerFile);
                 }
