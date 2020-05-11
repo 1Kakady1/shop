@@ -35,6 +35,8 @@ class User
         return $result->execute();
     }
 
+
+
     public static function edit($flag,$id, $name, $password,$usname, $email, $img)
     {
         $userTab=Db::dbTableName('users');

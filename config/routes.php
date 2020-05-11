@@ -8,12 +8,13 @@
 const V1 = '1';
 
 return array(
-
+	'api/v1/analytic' => 'api/updAnalytic',
 	'api/v1/product/([0-9]+)' => 'api/getProduct/$1',
 	'api/v1/products' => 'api/getLastProducts',
 	'api/v1/news' => 'api/getLastNews',
 	'api/v1/news/([0-9]+)' => 'api/getNews/$1',
 	'api/v1/news-home' => 'api/getNewsHome/',
+	'api/v1/token' => 'api/getToken',
 
     'news/([0-9]+)' => 'news/view/$1',
     'news' => 'news/index',

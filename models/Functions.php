@@ -31,6 +31,18 @@ class Functions
 
     }
 
+	public static function token_mobail(){
+		$key=self::KEY_TOKEN;
+		$token = base64_encode (bin2hex(random_bytes(64)).$key);
+		if (!isset($_SESSION['token'])) {
+			$_SESSION['token'] = $token;
+		} else {
+			$token = $_SESSION['token'];
+		}
+		return $token;
+
+	}
+
     public function print_url_link()
     {
         if (!empty($_SERVER['REQUEST_URI'])) {
@@ -56,6 +68,45 @@ class Functions
             return $productItem;
         }
     }
+
+	public  static  function analytic($data=[]){
+
+    	$user_name = $data['user'];
+    	$user_data= json_encode($data,JSON_UNESCAPED_UNICODE);
+		$flag = false;
+
+		if(!isset($_SESSION['tqwcht'])){
+			$_SESSION['tqwcht'] = md5($user_name."busa_analytic");
+			$flag = true;
+		}
+
+		if($_SESSION['tqwcht'] === md5($user_name."busa_analytic")){
+
+			if($flag === true) {
+				$hTab=Db::dbTableName('analytic');
+				$db= Db::getConnection();
+				$sql = 'INSERT INTO '.$hTab.' (user_name, user_data) VALUES (:user_name, :user_data)';
+				$result = $db->prepare($sql);
+				$result->bindParam(':user_name', $user_name, PDO::PARAM_STR);
+				$result->bindParam(':user_data', $user_data, PDO::PARAM_STR);
+				$result->execute();
+				$res["stat_anal"] = ['add anal', false];
+			} else {
+				$hTab=Db::dbTableName('analytic');
+				$db= Db::getConnection();
+				$sql = "UPDATE $hTab SET user_data = :user_data WHERE user_name = :user_name";
+				$result = $db->prepare($sql);
+				$result->bindParam(':user_name', $user_name, PDO::PARAM_INT);
+				$result->bindParam(':user_data', $user_data, PDO::PARAM_STR);
+				$result->execute();
+				$res["stat_anal"] = ['upd anal', false];
+			}
+		} else {
+			$res['stat_anal'] = ["Кто тут читер ?",true];
+		}
+
+		return $res;
+	}
 
     public function print_title()
     {

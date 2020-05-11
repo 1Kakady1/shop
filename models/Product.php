@@ -52,7 +52,7 @@ class Product
 //		$page = intval($page);
 //		$offset = ($page -1)* self::SHOW_BY_DEFAULT;
 
-		$result = $db->query("SELECT id, name, price, image, code, description, is_new FROM ".$productTab
+		$result = $db->query("SELECT * FROM ".$productTab
 			." WHERE status = 1 "
 			."ORDER BY id DESC "
 			."LIMIT " .$limit
@@ -65,12 +65,20 @@ class Product
 			$productsList[$i]['image'] = $row['image'];
 			$productsList[$i]['description'] = $row['description'];
 			$productsList[$i]['price'] = $row['price'];
+			$productsList[$i]['brand'] = $row['brand'];
+			$productsList[$i]['code'] = $row['code'];
+			$productsList[$i]['category_id'] = $row['category_id'];
 			$productsList[$i]['is_new'] = $row['is_new'];
+			$productsList[$i]['is_recommended'] = $row['is_recommended'];
+			$productsList[$i]['info'] = $row['info'];
+			$productsList[$i]['gallery'] = $row['gallery'];
 			$i++;
 		}
 
 		return $productsList;
 	}
+
+
 
     public static function getProductsCategoriesId($id = false,$page=1)
     {
