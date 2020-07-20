@@ -8,6 +8,23 @@ class Functions
 
     const KEY_TOKEN = "fafa35";
 
+    public static function  captcha(){
+	    $Random = rand(10001, 99999);
+	    $_SESSION['captcha'] = md5($Random);
+	    $im = imagecreatetruecolor($c_width=130, $c_height=30);
+	    imagefilledrectangle($im, 0, 0, 110, 30, imagecolorallocatealpha($im, $r=255, $g=255, $b=255,$a=255));
+	    imagettftext($im, $size_text=16, 0, 15, 23, imagecolorallocate($im, $r_t=0, $g_t=0, $b_t=0), ROOT.'/templatefonts/1.ttf', $Random);
+	    header('Expires: Wed, 1 Jan 1997 00:00:00 GMT');
+	    header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
+	    header('Cache-Control: no-store, no-cache, must-revalidate');
+	    header('Cache-Control: post-check=0, pre-check=0', false);
+	    header('Pragma: no-cache');
+	    header ('Content-type: image/gif');
+	    imagegif($im);
+	    imagedestroy($im);
+	    //return true;
+    }
+
     public function stripToDomainName($suri = '')
     {
         $suri = strtolower(trim($suri));

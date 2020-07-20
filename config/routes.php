@@ -15,9 +15,12 @@ return array(
 	'api/v1/news/([0-9]+)' => 'api/getNews/$1',
 	'api/v1/news-home' => 'api/getNewsHome/',
 	'api/v1/token' => 'api/getToken',
+	'api/v1/test' => 'api/getApiTest',
 
     'news/([0-9]+)' => 'news/view/$1',
     'news' => 'news/index',
+
+    'captcha'=>"api/captcha",
 
 
     'product/([0-9]+)' => 'product/view/$1',

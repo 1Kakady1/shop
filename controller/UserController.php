@@ -102,7 +102,7 @@ class UserController
 
             // Проверяем существует ли пользователь
             $id = User::checkUserData($email, $password);
-
+	       // var_dump($id);var_dump( $password );var_dump($email);exit;
             if ($id == false) {
 
                 $errors[] = 'Неверные данные для входа на сайт';

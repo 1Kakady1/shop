@@ -28,7 +28,6 @@ class Router
     public function run()
     {
         $url = $this->getURI();
-
         ob_start();
         foreach ($this->routes as $uriPattern => $path){
 
@@ -72,6 +71,5 @@ class Router
                 }
             }
         }
-
     }
 }

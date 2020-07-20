@@ -7,6 +7,12 @@ class ApiController
 	const KEY_API = "key";
 	const KEY_API_ANALYTIC = "key_Analytic";
 
+	public function actionCaptcha(){
+		Functions::captcha();
+
+		return true;
+	}
+
 	public function actionGetToken(){
 		$token = Functions::token_mobail();
 		//$token = "sdawsdawd";
@@ -27,6 +33,22 @@ class ApiController
 			echo json_encode(['error'=>'error'],JSON_UNESCAPED_UNICODE);
 		}
 
+		return true;
+	}
+
+	public function actionGetApiTest()
+	{
+
+		//header('Access-Control-Allow-Origin: *');
+		//header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+		//header('Access-Control-Allow-Headers: Content-Type');
+
+		$response['data']['status'] = 1;
+		$response['data']['data'] = [
+			"awddwawdaw",
+			"dwadwadawdw"
+		];
+		echo json_encode($response,JSON_UNESCAPED_UNICODE);
 		return true;
 	}
 
@@ -58,16 +80,20 @@ class ApiController
 	}
 
 	public function actionUpdAnalytic(){
-		$key_api = $_POST['key'];
-		$data =  json_decode($_POST['user_data']);
-		$_token = json_decode($_POST['_token']);
 
-		if($key_api === self::KEY_API_ANALYTIC && $_token == $_SESSION['token']){
-			$response = Functions::analytic($data);
+		$data =  json_decode($_POST);
+		$key_api = $data['key'];
+
+		//$_token = json_decode($_POST['_token']);
+
+		if($key_api === self::KEY_API_ANALYTIC ){
+			$response = Functions::analytic($data['data']);
 			echo json_encode($response,JSON_UNESCAPED_UNICODE);
 		} else{
-			echo json_encode(['error'=>'error'],JSON_UNESCAPED_UNICODE);
+			echo json_encode(['error'=>$data],JSON_UNESCAPED_UNICODE);
 		}
+
+		return true;
 	}
 
 

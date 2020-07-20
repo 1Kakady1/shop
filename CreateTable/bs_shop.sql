@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 02 2019 г., 22:18
+-- Время создания: Июл 20 2020 г., 21:14
 -- Версия сервера: 5.6.41
 -- Версия PHP: 7.2.10
 
@@ -21,6 +21,18 @@ SET time_zone = "+00:00";
 --
 -- База данных: `bs_shop`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tr_analytic`
+--
+
+CREATE TABLE `tr_analytic` (
+  `id` int(99) NOT NULL,
+  `user_name` varchar(255) DEFAULT NULL,
+  `user_data` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -113,7 +125,8 @@ INSERT INTO `tr_comments` (`id`, `author`, `nickname`, `email`, `text`, `pupdate
 (44, 'Аноним', 'Антон Сорока', 'tommi11@mail.ru', 'Повседневная практика показывает, что новая модель организационной деятельности способствует подготовки и реализации позиций, занимаемых участниками в отношении поставленных задач. Таким образом постоянное информационно-пропагандистское обеспечение нашей деятельности влечет за собой процесс внедрения и модернизации форм развития.', '2018-12-08 15:14:53', NULL, 3),
 (45, 'Аноним', 'Антон Сорока', 'test@mail.ru', 'Повседневная практика показывает, что новая модель организационной деятельности способствует подготовки и реализации позиций, занимаемых участниками в отношении поставленных задач. Таким образом постоянное информационно-пропагандистское обеспечение нашей деятельности влечет за собой процесс внедрения и модернизации форм развития.', '2018-12-08 15:15:08', NULL, 3),
 (46, 'Аноним', 'Антон Сорока', 'test@mail.ru', 'Повседневная практика показывает, что новая модель организационной деятельности способствует подготовки и реализации позиций, занимаемых участниками в отношении поставленных задач. Таким образом постоянное информационно-пропагандистское обеспечение нашей деятельности влечет за собой процесс внедрения и модернизации форм развития.', '2018-12-08 15:15:18', NULL, 3),
-(47, 'Аноним', 'Антон Сорока', 'tommi11@mail.ru', 'tdhdhdhdrhdrhdrhdh', '2018-12-09 23:11:42', NULL, 4);
+(47, 'Аноним', 'Антон Сорока', 'tommi11@mail.ru', 'tdhdhdhdrhdrhdrhdh', '2018-12-09 23:11:42', NULL, 4),
+(48, 'Аноним', 'Мамин хакер', 'top_haker@hmaisl.ru', '&lt;script&gt;  document.querySelector(&quot;body&quot;).remove();\n      // ха-ха-ха\n&lt;/script&gt;', '2020-04-26 12:58:50', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -281,15 +294,22 @@ CREATE TABLE `tr_users` (
 --
 
 INSERT INTO `tr_users` (`id`, `name`, `usname`, `password`, `email`, `usimg`, `active`, `code`, `role`) VALUES
-(1, 'Test', 'Test', '1a730d6ef9ec92d64b889f2c938e5df1', 'test@mail.ru', NULL, 0, NULL, ''),
-(2, 'Антон Сорока', 'Anton', '2294922949', 'anton2016_96@mail.ru', NULL, 0, NULL, ''),
-(3, 'Антон Сорока', 'Tommi', '2284822848', 'expert13@gmail.com', NULL, 0, NULL, ''),
-(4, 'Антон Сорока', 'Tommi2', '11afd60d1d76a5892279c5f063d8b83b', 'anton.soroka2212@yandex.ru', NULL, 0, NULL, ''),
-(5, 'Антон Сорока', 'Tommi1', '798f6d94f08b06adb3f79345e5f08c71', 'tommi11@mail.ru', '610188e2cda49dd9444c038c6c0d4c28.jpg', 1, 'nyph1ga3xzt', 'admin');
+(1, 'Test', 'Test', '5f6d71715cbd5562618e4c935363d65a', 'test@mail.ru', NULL, 0, NULL, ''),
+(2, 'Антон Сорока', 'Anton', '5f6d71715cbd5562618e4c935363d65a', 'anton2016_96@mail.ru', NULL, 0, NULL, ''),
+(3, 'Антон Сорока', 'Tommi', '5f6d71715cbd5562618e4c935363d65a', 'expert13@gmail.com', NULL, 0, NULL, ''),
+(4, 'Антон Сорока', 'Tommi2', '5f6d71715cbd5562618e4c935363d65a', 'anton.soroka2212@yandex.ru', NULL, 0, NULL, ''),
+(5, 'Антон Сорока', 'Tommi1', '4a6048cce2ac326aa661c887f9ac90fd', 'tommi11@mail.ru', '610188e2cda49dd9444c038c6c0d4c28.jpg', 1, 'nyph1ga3xzt', 'admin'),
+(6, 'Tommi3', 'Tommi3', '5f6d71715cbd5562618e4c935363d65a', 'Tommi3@mail.ru', NULL, 0, NULL, '');
 
 --
 -- Индексы сохранённых таблиц
 --
+
+--
+-- Индексы таблицы `tr_analytic`
+--
+ALTER TABLE `tr_analytic`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `tr_category`
@@ -338,6 +358,12 @@ ALTER TABLE `tr_users`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `tr_analytic`
+--
+ALTER TABLE `tr_analytic`
+  MODIFY `id` int(99) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT для таблицы `tr_category`
 --
 ALTER TABLE `tr_category`
@@ -347,7 +373,7 @@ ALTER TABLE `tr_category`
 -- AUTO_INCREMENT для таблицы `tr_comments`
 --
 ALTER TABLE `tr_comments`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT для таблицы `tr_news`
@@ -377,7 +403,7 @@ ALTER TABLE `tr_setting`
 -- AUTO_INCREMENT для таблицы `tr_users`
 --
 ALTER TABLE `tr_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

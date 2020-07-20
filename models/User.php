@@ -87,7 +87,7 @@ case 3: $sql = "UPDATE $userTab SET usimg = :usimg WHERE id = :id";
         $sql = "SELECT usname FROM $userTab WHERE email = :email";
 
         $result = $db->prepare($sql);
-        $result->bindParam(':email', $email, PDO::PARAM_INT);
+        $result->bindParam(':email', $email, PDO::PARAM_STR);
         $result->execute();
 
         $usname = $result->fetch();
@@ -95,8 +95,8 @@ case 3: $sql = "UPDATE $userTab SET usimg = :usimg WHERE id = :id";
         $sql = "SELECT * FROM $userTab WHERE email = :email AND password = :password";
 
         $result = $db->prepare($sql);
-        $result->bindParam(':email', $email, PDO::PARAM_INT);
-        $result->bindParam(':password', $password_code, PDO::PARAM_INT);
+        $result->bindParam(':email', $email, PDO::PARAM_STR);
+        $result->bindParam(':password', $password_code, PDO::PARAM_STR);
         $result->execute();
 
         $user = $result->fetch();
@@ -565,9 +565,7 @@ case 3: $sql = "UPDATE $userTab SET usimg = :usimg WHERE id = :id";
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
-            echo "<pre>";
-            var_dump($_FILES);
-            echo "</pre>";
+
             if (!in_array($_FILES[$key]['type'], $types))
             {return false;} //msg error
             $typeImg= explode(".",$_FILES[$key]['name']);
@@ -673,13 +671,14 @@ case 3: $sql = "UPDATE $userTab SET usimg = :usimg WHERE id = :id";
 
             $sql = "UPDATE $userTab SET code = :code WHERE email = :email";
             $result = $db->prepare($sql);
-            $result->bindParam(':email', $email, PDO::PARAM_INT);
+            $result->bindParam(':email', $email, PDO::PARAM_STR);
             $result->bindParam(':code', $String, PDO::PARAM_STR);
             $result->execute();
 
             $Code= md5($setting['key1'].$String.md5($setting['key2'].$email.$setting['key3']))."j".$id;
             $Code=base64_encode($Code);
-            mail($email, 'Регистрация на cайте', 'Ссылка для активации: '.ROOT.'/user/active/'.$Code, 'From: '.$setting['MyEmail'].'');
+            mail($email, 'Регистрация на cайте', 'Ссылка для активации: '.ROOT.'/user/active/'.$Code,
+	            'From: '.$setting['MyEmail'].'');
             return true;
         }
 

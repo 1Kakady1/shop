@@ -42,6 +42,9 @@ $linck_script = $function ->print_url_link();
 <!--<script src="/template/js/popper.min.js"></script>-->
 <script src="/template/js/holder.min.js"></script>
 <script src="/template/js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script charset="utf-8" src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
+<script src="/template/js/analitycs.js"></script>
 <?php if ($linck_script == 'product' || $linck_script == 'news'): ?>
     <script src="/template/js/jquery.magnific-popup.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
